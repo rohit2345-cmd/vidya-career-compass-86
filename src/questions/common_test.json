@@ -1,0 +1,1516 @@
+{
+  "testName": "All-Rounder Career Aptitude Test",
+  "instructions": "Please answer the following questions honestly, choosing the option that best reflects your interests and preferences. Imagine yourself in each scenario and pick what you'd most likely do or prefer. There are no right or wrong answers.",
+  "questions": [
+      {
+          "questionId": "Q1",
+          "questionText": "Scenario: Your school is creating an interactive virtual reality museum exhibit. Which role would you be most interested in?",
+          "options": [
+              {
+                  "A": "Programming and coding the VR environment (Technical).",
+                  "score": {
+                      "Technical": 3,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "B": "Designing the 3D models and user interface (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Technical": 1
+                  }
+              },
+              {
+                  "C": "Researching the historical artifacts and writing the exhibit narration (Research).",
+                  "score": {
+                      "Research": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "D": "Hosting live virtual Q&A sessions with experts (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 2
+                  }
+              }
+          ],
+          "category": "Technology & Design"
+      },
+      {
+          "questionId": "Q2",
+          "questionText": "Scenario: Your community is starting an urban farming initiative. Which role would excite you the most?",
+          "options": [
+              {
+                  "A": "Developing an automated hydroponic system to grow plants (Technical).",
+                  "score": {
+                      "Technical": 3,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "B": "Designing the garden layout and promotional materials (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "C": "Leading hands-on workshops on sustainable farming (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 2,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "D": "Analyzing data on crop yields and environmental impact (Analytical).",
+                  "score": {
+                      "Analytical": 3,
+                      "Research": 2
+                  }
+              },
+              {
+                  "E": "Developing a business plan to market the produce (Business).",
+                  "score": {
+                      "Business": 3,
+                      "Analytical": 2
+                  }
+              }
+          ],
+          "category": "Sustainability & Business"
+      },
+      {
+          "questionId": "Q3",
+          "questionText": "Scenario: A startup is developing a specialized software for law offices. Which role interests you the most?",
+          "options": [
+              {
+                  "A": "Coding and developing the secure software platform (Technical).",
+                  "score": {
+                      "Technical": 3,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "B": "Designing the user interface to make it lawyer-friendly (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Technical": 1
+                  }
+              },
+              {
+                  "C": "Conducting market research by interviewing lawyers (Research).",
+                  "score": {
+                      "Research": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "D": "Ensuring the software follows legal rules and privacy requirements (Analytical).",
+                  "score": {
+                      "Analytical": 3,
+                      "Social": 2
+                  }
+              }
+          ],
+          "category": "Technology & Law"
+      },
+      {
+          "questionId": "Q4",
+          "questionText": "Scenario: Your school is hosting a digital storytelling workshop. Which role would you choose to take on?",
+          "options": [
+              {
+                  "A": "Leading sessions on creative writing and storytelling (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Creative": 2
+                  }
+              },
+              {
+                  "B": "Developing digital tools for creating multimedia stories (Technical).",
+                  "score": {
+                      "Technical": 3,
+                      "Creative": 2
+                  }
+              },
+              {
+                  "C": "Compiling and editing a collection of digital stories (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "D": "Organizing sessions with guest authors and media professionals (Social).",
+                  "score": {
+                      "Social": 3,
+                      "Communication": 2
+                  }
+              }
+          ],
+          "category": "Arts & Communication"
+      },
+      {
+          "questionId": "Q5",
+          "questionText": "Scenario: You are planning a large school event. Which approach best describes you?",
+          "options": [
+              {
+                  "A": "Developing a detailed budget and managing finances (Analytical).",
+                  "score": {
+                      "Analytical": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "B": "Designing a captivating theme and decorations (Creative).",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "C": "Organizing a team and coordinating everyone’s efforts (Social).",
+                  "score": {
+                      "Social": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "D": "Integrating digital tools to streamline event management (Technical).",
+                  "score": {
+                      "Technical": 3,
+                      "Analytical": 1
+                  }
+              }
+          ],
+          "category": "Event Management & Organization"
+      },
+      {
+          "questionId": "Q6",
+          "questionText": "Scenario: You have a research project on a challenging topic. What is your preferred way to tackle it?",
+          "options": [
+              {
+                  "A": "Analyzing quantitative data and statistics to draw conclusions (Analytical).",
+                  "score": {
+                      "Analytical": 4,
+                      "Research": 2
+                  }
+              },
+              {
+                  "B": "Conducting interviews and surveys to gather insights (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 2,
+                      "Research": 2
+                  }
+              },
+              {
+                  "C": "Watching documentaries or multimedia resources for information (Research).",
+                  "score": {
+                      "Research": 4
+                  }
+              },
+              {
+                  "D": "Engaging in hands-on experiments and simulations (Technical).",
+                  "score": {
+                      "Technical": 3,
+                      "Analytical": 2
+                  }
+              }
+          ],
+          "category": "Research & Analysis"
+      },
+      {
+          "questionId": "Q7",
+          "questionText": "Scenario: A startup is developing an eco-friendly product. Which role would you be most eager to take on?",
+          "options": [
+              {
+                  "A": "Analyzing the product’s environmental impact (Analytical).",
+                  "score": {
+                      "Analytical": 3,
+                      "Research": 2
+                  }
+              },
+              {
+                  "B": "Crafting marketing campaigns about its eco-benefits (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2,
+                      "Business": 1
+                  }
+              },
+              {
+                  "C": "Developing a financial plan and business strategy (Business).",
+                  "score": {
+                      "Business": 3,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "D": "Contributing to the technical design and testing (Technical).",
+                  "score": {
+                      "Technical": 4
+                  }
+              }
+          ],
+          "category": "Sustainability & Business"
+      },
+      {
+          "questionId": "Q8",
+          "questionText": "Scenario: A friend is struggling to understand a difficult academic concept. How do you help them?",
+          "options": [
+              {
+                  "A": "Breaking it down into logical, step-by-step explanations (Analytical).",
+                  "score": {
+                      "Analytical": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "B": "Creating a fun interactive example or visual aid (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Guiding them through it by asking questions and encouraging them (Social).",
+                  "score": {
+                      "Social": 3,
+                      "Communication": 3
+                  }
+              },
+              {
+                  "D": "Searching for online resources or experts that can help (Research).",
+                  "score": {
+                      "Research": 3,
+                      "Communication": 1
+                  }
+              }
+          ],
+          "category": "Communication & Problem-Solving"
+      },
+      {
+          "questionId": "Q9",
+          "questionText": "Scenario: You have an opportunity for a summer internship. Which type of internship appeals to you the most?",
+          "options": [
+              {
+                  "A": "Working in a scientific research lab (Research).",
+                  "score": {
+                      "Research": 4,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "B": "Creating content for a media or news outlet (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 3
+                  }
+              },
+              {
+                  "C": "Taking a leadership role in a business or non-profit organization (Social).",
+                  "score": {
+                      "Social": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "D": "Developing software or mobile apps (Technical).",
+                  "score": {
+                      "Technical": 4
+                  }
+              },
+              {
+                  "E": "Assisting doctors and patients in a hospital setting (Healthcare).",
+                  "score": {
+                      "Healthcare": 4,
+                      "Social": 3
+                  }
+              }
+          ],
+          "category": "Career Preferences"
+      },
+      {
+          "questionId": "Q10",
+          "questionText": "Scenario: When you travel to a new place, what are you most excited to do first?",
+          "options": [
+              {
+                  "A": "Explore historical sites and museums (Research).",
+                  "score": {
+                      "Research": 4
+                  }
+              },
+              {
+                  "B": "Immerse yourself in the local arts and culture scene (Creative).",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "C": "Observe local business practices and economic trends (Business).",
+                  "score": {
+                      "Business": 3,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "D": "Discover modern technological innovations around the city (Technical).",
+                  "score": {
+                      "Technical": 4
+                  }
+              },
+              {
+                  "E": "Try new foods and learn about local cuisine and customs (Social).",
+                  "score": {
+                      "Social": 4
+                  }
+              }
+          ],
+          "category": "Personal Interests"
+      },
+      {
+          "questionId": "Q11",
+          "questionText": "Scenario: If you could invent something new for the world, what would it be?",
+          "options": [
+              {
+                  "A": "A real-time global economic trend analyzer (Analytical).",
+                  "score": {
+                      "Analytical": 4,
+                      "Business": 2
+                  }
+              },
+              {
+                  "B": "A platform for creating and sharing interactive stories (Creative).",
+                  "score": {
+                      "Creative": 4,
+                      "Technical": 1
+                  }
+              },
+              {
+                  "C": "A community-driven solution to solve a social challenge (Social).",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "D": "A high-tech device to improve everyday life (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Analytical": 1
+                  }
+              }
+          ],
+          "category": "Innovation & Problem-Solving"
+      },
+      {
+          "questionId": "Q12",
+          "questionText": "Scenario: A company is launching a new AI tool. How would you most like to contribute?",
+          "options": [
+              {
+                  "A": "Evaluating the ethical implications and social impact (Analytical).",
+                  "score": {
+                      "Analytical": 3,
+                      "Social": 2
+                  }
+              },
+              {
+                  "B": "Designing the user interface and creative branding (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "C": "Developing a strategic business plan for the tool (Business).",
+                  "score": {
+                      "Business": 4,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "D": "Coding and refining the AI algorithms (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Analytical": 2
+                  }
+              }
+          ],
+          "category": "Technology & Business"
+      },
+      {
+          "questionId": "Q13",
+          "questionText": "Scenario: A sudden crisis occurs at your school (for example, a big event goes wrong at the last minute). What is your approach?",
+          "options": [
+              {
+                  "A": "Assess the situation logically and propose a solution (Analytical).",
+                  "score": {
+                      "Analytical": 4,
+                      "Social": 1
+                  }
+              },
+              {
+                  "B": "Gather input from everyone involved to work out a compromise (Social).",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Step up to lead and coordinate a team response (Social).",
+                  "score": {
+                      "Social": 3,
+                      "Communication": 3
+                  }
+              },
+              {
+                  "D": "Come up with a creative, out-of-the-box solution (Creative).",
+                  "score": {
+                      "Creative": 4,
+                      "Analytical": 1
+                  }
+              }
+          ],
+          "category": "Problem-Solving & Leadership"
+      },
+      {
+          "questionId": "Q14",
+          "questionText": "Scenario: You find yourself with one free hour and no obligations. How do you choose to spend that time?",
+          "options": [
+              {
+                  "A": "Solving puzzles or playing strategy games (Analytical).",
+                  "score": {
+                      "Analytical": 4
+                  }
+              },
+              {
+                  "B": "Sketching, writing, or making music (Creative).",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "C": "Catching up on news or educational videos (Research).",
+                  "score": {
+                      "Research": 4
+                  }
+              },
+              {
+                  "D": "Working on a DIY tech gadget or experiment (Technical).",
+                  "score": {
+                      "Technical": 4
+                  }
+              }
+          ],
+          "category": "Personal Interests"
+      },
+      {
+          "questionId": "Q15",
+          "questionText": "Scenario: When you think about your future career, what factor is most important to you?",
+          "options": [
+              {
+                  "A": "Having financial stability and a clear advancement path (Business).",
+                  "score": {
+                      "Business": 4
+                  }
+              },
+              {
+                  "B": "Having the freedom to be creative and innovative (Creative).",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "C": "Making a meaningful positive impact on society (Social).",
+                  "score": {
+                      "Social": 4
+                  }
+              },
+              {
+                  "D": "Engaging in challenging technical problem-solving (Technical).",
+                  "score": {
+                      "Technical": 4
+                  }
+              }
+          ],
+          "category": "Career Priorities"
+      },
+      {
+          "questionId": "Q16",
+          "questionText": "Scenario: In a debate at school about the use of AI in law enforcement, what perspective do you offer?",
+          "options": [
+              {
+                  "A": "Researching past cases and ethical issues to provide a logical argument (Analytical).",
+                  "score": {
+                      "Analytical": 4,
+                      "Social": 1
+                  }
+              },
+              {
+                  "B": "Highlighting the latest AI technologies and how they work (Technical).",
+                  "score": {
+                      "Technical": 3,
+                      "Research": 2
+                  }
+              },
+              {
+                  "C": "Discussing how the AI might affect people and society (Social).",
+                  "score": {
+                      "Social": 3,
+                      "Research": 2
+                  }
+              },
+              {
+                  "D": "Evaluating the economic costs and benefits for the public (Business).",
+                  "score": {
+                      "Business": 3,
+                      "Analytical": 2
+                  }
+              }
+          ],
+          "category": "Technology & Society"
+      },
+      {
+          "questionId": "Q17",
+          "questionText": "Scenario: A startup is creating a new medical device for elderly patients. Which role would fit you best?",
+          "options": [
+              {
+                  "A": "Designing and programming the device’s software (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "B": "Improving the device’s design for ease-of-use and accessibility (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Social": 2
+                  }
+              },
+              {
+                  "C": "Conducting market analysis and seeking funding opportunities (Business).",
+                  "score": {
+                      "Business": 3,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "D": "Studying user feedback and patient needs to guide development (Social).",
+                  "score": {
+                      "Social": 3,
+                      "Research": 3
+                  }
+              }
+          ],
+          "category": "Healthcare & Technology"
+      },
+      {
+          "questionId": "Q18",
+          "questionText": "Scenario: Your school is planning a new carbon-neutral building. What role would you take on in this project?",
+          "options": [
+              {
+                  "A": "Engineering the renewable energy systems (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "B": "Coordinating the project and keeping everyone on schedule (Social).",
+                  "score": {
+                      "Social": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "C": "Researching sustainability policies and guidelines (Research).",
+                  "score": {
+                      "Research": 4,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "D": "Designing interactive displays to explain the building’s green features (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              }
+          ],
+          "category": "Sustainability & Engineering"
+      },
+      {
+          "questionId": "Q19",
+          "questionText": "Scenario: A tech company is about to release a virtual reality product. Which task would you find most exciting?",
+          "options": [
+              {
+                  "A": "Developing and coding the VR software experience (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "B": "Designing the 3D environments and visuals (Creative).",
+                  "score": {
+                      "Creative": 4,
+                      "Technical": 1
+                  }
+              },
+              {
+                  "C": "Conducting market research to understand user preferences (Business).",
+                  "score": {
+                      "Business": 3,
+                      "Research": 2
+                  }
+              },
+              {
+                  "D": "Investigating how VR affects users’ minds and behaviors (Research).",
+                  "score": {
+                      "Research": 4,
+                      "Analytical": 2
+                  }
+              }
+          ],
+          "category": "Technology & Design"
+      },
+      {
+          "questionId": "Q20",
+          "questionText": "Scenario: You have the chance to join a space exploration program as a student trainee. Which role would excite you the most?",
+          "options": [
+              {
+                  "A": "Analyzing data from space missions and experiments (Analytical).",
+                  "score": {
+                      "Analytical": 4,
+                      "Research": 2
+                  }
+              },
+              {
+                  "B": "Designing or building components of spacecraft (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "C": "Managing mission logistics and helping train team members (Social).",
+                  "score": {
+                      "Social": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "D": "Documenting discoveries through writing or videos (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 3
+                  }
+              }
+          ],
+          "category": "Science & Exploration"
+      },
+      {
+          "questionId": "Q21",
+          "questionText": "Scenario: Your city is developing a smart transportation system. Which aspect would you focus on?",
+          "options": [
+              {
+                  "A": "Programming AI-driven traffic signals (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "B": "Designing eco-friendly and efficient vehicles (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Technical": 2
+                  }
+              },
+              {
+                  "C": "Creating community awareness campaigns about the system (Communication).",
+                  "score": {
+                      "Communication": 4,
+                      "Social": 2
+                  }
+              },
+              {
+                  "D": "Analyzing costs and advising on policies for the system (Business).",
+                  "score": {
+                      "Business": 3,
+                      "Analytical": 3
+                  }
+              }
+          ],
+          "category": "Urban Planning & Technology"
+      },
+      {
+          "questionId": "Q22",
+          "questionText": "Scenario: You’re helping to revamp a website for an organization. What’s your main focus?",
+          "options": [
+              {
+                  "A": "Enhancing the site’s security and backend performance (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "B": "Redesigning the layout and user interface for better experience (Creative).",
+                  "score": {
+                      "Creative": 4,
+                      "Technical": 1
+                  }
+              },
+              {
+                  "C": "Optimizing the site to reach more people (SEO and marketing) (Business).",
+                  "score": {
+                      "Business": 3,
+                      "Technical": 2
+                  }
+              },
+              {
+                  "D": "Developing an AI-powered chatbot for the site (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Creative": 1
+                  }
+              }
+          ],
+          "category": "Web Development & Design"
+      },
+      {
+          "questionId": "Q23",
+          "questionText": "Scenario: A local hospital is running a mental health awareness campaign. How would you like to contribute?",
+          "options": [
+              {
+                  "A": "Designing a smart app or AI system to help monitor well-being (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Social": 2
+                  }
+              },
+              {
+                  "B": "Creating artwork or videos to spread awareness (Creative).",
+                  "score": {
+                      "Creative": 4,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Organizing support groups and interactive workshops (Social).",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "D": "Analyzing public health data to identify key issues (Analytical).",
+                  "score": {
+                      "Analytical": 4,
+                      "Research": 2
+                  }
+              }
+          ],
+          "category": "Healthcare & Communication"
+      },
+      {
+          "questionId": "Q24",
+          "questionText": "Scenario: Your school is hosting an entrepreneurship competition. Which role would excite you the most?",
+          "options": [
+              {
+                  "A": "Pitching an innovative startup idea to judges (Business).",
+                  "score": {
+                      "Business": 4,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "B": "Designing the branding and marketing materials (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "C": "Coordinating event logistics and managing the schedule (Social).",
+                  "score": {
+                      "Social": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "D": "Developing detailed financial models and budgets (Analytical).",
+                  "score": {
+                      "Analytical": 4,
+                      "Business": 2
+                  }
+              }
+          ],
+          "category": "Business & Entrepreneurship"
+      },
+      {
+          "questionId": "Q25",
+          "questionText": "Scenario: Your team is participating in a cyber-security challenge to solve a simulated cybercrime. Which role do you take?",
+          "options": [
+              {
+                  "A": "Tracing digital footprints and analyzing network logs for clues (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Analytical": 3
+                  }
+              },
+              {
+                  "B": "Studying the behavior and motives of the cybercriminal (Social).",
+                  "score": {
+                      "Social": 3,
+                      "Research": 3
+                  }
+              },
+              {
+                  "C": "Drafting rules and policies to prevent future cyberattacks (Analytical).",
+                  "score": {
+                      "Analytical": 4,
+                      "Social": 1
+                  }
+              },
+              {
+                  "D": "Developing software tools to secure systems against attacks (Technical).",
+                  "score": {
+                      "Technical": 4,
+                      "Analytical": 2
+                  }
+              }
+          ],
+          "category": "Cybersecurity & Law"
+      },
+      {
+          "questionId": "Q26",
+          "questionText": "Scenario: You are working on a group project with classmates. How do you most likely contribute?",
+          "options": [
+              {
+                  "A": "Taking the lead, organizing the team, and delegating tasks.",
+                  "score": {
+                      "Social": 4,
+                      "Business": 2
+                  }
+              },
+              {
+                  "B": "Collaborating actively and brainstorming ideas together.",
+                  "score": {
+                      "Social": 3,
+                      "Creative": 3
+                  }
+              },
+              {
+                  "C": "Supporting others by handling communication and keeping everyone on track.",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 3
+                  }
+              },
+              {
+                  "D": "Doing your part independently and making sure your piece is done on time.",
+                  "score": {
+                      "Analytical": 3,
+                      "Technical": 2
+                  }
+              }
+          ],
+          "category": "Work Style"
+      },
+      {
+          "questionId": "Q27",
+          "questionText": "Scenario: Your teacher lets you choose how to learn a new topic. What kind of learning environment do you prefer?",
+          "options": [
+              {
+                  "A": "Structured lessons and clear, step-by-step instruction.",
+                  "score": {
+                      "Analytical": 3,
+                      "Research": 2
+                  }
+              },
+              {
+                  "B": "Hands-on projects and practical activities.",
+                  "score": {
+                      "Technical": 3,
+                      "Creative": 2
+                  }
+              },
+              {
+                  "C": "Group discussions and collaborative learning.",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 3
+                  }
+              },
+              {
+                  "D": "Independent study and self-directed research.",
+                  "score": {
+                      "Research": 4,
+                      "Analytical": 2
+                  }
+              }
+          ],
+          "category": "Learning Style"
+      },
+      {
+          "questionId": "Q28",
+          "questionText": "Scenario: You have to showcase a personal talent at a school event. Which skill would you display confidently?",
+          "options": [
+              {
+                  "A": "Problem-solving and critical thinking abilities.",
+                  "score": {
+                      "Analytical": 4
+                  }
+              },
+              {
+                  "B": "Creative artistic or musical talents.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "C": "Communication and interpersonal skills.",
+                  "score": {
+                      "Communication": 4,
+                      "Social": 2
+                  }
+              },
+              {
+                  "D": "Technical skills with gadgets or computers.",
+                  "score": {
+                      "Technical": 4
+                  }
+              }
+          ],
+          "category": "Skill Confidence"
+      },
+      {
+          "questionId": "Q29",
+          "questionText": "Scenario: You’re working hard on a challenging project. What motivates you to keep going?",
+          "options": [
+              {
+                  "A": "Seeing concrete results and getting recognition for your work.",
+                  "score": {
+                      "Business": 3,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "B": "Expressing yourself and exploring new creative ideas.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "C": "Knowing that you’re helping others or making a difference.",
+                  "score": {
+                      "Social": 4
+                  }
+              },
+              {
+                  "D": "Learning new things and solving complex problems.",
+                  "score": {
+                      "Research": 3,
+                      "Analytical": 3,
+                      "Technical": 2
+                  }
+              }
+          ],
+          "category": "Motivation"
+      },
+      {
+          "questionId": "Q30",
+          "questionText": "Scenario: Think about your school subjects. Which subject do you enjoy the most?",
+          "options": [
+              {
+                  "A": "Mathematics or Science.",
+                  "score": {
+                      "Analytical": 3,
+                      "Technical": 2,
+                      "Research": 2
+                  }
+              },
+              {
+                  "B": "Art, Music, or Drama.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "C": "History, Social Studies, or Languages.",
+                  "score": {
+                      "Research": 3,
+                      "Communication": 2,
+                      "Social": 2
+                  }
+              },
+              {
+                  "D": "Computer Science or Technology.",
+                  "score": {
+                      "Technical": 4
+                  }
+              }
+          ],
+          "category": "Academic Preferences"
+      },
+      {
+          "questionId": "Q31",
+          "questionText": "Scenario: You have to speak in front of your class for a presentation. How do you feel about public speaking?",
+          "options": [
+              {
+                  "A": "Very comfortable – you enjoy presenting to large groups.",
+                  "score": {
+                      "Communication": 4,
+                      "Social": 3
+                  }
+              },
+              {
+                  "B": "Somewhat comfortable – you can manage it but prefer smaller groups.",
+                  "score": {
+                      "Communication": 2,
+                      "Social": 2
+                  }
+              },
+              {
+                  "C": "Not very comfortable – you get nervous speaking in public.",
+                  "score": {
+                      "Communication": 1,
+                      "Social": 1
+                  }
+              },
+              {
+                  "D": "Very uncomfortable – you avoid public speaking if possible.",
+                  "score": {
+                      "Communication": 0,
+                      "Social": 0
+                  }
+              }
+          ],
+          "category": "Communication Skills"
+      },
+      {
+          "questionId": "Q32",
+          "questionText": "Scenario: You have several exams and deadlines coming up, and you feel a lot of pressure. How do you handle this stress?",
+          "options": [
+              {
+                  "A": "Stay calm and focus on figuring out a solution step by step.",
+                  "score": {
+                      "Analytical": 4,
+                      "Social": 2
+                  }
+              },
+              {
+                  "B": "Talk to friends or family to get support and advice.",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Take breaks and distract yourself with other activities.",
+                  "score": {
+                      "Creative": 2,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "D": "Feel overwhelmed and struggle to cope with the anxiety.",
+                  "score": {
+                      "Analytical": 0,
+                      "Social": 0
+                  }
+              }
+          ],
+          "category": "Stress Management"
+      },
+      {
+          "questionId": "Q33",
+          "questionText": "Scenario: You can choose a project that involves different kinds of work. Which type of work are you naturally drawn to?",
+          "options": [
+              {
+                  "A": "Working with people.",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 3
+                  }
+              },
+              {
+                  "B": "Working with data and information.",
+                  "score": {
+                      "Analytical": 4,
+                      "Research": 3
+                  }
+              },
+              {
+                  "C": "Working with tools, machines, or physical objects.",
+                  "score": {
+                      "Technical": 4,
+                      "Creative": 2
+                  }
+              },
+              {
+                  "D": "A combination of two or more of the above.",
+                  "score": {}
+              }
+          ],
+          "category": "Work Preference",
+          "dynamicScore": true
+      },
+      {
+          "questionId": "Q34",
+          "questionText": "Scenario: You’re doing a science experiment. Do you prefer to follow the given procedures or create your own approach?",
+          "options": [
+              {
+                  "A": "I prefer to follow the established instructions exactly.",
+                  "score": {
+                      "Analytical": 3,
+                      "Technical": 2
+                  }
+              },
+              {
+                  "B": "I prefer to experiment and create my own way of doing it.",
+                  "score": {
+                      "Creative": 4,
+                      "Business": 2
+                  }
+              },
+              {
+                  "C": "I would mix both, following some steps but tweaking others.",
+                  "score": {
+                      "Analytical": 2,
+                      "Creative": 2
+                  }
+              }
+          ],
+          "category": "Work Style"
+      },
+      {
+          "questionId": "Q35",
+          "questionText": "Scenario: After completing a project, how important is it for you to immediately see the impact of your work?",
+          "options": [
+              {
+                  "A": "Very important – I need to see quick results or feedback.",
+                  "score": {
+                      "Business": 3,
+                      "Technical": 2
+                  }
+              },
+              {
+                  "B": "Somewhat important – seeing progress is nice, but I can be patient.",
+                  "score": {
+                      "Analytical": 2,
+                      "Research": 3
+                  }
+              },
+              {
+                  "C": "Not very important – I’m more focused on long-term outcomes.",
+                  "score": {
+                      "Research": 4,
+                      "Social": 2
+                  }
+              },
+              {
+                  "D": "It doesn’t matter much – I enjoy the process itself more than the result.",
+                  "score": {
+                      "Creative": 3,
+                      "Technical": 2
+                  }
+              }
+          ],
+          "category": "Work Values"
+      },
+      {
+          "questionId": "Q36",
+          "questionText": "Scenario: Imagine your future workplace. What would be your ideal work environment?",
+          "options": [
+              {
+                  "A": "A fast-paced, dynamic setting with constant challenges.",
+                  "score": {
+                      "Business": 3,
+                      "Technical": 2
+                  }
+              },
+              {
+                  "B": "A creative, collaborative space where ideas flow freely.",
+                  "score": {
+                      "Creative": 4,
+                      "Social": 3
+                  }
+              },
+              {
+                  "C": "A structured, organized office with clear procedures.",
+                  "score": {
+                      "Analytical": 3,
+                      "Technical": 2
+                  }
+              },
+              {
+                  "D": "A quiet, independent environment where I can focus deeply.",
+                  "score": {
+                      "Research": 4,
+                      "Analytical": 2
+                  }
+              }
+          ],
+          "category": "Work Environment"
+      },
+      {
+          "questionId": "Q37",
+          "questionText": "Scenario: You have an opportunity to start an ambitious new project, but it involves some risk of failure. How do you feel about taking risks?",
+          "options": [
+              {
+                  "A": "Very comfortable – I enjoy taking calculated risks and trying new things.",
+                  "score": {
+                      "Business": 4,
+                      "Creative": 2
+                  }
+              },
+              {
+                  "B": "Somewhat comfortable – I’ll take a risk if it seems necessary or worthwhile.",
+                  "score": {
+                      "Business": 2,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "C": "Not very comfortable – I usually prefer to play it safe.",
+                  "score": {
+                      "Analytical": 3,
+                      "Research": 2
+                  }
+              },
+              {
+                  "D": "Not at all comfortable – I avoid risks whenever possible.",
+                  "score": {
+                      "Analytical": 4,
+                      "Social": 1
+                  }
+              }
+          ],
+          "category": "Risk Tolerance"
+      },
+      {
+          "questionId": "Q38",
+          "questionText": "Scenario: When learning something new, are you more drawn to theoretical concepts or practical applications?",
+          "options": [
+              {
+                  "A": "I’m fascinated by theoretical concepts and ideas.",
+                  "score": {
+                      "Research": 4,
+                      "Analytical": 3
+                  }
+              },
+              {
+                  "B": "I prefer hands-on practical applications of knowledge.",
+                  "score": {
+                      "Technical": 4,
+                      "Business": 2
+                  }
+              },
+              {
+                  "C": "I like a balance of both theory and practice.",
+                  "score": {
+                      "Analytical": 2,
+                      "Technical": 2,
+                      "Research": 2
+                  }
+              }
+          ],
+          "category": "Learning Style"
+      },
+      {
+          "questionId": "Q39",
+          "questionText": "Scenario: Thinking about your future, how important is having a good work-life balance to you?",
+          "options": [
+              {
+                  "A": "Very important – I want plenty of time for family, hobbies, and rest.",
+                  "score": {
+                      "Social": 4,
+                      "Creative": 2
+                  }
+              },
+              {
+                  "B": "Somewhat important – I can handle long hours, but I’d like some free time.",
+                  "score": {
+                      "Business": 3,
+                      "Technical": 2
+                  }
+              },
+              {
+                  "C": "Not very important – I don’t mind if my career takes most of my time.",
+                  "score": {
+                      "Business": 4,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "D": "I’m not sure – I haven’t really thought about it yet.",
+                  "score": {
+                      "Analytical": 1,
+                      "Social": 1
+                  }
+              }
+          ],
+          "category": "Work Values"
+      },
+      {
+          "questionId": "Q40",
+          "questionText": "Scenario: If you could join only one of the following extracurricular activities, which would you choose?",
+          "options": [
+              {
+                  "A": "Debate club or Model United Nations (public speaking and debate).",
+                  "score": {
+                      "Communication": 4,
+                      "Social": 3
+                  }
+              },
+              {
+                  "B": "Art club or photography club (creative arts).",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "C": "Science club or robotics club (science & technology).",
+                  "score": {
+                      "Technical": 4,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "D": "Volunteer community service group (social work).",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "E": "Health and First Aid club (e.g., Red Cross youth wing).",
+                  "score": {
+                      "Healthcare": 4,
+                      "Social": 2
+                  }
+              }
+          ],
+          "category": "Extracurricular Interests"
+      }
+  ],
+  "scoringCategories": [
+      "Technical",
+      "Creative",
+      "Analytical",
+      "Communication",
+      "Social",
+      "Business",
+      "Research",
+      "Healthcare"
+  ],
+  "careerSuggestions": {
+      "highTechnical": [
+          "Software Engineer",
+          "Data Scientist",
+          "Mechanical Engineer",
+          "Electrical Engineer",
+          "AI Specialist"
+      ],
+      "highCreative": [
+          "Graphic Designer",
+          "UX/UI Designer",
+          "Writer/Editor",
+          "Artist",
+          "Musician",
+          "Filmmaker"
+      ],
+      "highAnalytical": [
+          "Financial Analyst",
+          "Market Research Analyst",
+          "Statistician",
+          "Operations Research Analyst",
+          "Actuary"
+      ],
+      "highCommunication": [
+          "Journalist",
+          "Public Relations Specialist",
+          "Teacher",
+          "Lawyer",
+          "Marketing Manager",
+          "Sales Representative"
+      ],
+      "highSocial": [
+          "Social Worker",
+          "Counselor",
+          "Human Resources Manager",
+          "Nonprofit Director",
+          "Community Organizer",
+          "Healthcare Worker"
+      ],
+      "highBusiness": [
+          "Entrepreneur",
+          "Management Consultant",
+          "Project Manager",
+          "Accountant",
+          "Financial Manager"
+      ],
+      "highResearch": [
+          "Scientist (various fields)",
+          "Professor",
+          "Librarian",
+          "Archivist",
+          "Historian"
+      ],
+      "highHealthcare": [
+          "Doctor",
+          "Nurse",
+          "Pharmacist",
+          "Physical Therapist",
+          "Medical Researcher"
+      ],
+      "mixedHighScores": {
+          "Technical_Creative": [
+              "Game Developer",
+              "Web Developer",
+              "Architect",
+              "Industrial Designer"
+          ],
+          "Technical_Analytical": [
+              "Data Scientist",
+              "Systems Analyst",
+              "Engineer (various fields)"
+          ],
+          "Technical_Social": [
+              "IT Support Specialist",
+              "Technical Trainer",
+              "Technology Consultant"
+          ],
+          "Creative_Communication": [
+              "Advertising Specialist",
+              "Social Media Manager",
+              "Content Writer",
+              "Art Director"
+          ],
+          "Creative_Social": [
+              "Graphic Facilitator",
+              "Public Relations Officer",
+              "Event Planner"
+          ],
+          "Analytical_Research": [
+              "Scientific Researcher",
+              "Data Analyst",
+              "Economist"
+          ],
+          "Social_Communication": [
+              "Therapist",
+              "Teacher",
+              "Public Relations Specialist"
+          ],
+          "Business_Analytical": [
+              "Business Analyst",
+              "Investment Banker",
+              "Consultant"
+          ]
+      }
+  }
+}
