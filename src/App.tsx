@@ -13,6 +13,8 @@ import Dashboard from "./pages/Dashboard";
 import Assessments from "./pages/Assessments";
 import Assessment from "./pages/Assessment";
 import Results from "./pages/Results";
+import ResultsDemo from "./pages/ResultsDemo";
+import Resources from "./pages/Resources";
 import AICounselor from "./pages/AICounselor";
 import NotFound from "./pages/NotFound";
 
@@ -39,6 +41,8 @@ const App = () => (
               <Route path="/assessments" element={<Assessments />} />
               <Route path="/assessment/:assessmentType" element={<Assessment />} />
               <Route path="/results/:assessmentType" element={<Results />} />
+              <Route path="/results-demo" element={<ResultsDemo />} />
+              <Route path="/resources" element={<Resources />} />
               <Route path="/ai-counselor" element={<AICounselor />} />
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -1,10 +1,16 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BookOpen, LogIn } from "lucide-react";
 
 const Navbar = () => {
+  const location = useLocation();
+  
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
+  
   return (
     <header className="border-b sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between py-4">
@@ -16,17 +22,17 @@ const Navbar = () => {
         </div>
         
         <nav className="hidden md:flex items-center gap-6">
-          <Link to="/" className="nav-link-active">
+          <Link to="/" className={isActive("/") ? "nav-link-active" : "nav-link"}>
             Home
           </Link>
-          <Link to="/assessments" className="nav-link">
+          <Link to="/assessments" className={isActive("/assessments") ? "nav-link-active" : "nav-link"}>
             Assessments
           </Link>
-          <Link to="/resources" className="nav-link">
-            Resources
+          <Link to="/results-demo" className={isActive("/results-demo") ? "nav-link-active" : "nav-link"}>
+            Demo Results
           </Link>
-          <Link to="/about" className="nav-link">
-            About Us
+          <Link to="/resources" className={isActive("/resources") ? "nav-link-active" : "nav-link"}>
+            Resources
           </Link>
         </nav>
         
