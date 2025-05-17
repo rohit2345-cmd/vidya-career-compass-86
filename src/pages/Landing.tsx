@@ -35,7 +35,7 @@ const Landing = () => {
             </div>
             <div className="hidden lg:block">
               <img
-                src="https://images.unsplash.com/photo-1612298988282-8c2bd5ecf55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
                 alt="Students planning careers"
                 className="rounded-lg shadow-xl"
               />
