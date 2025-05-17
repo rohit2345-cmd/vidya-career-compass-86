@@ -16,8 +16,11 @@ import { Progress } from "@/components/ui/progress";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Clock, AlertCircle } from "lucide-react";
 
-// Import the real questions from JSON files
+// Import all question JSON files
 import scienceQuestions from "../questions/scienceQuestions.json";
+import artsQuestions from "../questions/artsQuestions.json";
+import commerceQuestions from "../questions/commerceQuestions.json";
+import comprehensiveQuestions from "../questions/common_test.json";
 
 const Assessment = () => {
   const { assessmentType = "comprehensive" } = useParams<{ assessmentType: string }>();
@@ -35,21 +38,33 @@ const Assessment = () => {
       case "science":
         return scienceQuestions.questions;
       case "commerce":
-        // Note: When commerce questions JSON is available, import and use it here
-        return [];
+        return commerceQuestions.questions;
       case "arts":
-        // Note: When arts questions JSON is available, import and use it here
-        return [];
+        return artsQuestions.questions;
       case "comprehensive":
       default:
-        // Note: When comprehensive questions JSON is available, import and use it here
-        return scienceQuestions.questions.slice(0, 5); // For now, using first 5 science questions as fallback
+        return comprehensiveQuestions.questions;
     }
   };
 
   const questions = getQuestions();
   const currentQuestion = questions[currentQuestionIndex];
-  const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+  const progress = questions.length ? ((currentQuestionIndex + 1) / questions.length) * 100 : 0;
+
+  // Get assessment title for display
+  const getAssessmentTitle = () => {
+    switch (assessmentType) {
+      case "science":
+        return scienceQuestions.testName || "Science Stream Assessment";
+      case "commerce":
+        return commerceQuestions.testName || "Commerce Stream Assessment";
+      case "arts":
+        return artsQuestions.testName || "Arts Stream Assessment";
+      case "comprehensive":
+      default:
+        return comprehensiveQuestions.testName || "Comprehensive Assessment";
+    }
+  };
 
   // Timer effect
   useEffect(() => {
@@ -139,11 +154,11 @@ const Assessment = () => {
   }
 
   return (
-    <div className="container py-8 max-w-3xl mx-auto min-h-screen flex flex-col">
+    <div className="container py-8 max-w-3xl mx-auto min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-emerald-50">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-2xl font-bold">
-            {assessmentType.charAt(0).toUpperCase() + assessmentType.slice(1)} Assessment
+            {getAssessmentTitle()}
           </h1>
           <p className="text-muted-foreground">
             Question {currentQuestionIndex + 1} of {questions.length}

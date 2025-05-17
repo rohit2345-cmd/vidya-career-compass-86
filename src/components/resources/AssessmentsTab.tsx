@@ -10,8 +10,21 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { FileSearch, HelpCircle, BookText, FileText } from "lucide-react";
+import { Link } from "react-router-dom";
+
+// Import assessment data to get metrics
+import scienceQuestions from "../../questions/scienceQuestions.json";
+import artsQuestions from "../../questions/artsQuestions.json";
+import commerceQuestions from "../../questions/commerceQuestions.json";
+import commonQuestions from "../../questions/common_test.json";
 
 const AssessmentsTab = () => {
+  // Get question counts for assessment info
+  const scienceCount = scienceQuestions.questions?.length || 0;
+  const artsCount = artsQuestions.questions?.length || 0;
+  const commerceCount = commerceQuestions.questions?.length || 0;
+  const commonCount = commonQuestions.questions?.length || 0;
+  
   return (
     <div className="space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -97,13 +110,14 @@ const AssessmentsTab = () => {
             </ul>
 
             <p className="text-sm italic text-muted-foreground mt-4">
-              The comprehensive assessment contains 60 questions carefully
-              designed to evaluate a student's potential across all three major
-              streams - Science, Commerce, and Arts.
+              The comprehensive assessment contains {commonCount} questions designed to evaluate 
+              a student's potential across the three major streams - Science, Commerce, and Arts.
             </p>
           </CardContent>
           <CardFooter>
-            <Button className="w-full md:w-auto">Take Assessment</Button>
+            <Button className="w-full md:w-auto" asChild>
+              <Link to="/assessment/comprehensive">Take Assessment</Link>
+            </Button>
           </CardFooter>
         </Card>
 
@@ -132,13 +146,13 @@ const AssessmentsTab = () => {
               </ul>
 
               <p className="text-sm italic text-muted-foreground mt-2">
-                The Science assessment includes real-world scenarios and
+                The Science assessment includes {scienceCount} questions with real-world scenarios and
                 practical problems that require applying scientific thinking.
               </p>
             </CardContent>
             <CardFooter>
-              <Button variant="outline" className="w-full">
-                Take Assessment
+              <Button variant="outline" className="w-full" asChild>
+                <Link to="/assessment/science">Take Assessment</Link>
               </Button>
             </CardFooter>
           </Card>
@@ -167,13 +181,13 @@ const AssessmentsTab = () => {
               </ul>
 
               <p className="text-sm italic text-muted-foreground mt-2">
-                Questions are designed around business cases and financial
-                scenarios that test commercial awareness and decision-making.
+                This assessment contains {commerceCount} questions designed around business cases and 
+                financial scenarios that test commercial awareness and decision-making.
               </p>
             </CardContent>
             <CardFooter>
-              <Button variant="outline" className="w-full">
-                Take Assessment
+              <Button variant="outline" className="w-full" asChild>
+                <Link to="/assessment/commerce">Take Assessment</Link>
               </Button>
             </CardFooter>
           </Card>
@@ -202,13 +216,13 @@ const AssessmentsTab = () => {
               </ul>
 
               <p className="text-sm italic text-muted-foreground mt-2">
-                Questions evaluate both analytical and creative aspects through
-                scenarios that reflect real humanities and arts challenges.
+                This assessment includes {artsCount} questions that evaluate both analytical and 
+                creative aspects through scenarios that reflect real humanities and arts challenges.
               </p>
             </CardContent>
             <CardFooter>
-              <Button variant="outline" className="w-full">
-                Take Assessment
+              <Button variant="outline" className="w-full" asChild>
+                <Link to="/assessment/arts">Take Assessment</Link>
               </Button>
             </CardFooter>
           </Card>
