@@ -16,188 +16,45 @@ import { Progress } from "@/components/ui/progress";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Clock, AlertCircle } from "lucide-react";
 
-// Mock questions for demonstration
-const mockQuestions = {
-  comprehensive: [
-    {
-      id: 1,
-      question: "When solving problems, you usually prefer to:",
-      type: "aptitude",
-      options: [
-        { id: "a", text: "Follow established methods and procedures" },
-        { id: "b", text: "Try new approaches and creative solutions" },
-        { id: "c", text: "Work together with others to find a solution" },
-        { id: "d", text: "Analyze data before making decisions" }
-      ]
-    },
-    {
-      id: 2,
-      question: "In a team project, which role do you most often take?",
-      type: "personality",
-      options: [
-        { id: "a", text: "Leader who directs the team" },
-        { id: "b", text: "Creative idea generator" },
-        { id: "c", text: "Supportive team player who helps others" },
-        { id: "d", text: "Analyst who evaluates options carefully" }
-      ]
-    },
-    {
-      id: 3,
-      question: "Which of these activities would you most enjoy doing?",
-      type: "interest",
-      options: [
-        { id: "a", text: "Conducting scientific experiments" },
-        { id: "b", text: "Creating artwork or designs" },
-        { id: "c", text: "Teaching or explaining concepts to others" },
-        { id: "d", text: "Analyzing financial data and trends" }
-      ]
-    },
-    {
-      id: 4,
-      question: "If a peach costs ₹25, how much will 4 peaches cost?",
-      type: "aptitude",
-      options: [
-        { id: "a", text: "₹75" },
-        { id: "b", text: "₹100" },
-        { id: "c", text: "₹125" },
-        { id: "d", text: "₹150" }
-      ]
-    },
-    {
-      id: 5,
-      question: "When learning something new, you prefer to:",
-      type: "personality",
-      options: [
-        { id: "a", text: "Read detailed instructions" },
-        { id: "b", text: "Watch a demonstration" },
-        { id: "c", text: "Try it hands-on right away" },
-        { id: "d", text: "Discuss it with someone else" }
-      ]
-    }
-  ],
-  science: [
-    {
-      id: 1,
-      question: "Which career field interests you most?",
-      type: "interest",
-      options: [
-        { id: "a", text: "Medicine and healthcare" },
-        { id: "b", text: "Engineering and technology" },
-        { id: "c", text: "Research and development" },
-        { id: "d", text: "Environmental science" }
-      ]
-    },
-    {
-      id: 2,
-      question: "In chemistry, what is the pH of pure water at 25°C?",
-      type: "technical",
-      options: [
-        { id: "a", text: "0" },
-        { id: "b", text: "7" },
-        { id: "c", text: "10" },
-        { id: "d", text: "14" }
-      ]
-    },
-    {
-      id: 3,
-      question: "When faced with a complex scientific problem, you tend to:",
-      type: "aptitude",
-      options: [
-        { id: "a", text: "Break it down into smaller parts and analyze systematically" },
-        { id: "b", text: "Brainstorm creative solutions" },
-        { id: "c", text: "Research what others have done in similar situations" },
-        { id: "d", text: "Collaborate with others to solve it together" }
-      ]
-    }
-  ],
-  commerce: [
-    {
-      id: 1,
-      question: "Which aspect of business interests you most?",
-      type: "interest",
-      options: [
-        { id: "a", text: "Marketing and sales" },
-        { id: "b", text: "Finance and accounting" },
-        { id: "c", text: "Management and leadership" },
-        { id: "d", text: "Entrepreneurship" }
-      ]
-    },
-    {
-      id: 2,
-      question: "A company has assets worth ₹50,00,000 and liabilities of ₹20,00,000. What is the company's equity?",
-      type: "technical",
-      options: [
-        { id: "a", text: "₹70,00,000" },
-        { id: "b", text: "₹30,00,000" },
-        { id: "c", text: "₹20,00,000" },
-        { id: "d", text: "₹50,00,000" }
-      ]
-    },
-    {
-      id: 3,
-      question: "When analyzing a business problem, you typically:",
-      type: "aptitude",
-      options: [
-        { id: "a", text: "Focus on the financial implications" },
-        { id: "b", text: "Consider the impact on people and relationships" },
-        { id: "c", text: "Look at it from a strategic perspective" },
-        { id: "d", text: "Evaluate operational efficiency" }
-      ]
-    }
-  ],
-  arts: [
-    {
-      id: 1,
-      question: "Which field in arts and humanities interests you most?",
-      type: "interest",
-      options: [
-        { id: "a", text: "Literature and writing" },
-        { id: "b", text: "Visual arts and design" },
-        { id: "c", text: "History and archaeology" },
-        { id: "d", text: "Philosophy and psychology" }
-      ]
-    },
-    {
-      id: 2,
-      question: "Who wrote the epic 'Mahabharata'?",
-      type: "technical",
-      options: [
-        { id: "a", text: "Valmiki" },
-        { id: "b", text: "Ved Vyasa" },
-        { id: "c", text: "Kalidasa" },
-        { id: "d", text: "Tulsidas" }
-      ]
-    },
-    {
-      id: 3,
-      question: "When expressing ideas creatively, you prefer to:",
-      type: "aptitude",
-      options: [
-        { id: "a", text: "Write stories or essays" },
-        { id: "b", text: "Create visual art or designs" },
-        { id: "c", text: "Engage in debate or discussion" },
-        { id: "d", text: "Perform through music or drama" }
-      ]
-    }
-  ]
-};
+// Import the real questions from JSON files
+import scienceQuestions from "../questions/scienceQuestions.json";
 
 const Assessment = () => {
   const { assessmentType = "comprehensive" } = useParams<{ assessmentType: string }>();
   const navigate = useNavigate();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [answers, setAnswers] = useState<Record<string, string>>({});
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [timeRemaining, setTimeRemaining] = useState(60 * 60); // 60 minutes in seconds
   const [showExitDialog, setShowExitDialog] = useState(false);
   const [showTimeWarning, setShowTimeWarning] = useState(false);
 
-  const questions = mockQuestions[assessmentType as keyof typeof mockQuestions] || mockQuestions.comprehensive;
+  // Get the appropriate questions based on assessment type
+  const getQuestions = () => {
+    switch (assessmentType) {
+      case "science":
+        return scienceQuestions.questions;
+      case "commerce":
+        // Note: When commerce questions JSON is available, import and use it here
+        return [];
+      case "arts":
+        // Note: When arts questions JSON is available, import and use it here
+        return [];
+      case "comprehensive":
+      default:
+        // Note: When comprehensive questions JSON is available, import and use it here
+        return scienceQuestions.questions.slice(0, 5); // For now, using first 5 science questions as fallback
+    }
+  };
+
+  const questions = getQuestions();
   const currentQuestion = questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
   // Timer effect
   useEffect(() => {
+    if (!questions.length) return;
+
     const timer = setInterval(() => {
       setTimeRemaining((prev) => {
         if (prev <= 1) {
@@ -216,7 +73,7 @@ const Assessment = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [assessmentType, navigate]);
+  }, [assessmentType, navigate, questions.length]);
 
   // Format time as MM:SS
   const formatTime = (seconds: number) => {
@@ -225,22 +82,26 @@ const Assessment = () => {
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
+  useEffect(() => {
+    // Reset selected option when question changes
+    setSelectedOption(answers[currentQuestion?.questionId] || null);
+  }, [currentQuestionIndex, answers, currentQuestion]);
+
   const handleOptionSelect = (optionId: string) => {
     setSelectedOption(optionId);
   };
 
   const handleNext = () => {
-    if (selectedOption) {
+    if (selectedOption && currentQuestion) {
       // Save the answer
       setAnswers({
         ...answers,
-        [currentQuestion.id]: selectedOption
+        [currentQuestion.questionId]: selectedOption
       });
 
       // Move to next question or finish
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setSelectedOption(null); // Reset selection
       } else {
         // Complete the assessment
         navigate(`/results/${assessmentType}`);
@@ -251,7 +112,6 @@ const Assessment = () => {
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
-      setSelectedOption(answers[questions[currentQuestionIndex - 1].id] || null);
     }
   };
 
@@ -259,6 +119,24 @@ const Assessment = () => {
     // In a real app, we would save progress to database
     navigate("/dashboard");
   };
+
+  if (!questions.length) {
+    return (
+      <div className="container py-8 max-w-3xl mx-auto min-h-screen flex flex-col items-center justify-center">
+        <Card>
+          <CardHeader>
+            <CardTitle>Assessment Not Available</CardTitle>
+            <CardDescription>
+              The requested assessment is not available at this time.
+            </CardDescription>
+          </CardHeader>
+          <CardFooter>
+            <Button onClick={() => navigate("/assessments")}>Return to Assessments</Button>
+          </CardFooter>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="container py-8 max-w-3xl mx-auto min-h-screen flex flex-col">
@@ -281,68 +159,75 @@ const Assessment = () => {
 
       <Progress value={progress} className="mb-8 h-2" />
 
-      <Card className="flex-grow mb-6 animate-fade-in">
-        <CardHeader>
-          <div className="flex items-start gap-2">
-            <span className="bg-muted rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium">
-              {currentQuestionIndex + 1}
-            </span>
-            <div>
-              <CardTitle className="text-xl mb-2">{currentQuestion.question}</CardTitle>
-              <CardDescription>
-                {currentQuestion.type === "aptitude" && "Aptitude Question"}
-                {currentQuestion.type === "personality" && "Personality Assessment"}
-                {currentQuestion.type === "interest" && "Interest Inventory"}
-                {currentQuestion.type === "technical" && "Technical Knowledge"}
-              </CardDescription>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <RadioGroup value={selectedOption || ""} className="space-y-4">
-            {currentQuestion.options.map((option) => (
-              <div
-                key={option.id}
-                className={`flex items-center space-x-2 border rounded-lg p-4 transition-all ${
-                  selectedOption === option.id
-                    ? "border-primary bg-primary/5"
-                    : "hover:border-muted-foreground/20"
-                }`}
-                onClick={() => handleOptionSelect(option.id)}
-              >
-                <RadioGroupItem value={option.id} id={option.id} />
-                <Label className="flex-grow cursor-pointer" htmlFor={option.id}>
-                  {option.text}
-                </Label>
+      {currentQuestion && (
+        <Card className="flex-grow mb-6 animate-fade-in">
+          <CardHeader>
+            <div className="flex items-start gap-2">
+              <span className="bg-muted rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium">
+                {currentQuestionIndex + 1}
+              </span>
+              <div>
+                <CardTitle className="text-xl mb-2">{currentQuestion.questionText}</CardTitle>
+                <CardDescription>
+                  {currentQuestion.category} - Question
+                </CardDescription>
               </div>
-            ))}
-          </RadioGroup>
-        </CardContent>
-        <CardFooter className="flex justify-between">
-          <div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <RadioGroup value={selectedOption || ""} className="space-y-4">
+              {currentQuestion.options.map((option, idx) => {
+                // Extract option ID and text
+                const optionId = Object.keys(option)[0];
+                const optionText = option[optionId as keyof typeof option]?.text || 
+                                  (typeof option[optionId as keyof typeof option] === 'string' ? 
+                                  option[optionId as keyof typeof option] : '');
+                
+                return (
+                  <div
+                    key={optionId}
+                    className={`flex items-center space-x-2 border rounded-lg p-4 transition-all ${
+                      selectedOption === optionId
+                        ? "border-primary bg-primary/5"
+                        : "hover:border-muted-foreground/20"
+                    }`}
+                    onClick={() => handleOptionSelect(optionId)}
+                  >
+                    <RadioGroupItem value={optionId} id={optionId} />
+                    <Label className="flex-grow cursor-pointer" htmlFor={optionId}>
+                      {optionText}
+                    </Label>
+                  </div>
+                );
+              })}
+            </RadioGroup>
+          </CardContent>
+          <CardFooter className="flex justify-between">
+            <div>
+              <Button
+                variant="outline"
+                onClick={() => setShowExitDialog(true)}
+                className="mr-4"
+              >
+                Save & Exit
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handlePrevious}
+                disabled={currentQuestionIndex === 0}
+              >
+                Previous
+              </Button>
+            </div>
             <Button
-              variant="outline"
-              onClick={() => setShowExitDialog(true)}
-              className="mr-4"
+              onClick={handleNext}
+              disabled={!selectedOption}
             >
-              Save & Exit
+              {currentQuestionIndex === questions.length - 1 ? "Finish" : "Next"}
             </Button>
-            <Button
-              variant="outline"
-              onClick={handlePrevious}
-              disabled={currentQuestionIndex === 0}
-            >
-              Previous
-            </Button>
-          </div>
-          <Button
-            onClick={handleNext}
-            disabled={!selectedOption}
-          >
-            {currentQuestionIndex === questions.length - 1 ? "Finish" : "Next"}
-          </Button>
-        </CardFooter>
-      </Card>
+          </CardFooter>
+        </Card>
+      )}
 
       {/* Save & Exit Dialog */}
       <AlertDialog open={showExitDialog} onOpenChange={setShowExitDialog}>
