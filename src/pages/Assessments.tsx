@@ -23,6 +23,12 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+// Import assessment data to get metrics
+import scienceQuestions from "../questions/scienceQuestions.json";
+import artsQuestions from "../questions/artsQuestions.json";
+import commerceQuestions from "../questions/commerceQuestions.json";
+import commonQuestions from "../questions/common_test.json";
+
 interface AssessmentCardProps {
   title: string;
   description: string;
@@ -84,6 +90,12 @@ const AssessmentCard = ({
 };
 
 const Assessments = () => {
+  // Get question counts
+  const scienceCount = scienceQuestions.questions?.length || 0;
+  const artsCount = artsQuestions.questions?.length || 0;
+  const commerceCount = commerceQuestions.questions?.length || 0;
+  const commonCount = commonQuestions.questions?.length || 0;
+  
   return (
     <div className="container py-12 animate-fade-in">
       <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
@@ -111,7 +123,7 @@ const Assessments = () => {
               description="Complete assessment covering all career paths"
               icon={<Brain className="h-8 w-8 text-primary" />}
               duration="60-75 minutes"
-              questions={80}
+              questions={commonCount}
               path="/assessment/comprehensive"
               category="All Streams"
               popular={true}
@@ -121,7 +133,7 @@ const Assessments = () => {
               description="For students interested in STEM fields"
               icon={<GraduationCap className="h-8 w-8 text-emerald-600" />}
               duration="45-60 minutes"
-              questions={60}
+              questions={scienceCount}
               path="/assessment/science"
               category="Science Stream"
             />
@@ -130,7 +142,7 @@ const Assessments = () => {
               description="For business and economics oriented students"
               icon={<BarChart className="h-8 w-8 text-amber-600" />}
               duration="45-60 minutes"
-              questions={60}
+              questions={commerceCount}
               path="/assessment/commerce"
               category="Commerce Stream"
             />
@@ -139,7 +151,7 @@ const Assessments = () => {
               description="For humanities and liberal arts focused students"
               icon={<BookOpen className="h-8 w-8 text-indigo-600" />}
               duration="45-60 minutes"
-              questions={60}
+              questions={artsCount}
               path="/assessment/arts"
               category="Arts Stream"
             />
@@ -171,7 +183,7 @@ const Assessments = () => {
               description="Complete assessment covering all career paths"
               icon={<Brain className="h-8 w-8 text-primary" />}
               duration="60-75 minutes"
-              questions={80}
+              questions={commonCount}
               path="/assessment/comprehensive"
               category="All Streams"
               popular={true}
@@ -204,7 +216,7 @@ const Assessments = () => {
               description="For students interested in STEM fields"
               icon={<GraduationCap className="h-8 w-8 text-emerald-600" />}
               duration="45-60 minutes"
-              questions={60}
+              questions={scienceCount}
               path="/assessment/science"
               category="Science Stream"
             />
@@ -236,7 +248,7 @@ const Assessments = () => {
               description="For business and economics oriented students"
               icon={<BarChart className="h-8 w-8 text-amber-600" />}
               duration="45-60 minutes"
-              questions={60}
+              questions={commerceCount}
               path="/assessment/commerce"
               category="Commerce Stream"
             />
@@ -268,7 +280,7 @@ const Assessments = () => {
               description="For humanities and liberal arts focused students"
               icon={<BookOpen className="h-8 w-8 text-indigo-600" />}
               duration="45-60 minutes"
-              questions={60}
+              questions={artsCount}
               path="/assessment/arts"
               category="Arts Stream"
             />

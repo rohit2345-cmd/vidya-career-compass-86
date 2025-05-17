@@ -31,8 +31,8 @@ const Navbar = () => {
           <Link to="/results-demo" className={isActive("/results-demo") ? "nav-link-active" : "nav-link"}>
             Demo Results
           </Link>
-          <Link to="/resources" className={isActive("/resources") ? "nav-link-active" : "nav-link"}>
-            Resources
+          <Link to="/about" className={isActive("/about") ? "nav-link-active" : "nav-link"}>
+            About
           </Link>
         </nav>
         

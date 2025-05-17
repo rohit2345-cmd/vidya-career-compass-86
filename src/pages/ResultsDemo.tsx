@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -25,6 +24,12 @@ import {
   Lightbulb,
 } from "lucide-react";
 
+// Import assessment data to get metrics
+import scienceQuestions from "../questions/scienceQuestions.json";
+import artsQuestions from "../questions/artsQuestions.json";
+import commerceQuestions from "../questions/commerceQuestions.json";
+import commonQuestions from "../questions/common_test.json";
+
 // Import recharts components for our visualization
 import {
   BarChart,
@@ -46,6 +51,12 @@ import {
 } from "recharts";
 
 const ResultsDemo = () => {
+  // Get question counts
+  const scienceCount = scienceQuestions.questions?.length || 0;
+  const artsCount = artsQuestions.questions?.length || 0;
+  const commerceCount = commerceQuestions.questions?.length || 0;
+  const commonCount = commonQuestions.questions?.length || 0;
+
   // Mock data for charts
   const aptitudeData = [
     { name: "Logical", score: 75 },
@@ -124,8 +135,9 @@ const ResultsDemo = () => {
     currentStream: "Science with Mathematics",
     assessmentTaken: "Comprehensive Career Assessment",
     date: "May 15, 2025",
-    duration: "72 minutes",
-    overallScore: 84
+    duration: "65 minutes",
+    overallScore: 84,
+    questionsAnswered: commonCount
   };
 
   return (
@@ -177,6 +189,7 @@ const ResultsDemo = () => {
                 <p>{studentInfo.assessmentTaken}</p>
                 <p>Completed on: {studentInfo.date}</p>
                 <p>Duration: {studentInfo.duration}</p>
+                <p>Questions answered: {studentInfo.questionsAnswered}</p>
                 <div className="mt-2">
                   <div className="flex items-center gap-2">
                     <span>Overall Score:</span>
@@ -489,10 +502,10 @@ const ResultsDemo = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p>Our advanced algorithms analyze 80+ data points to generate career recommendations matched to your unique profile.</p>
+                <p>Our advanced algorithms analyze 40+ data points to generate career recommendations matched to your unique profile.</p>
               </CardContent>
               <CardFooter>
-                <Link to="/resources" className="w-full">
+                <Link to="/about" className="w-full">
                   <Button variant="outline" className="w-full">Learn More</Button>
                 </Link>
               </CardFooter>

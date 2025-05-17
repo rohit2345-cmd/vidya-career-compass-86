@@ -28,7 +28,7 @@ const Assessment = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [timeRemaining, setTimeRemaining] = useState(60 * 60); // 60 minutes in seconds
+  const [timeRemaining, setTimeRemaining] = useState(45 * 60); // 45 minutes in seconds
   const [showExitDialog, setShowExitDialog] = useState(false);
   const [showTimeWarning, setShowTimeWarning] = useState(false);
 

@@ -14,7 +14,7 @@ import Assessments from "./pages/Assessments";
 import Assessment from "./pages/Assessment";
 import Results from "./pages/Results";
 import ResultsDemo from "./pages/ResultsDemo";
-import Resources from "./pages/Resources";
+import About from "./pages/About";
 import AICounselor from "./pages/AICounselor";
 import NotFound from "./pages/NotFound";
 
@@ -42,7 +42,7 @@ const App = () => (
               <Route path="/assessment/:assessmentType" element={<Assessment />} />
               <Route path="/results/:assessmentType" element={<Results />} />
               <Route path="/results-demo" element={<ResultsDemo />} />
-              <Route path="/resources" element={<Resources />} />
+              <Route path="/about" element={<About />} />
               <Route path="/ai-counselor" element={<AICounselor />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
