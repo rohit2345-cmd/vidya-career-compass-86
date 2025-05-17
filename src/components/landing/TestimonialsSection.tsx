@@ -1,4 +1,3 @@
-
 import React from "react";
 import TestimonialCard from "./TestimonialCard";
 
@@ -18,7 +17,7 @@ const TestimonialsSection = () => {
             initial="A"
             name="Aarav Sharma"
             school="Delhi Public School"
-            testimonial=""The assessments helped me realize my strengths in analytical thinking. I'm now pursuing Computer Science at IIT Bombay with confidence in my choice.""
+            testimonial={`The assessments helped me realize my strengths in analytical thinking. I'm now pursuing Computer Science at IIT Bombay with confidence in my choice.`}
             initialColor="text-primary"
             backgroundColor="bg-primary/10"
           />
@@ -27,7 +26,7 @@ const TestimonialsSection = () => {
             initial="P"
             name="Priya Patel"
             school="St. Xavier's High School"
-            testimonial=""The AI counselor provided personalized guidance that helped me choose Commerce stream. Now I'm preparing for CA with clear goals.""
+            testimonial={`The AI counselor provided personalized guidance that helped me choose Commerce stream. Now I'm preparing for CA with clear goals.`}
             initialColor="text-secondary"
             backgroundColor="bg-secondary/10"
           />
@@ -36,7 +35,7 @@ const TestimonialsSection = () => {
             initial="R"
             name="Rahul Nair"
             school="Kendriya Vidyalaya"
-            testimonial=""I was confused between Science and Arts streams. The comprehensive assessment clarified my interests in design. Now studying at NID Ahmedabad.""
+            testimonial={`I was confused between Science and Arts streams. The comprehensive assessment clarified my interests in design. Now studying at NID Ahmedabad.`}
             initialColor="text-accent"
             backgroundColor="bg-accent/10"
           />
