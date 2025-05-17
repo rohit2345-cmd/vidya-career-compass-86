@@ -1,0 +1,671 @@
+{
+  "testName": "Science Stream Aptitude Test (Classes 9–12)",
+  "instructions": "Please read each scenario and select the option that best reflects how you would respond or what you prefer. Answer honestly—there are no right or wrong answers.",
+  "questions": [
+    {
+      "questionId": "Q1",
+      "questionText": "Scenario: Your school is holding a science fair project competition. Which part of the project are you most interested in handling?",
+      "options": [
+        {"A": "Building and running the experiment setup (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"B": "Analyzing the results and data collected (Data Interpretation).", "score": {"Data Interpretation": 3, "Mathematical Reasoning": 2}},
+        {"C": "Researching background information and writing the report (Research).", "score": {"Research": 3, "Theoretical Logic": 2}},
+        {"D": "Creating the project's model or visual display (Spatial Thinking).", "score": {"Spatial Thinking": 3, "Problem Solving": 1}},
+        {"E": "Formulating the theory or equations behind the project (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Mathematical Reasoning": 2}}
+      ],
+      "category": "School Science Fair"
+    },
+    {
+      "questionId": "Q2",
+      "questionText": "Scenario: A river near your city is polluted, and your class is tasked with proposing a solution. How do you contribute to the project?",
+      "options": [
+        {"A": "Collect water samples and measure pollution levels (Observation).", "score": {"Observation": 3, "Data Interpretation": 2}},
+        {"B": "Analyze existing data and statistics on water quality (Data Interpretation).", "score": {"Data Interpretation": 3, "Mathematical Reasoning": 2}},
+        {"C": "Design an experiment or prototype to clean the water (Experimental Design).", "score": {"Experimental Design": 3, "Problem Solving": 2}},
+        {"D": "Research how other places solved similar issues and prepare a report (Research).", "score": {"Research": 3, "Interdisciplinary Reasoning": 2}},
+        {"E": "Advocate for ethical responsibility and sustainable policies (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Interdisciplinary Reasoning": 1}}
+      ],
+      "category": "Environmental Science"
+    },
+    {
+      "questionId": "Q3",
+      "questionText": "Scenario: In physics class, you're asked to determine gravity using a pendulum experiment. What aspect of the experiment do you focus on?",
+      "options": [
+        {"A": "Deriving the formula relating pendulum length and period (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Mathematical Reasoning": 2}},
+        {"B": "Measuring the oscillation times and lengths very carefully (Observation).", "score": {"Observation": 3, "Data Interpretation": 2}},
+        {"C": "Trying different pendulum lengths or weights to see the effect (Experimental Design).", "score": {"Experimental Design": 3, "Problem Solving": 2}},
+        {"D": "Calculating and plotting the results to get an accurate value (Data Interpretation).", "score": {"Data Interpretation": 3, "Mathematical Reasoning": 2}}
+      ],
+      "category": "Physics Lab"
+    },
+    {
+      "questionId": "Q4",
+      "questionText": "Scenario: In chemistry lab, you accidentally create an unexpected reaction with a strange color. What do you do next?",
+      "options": [
+        {"A": "Formulate a hypothesis using chemical theory to explain the color (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Research": 2}},
+        {"B": "Repeat the reaction, changing one variable at a time to test outcomes (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"C": "Note every detail of the reaction (color, smell, time, etc.) carefully (Observation).", "score": {"Observation": 3, "Data Interpretation": 2}},
+        {"D": "Look up similar reactions in textbooks or online (Research).", "score": {"Research": 3, "Theoretical Logic": 1}},
+        {"E": "Ensure proper safety, ventilate the area, and inform the teacher (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Problem Solving": 1}}
+      ],
+      "category": "Chemistry Lab"
+    },
+    {
+      "questionId": "Q5",
+      "questionText": "Scenario: On a biology field trip to a forest, your class is studying how insects interact with different plants. How do you approach the task?",
+      "options": [
+        {"A": "Spend time quietly observing and recording insect behavior and plant details (Observation).", "score": {"Observation": 3, "Research": 1}},
+        {"B": "Design a small experiment, like changing a condition, to see how it affects insect behavior (Experimental Design).", "score": {"Experimental Design": 3, "Problem Solving": 2}},
+        {"C": "Count insects on each plant and tabulate the data to find patterns (Data Interpretation).", "score": {"Data Interpretation": 3, "Observation": 2}},
+        {"D": "Connect your observations with ecology concepts or environmental factors (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Research": 1}},
+        {"E": "Make sure not to disturb the ecosystem and treat the creatures ethically (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Observation": 1}}
+      ],
+      "category": "Biology Field Trip"
+    },
+    {
+      "questionId": "Q6",
+      "questionText": "Scenario: You're tackling a very challenging math problem from a national contest. What is your strategy?",
+      "options": [
+        {"A": "Break the problem into smaller parts and solve step by step (Problem Solving).", "score": {"Problem Solving": 3, "Mathematical Reasoning": 1}},
+        {"B": "Draw a diagram or graph to visualize the problem (Spatial Thinking).", "score": {"Spatial Thinking": 3, "Problem Solving": 1}},
+        {"C": "Recall or look for a formula/theorem that could apply (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Theoretical Logic": 2}},
+        {"D": "Work on proving it logically and find a general solution (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Mathematical Reasoning": 2}},
+        {"E": "See if you can find a similar solved problem or hint in a book (Research).", "score": {"Research": 3, "Problem Solving": 1}}
+      ],
+      "category": "Mathematics Challenge"
+    },
+    {
+      "questionId": "Q7",
+      "questionText": "Scenario: For an independent project, you decide to study how sunlight affects plant growth, combining physics and biology. What is your approach?",
+      "options": [
+        {"A": "Set up a controlled experiment varying light intensity and measuring plant growth (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"B": "Create a physics-based model or simulation to predict growth (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Theoretical Logic": 2}},
+        {"C": "Observe real plants daily and record detailed growth data (Observation).", "score": {"Observation": 3, "Data Interpretation": 2}},
+        {"D": "Read research papers on photosynthesis and light to guide your project (Research).", "score": {"Research": 3, "Theoretical Logic": 1}},
+        {"E": "Focus on linking physics principles with biological processes for a holistic view (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Research": 1}}
+      ],
+      "category": "Interdisciplinary Project"
+    },
+    {
+      "questionId": "Q8",
+      "questionText": "Scenario: Your experiment results aren't supporting your hypothesis, and your partner suggests tweaking data to \"make it work.\" How do you respond?",
+      "options": [
+        {"A": "Refuse to fake data and insist on keeping the results honest (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Problem Solving": 1}},
+        {"B": "Repeat the experiment or collect more data until you get reliable results (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"C": "Analyze the data to understand why the results are different than expected (Data Interpretation).", "score": {"Data Interpretation": 3, "Research": 1}},
+        {"D": "Check the procedure and calculations for any mistakes to fix (Problem Solving).", "score": {"Problem Solving": 3, "Data Interpretation": 1}}
+      ],
+      "category": "Scientific Integrity"
+    },
+    {
+      "questionId": "Q9",
+      "questionText": "Scenario: You have access to a telescope for a school astronomy project to study the moon and planets. How do you proceed?",
+      "options": [
+        {"A": "Spend nights observing the moon and planets and sketching what you see (Observation).", "score": {"Observation": 3, "Spatial Thinking": 2}},
+        {"B": "Take measurements or photos and calculate details like crater sizes or orbits (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Data Interpretation": 2}},
+        {"C": "Build a model or use software to simulate the solar system (Spatial Thinking).", "score": {"Spatial Thinking": 3, "Theoretical Logic": 1}},
+        {"D": "Read astronomy research to compare your findings with known data (Research).", "score": {"Research": 3, "Data Interpretation": 1}},
+        {"E": "Relate your observations to physics principles like gravity and motion (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Mathematical Reasoning": 1}}
+      ],
+      "category": "Astronomy Project"
+    },
+    {
+      "questionId": "Q10",
+      "questionText": "Scenario: You are part of a robotics competition team building a robot to perform tasks. Which role do you take on?",
+      "options": [
+        {"A": "Coding and optimizing the robot's algorithms (Problem Solving).", "score": {"Problem Solving": 3, "Theoretical Logic": 2}},
+        {"B": "Designing and drawing the robot’s mechanical parts (Spatial Thinking).", "score": {"Spatial Thinking": 3, "Problem Solving": 1}},
+        {"C": "Testing the robot and troubleshooting issues through trial runs (Experimental Design).", "score": {"Experimental Design": 3, "Problem Solving": 2}},
+        {"D": "Analyzing the robot’s performance data to improve it (Data Interpretation).", "score": {"Data Interpretation": 3, "Mathematical Reasoning": 1}},
+        {"E": "Documenting the project and researching ways to refine our design (Research).", "score": {"Research": 3, "Interdisciplinary Reasoning": 1}}
+      ],
+      "category": "Robotics Competition"
+    },
+    {
+      "questionId": "Q11",
+      "questionText": "Scenario: At a school health camp, several students feel sick after lunch with various symptoms. How would you figure out what happened?",
+      "options": [
+        {"A": "Note each person's symptoms and what they ate, looking for patterns (Observation).", "score": {"Observation": 3, "Data Interpretation": 2}},
+        {"B": "Use your biology knowledge to hypothesize the cause (e.g., food contamination) (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Research": 1}},
+        {"C": "Collect a sample of the suspected food or water to test in the lab (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 1}},
+        {"D": "Check health resources or past cases of similar outbreaks (Research).", "score": {"Research": 3, "Data Interpretation": 1}},
+        {"E": "Report it to authorities and suggest safety measures to prevent further cases (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Interdisciplinary Reasoning": 2}}
+      ],
+      "category": "Health & Medicine"
+    },
+    {
+      "questionId": "Q12",
+      "questionText": "Scenario: Your class is having a discussion on global climate change. What perspective do you contribute?",
+      "options": [
+        {"A": "Present and analyze data showing temperature and climate trends (Data Interpretation).", "score": {"Data Interpretation": 3, "Mathematical Reasoning": 2}},
+        {"B": "Talk about our ethical responsibility to reduce emissions (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Interdisciplinary Reasoning": 2}},
+        {"C": "Explore technological solutions or experiments like carbon capture (Problem Solving).", "score": {"Problem Solving": 3, "Experimental Design": 2}},
+        {"D": "Explain the science behind climate effects like the greenhouse effect (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Research": 1}},
+        {"E": "Connect climate change to economic or social impacts in society (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Scientific Ethics": 1}}
+      ],
+      "category": "Climate Change"
+    },
+    {
+      "questionId": "Q13",
+      "questionText": "Scenario: You conducted a survey of 100 students' favorite science subjects and have a lot of data. How will you handle it?",
+      "options": [
+        {"A": "Use mathematics or statistics to calculate trends and percentages (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Data Interpretation": 2}},
+        {"B": "Create graphs or charts to visualize the results for patterns (Data Interpretation).", "score": {"Data Interpretation": 3, "Spatial Thinking": 1}},
+        {"C": "Design a follow-up experiment or questionnaire to get more insights (Experimental Design).", "score": {"Experimental Design": 3, "Problem Solving": 1}},
+        {"D": "Compare your findings with other studies or broader trends (Research).", "score": {"Research": 3, "Interdisciplinary Reasoning": 1}},
+        {"E": "Ensure the data is presented honestly and keep responses anonymous (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Data Interpretation": 1}}
+      ],
+      "category": "Data Analysis"
+    },
+    {
+      "questionId": "Q14",
+      "questionText": "Scenario: You get to visit a national research laboratory for a day. What activity do you choose to do?",
+      "options": [
+        {"A": "Assist in running an experiment or setting up lab equipment (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"B": "Spend time with data analysts to see how they interpret experiment results (Data Interpretation).", "score": {"Data Interpretation": 3, "Mathematical Reasoning": 1}},
+        {"C": "Discuss the theoretical background of experiments with the scientists (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Research": 1}},
+        {"D": "Learn about different ongoing projects and how they connect across fields (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Research": 1}},
+        {"E": "Explore the research library or database to read about past experiments (Research).", "score": {"Research": 3, "Theoretical Logic": 1}}
+      ],
+      "category": "Research Lab Visit"
+    },
+    {
+      "questionId": "Q15",
+      "questionText": "Scenario: You notice the plants on your balcony grow differently in two spots – one in the sun and one in the shade. What do you do out of curiosity?",
+      "options": [
+        {"A": "Measure and record the growth of plants in both spots every day (Observation).", "score": {"Observation": 3, "Data Interpretation": 2}},
+        {"B": "Calculate how many hours of sunlight each spot gets and link it to plant growth (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Data Interpretation": 1}},
+        {"C": "Move some plants around or change their conditions to experiment (Experimental Design).", "score": {"Experimental Design": 3, "Problem Solving": 1}},
+        {"D": "Research why sunlight affects plant growth by reading about photosynthesis (Research).", "score": {"Research": 3, "Theoretical Logic": 1}},
+        {"E": "Think about other factors like water or soil quality that might be playing a role (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Observation": 1}}
+      ],
+      "category": "Home Experiment"
+    },
+    {
+      "questionId": "Q16",
+      "questionText": "Scenario: Your science club is building a model bridge for an engineering competition to hold weight. What is your contribution?",
+      "options": [
+        {"A": "Perform all the calculations for forces and stability (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Theoretical Logic": 2}},
+        {"B": "Sketch the design and create a blueprint or 3D model (Spatial Thinking).", "score": {"Spatial Thinking": 3, "Problem Solving": 1}},
+        {"C": "Construct and test mini prototypes to see what works (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"D": "Analyze the test data to find ways to improve the design (Data Interpretation).", "score": {"Data Interpretation": 3, "Problem Solving": 1}},
+        {"E": "Research how real bridges are engineered and apply those ideas (Research).", "score": {"Research": 3, "Interdisciplinary Reasoning": 1}}
+      ],
+      "category": "Engineering Design"
+    },
+    {
+      "questionId": "Q17",
+      "questionText": "Scenario: You read an online article claiming a simple herbal drink can cure many illnesses, but it provides no solid evidence. What do you do?",
+      "options": [
+        {"A": "Examine the article for any data or scientific evidence supporting the claim (Data Interpretation).", "score": {"Data Interpretation": 3, "Research": 2}},
+        {"B": "Think about the science logically and suspect it might not align with known facts (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Scientific Ethics": 1}},
+        {"C": "Consider running a controlled test or experiment to verify the claim (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"D": "Research credible scientific sources about the ingredients or topic (Research).", "score": {"Research": 3, "Data Interpretation": 1}},
+        {"E": "Reflect on the morality of making unproven claims to the public (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Interdisciplinary Reasoning": 1}}
+      ],
+      "category": "Evaluating Claims"
+    },
+    {
+      "questionId": "Q18",
+      "questionText": "Scenario: Your school holds a STEM puzzle contest with different types of challenges. Which kind of puzzle excites you the most?",
+      "options": [
+        {"A": "A complex mathematical riddle that requires solving equations (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Problem Solving": 2}},
+        {"B": "A logic puzzle that requires abstract reasoning or proof (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Mathematical Reasoning": 1}},
+        {"C": "A hands-on challenge like mixing chemicals or building a structure (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 1}},
+        {"D": "A pattern recognition puzzle involving data or sequences (Data Interpretation).", "score": {"Data Interpretation": 3, "Observation": 1}},
+        {"E": "A puzzle that needs knowledge from multiple subjects to solve (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Research": 1}}
+      ],
+      "category": "Science Puzzle Contest"
+    },
+    {
+      "questionId": "Q19",
+      "questionText": "Scenario: ISRO is holding a contest for students to propose an experiment to send to space. What kind of experiment do you propose?",
+      "options": [
+        {"A": "A physics experiment to test a theory in microgravity (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Experimental Design": 2}},
+        {"B": "A biology experiment to see how plants or microbes grow in space (Observation).", "score": {"Observation": 3, "Research": 1}},
+        {"C": "A project to monitor cosmic radiation and analyze the data (Data Interpretation).", "score": {"Data Interpretation": 3, "Mathematical Reasoning": 1}},
+        {"D": "A technology demonstration of a new space gadget or mechanism (Problem Solving).", "score": {"Problem Solving": 3, "Experimental Design": 1}},
+        {"E": "A study on how space travel affects human health or psychology (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Scientific Ethics": 1}}
+      ],
+      "category": "Space Experiment"
+    },
+    {
+      "questionId": "Q20",
+      "questionText": "Scenario: You notice your phone’s battery drains faster in cold weather. How would you investigate this issue?",
+      "options": [
+        {"A": "Collect data on the battery life at different temperatures and analyze it (Data Interpretation).", "score": {"Data Interpretation": 3, "Observation": 1}},
+        {"B": "Research the science of battery chemistry and temperature effects (Research).", "score": {"Research": 3, "Theoretical Logic": 1}},
+        {"C": "Do controlled tests with your phone in various conditions to see the effect (Experimental Design).", "score": {"Experimental Design": 3, "Problem Solving": 1}},
+        {"D": "Use physics and chemistry knowledge to hypothesize why this happens (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Research": 1}}
+      ],
+      "category": "Everyday Science"
+    },
+    {
+      "questionId": "Q21",
+      "questionText": "Scenario: Your school requires you to join a science-related extracurricular club. Which one do you choose?",
+      "options": [
+        {"A": "Mathematics Club – solving challenging math puzzles and problems (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Theoretical Logic": 2}},
+        {"B": "Robotics Club – building gadgets and doing hands-on tech projects (Experimental Design).", "score": {"Experimental Design": 3, "Problem Solving": 2}},
+        {"C": "Science Research Club – discussing journal articles and planning investigations (Research).", "score": {"Research": 3, "Data Interpretation": 1}},
+        {"D": "Environment & Sustainability Club – working on eco-friendly initiatives (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Observation": 1}},
+        {"E": "Astronomy Club – observing stars and learning about space (Observation).", "score": {"Observation": 3, "Theoretical Logic": 2}}
+      ],
+      "category": "Extracurricular Club"
+    },
+    {
+      "questionId": "Q22",
+      "questionText": "Scenario: You're trying to understand a difficult physics concept for an upcoming exam. How do you go about learning it?",
+      "options": [
+        {"A": "Work through the derivations and equations in detail (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Theoretical Logic": 2}},
+        {"B": "Perform a simple experiment or demonstration to see it in action (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"C": "Watch videos or use diagrams to visualize the concept (Spatial Thinking).", "score": {"Spatial Thinking": 3, "Observation": 1}},
+        {"D": "Read additional reference books or research papers for deeper insight (Research).", "score": {"Research": 3, "Theoretical Logic": 1}},
+        {"E": "Relate the concept to a real-life situation or another subject you know (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Problem Solving": 1}}
+      ],
+      "category": "Study Strategy"
+    },
+    {
+      "questionId": "Q23",
+      "questionText": "Scenario: Your friend is struggling with their science project and asks for help. What do you do first?",
+      "options": [
+        {"A": "Help fix or improve their experimental setup (Experimental Design).", "score": {"Experimental Design": 3, "Problem Solving": 2}},
+        {"B": "Go through their collected data and assist in analyzing it (Data Interpretation).", "score": {"Data Interpretation": 3, "Observation": 1}},
+        {"C": "Explain the underlying theory or concepts they need to understand (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Research": 1}},
+        {"D": "Find additional information or examples that could help them (Research).", "score": {"Research": 3, "Interdisciplinary Reasoning": 1}},
+        {"E": "Brainstorm practical solutions or changes to solve their project problems (Problem Solving).", "score": {"Problem Solving": 3, "Experimental Design": 1}}
+      ],
+      "category": "Helping a Friend"
+    },
+    {
+      "questionId": "Q24",
+      "questionText": "Scenario: You're reading a science fiction novel with advanced scientific ideas. What fascinates you most in the story?",
+      "options": [
+        {"A": "The underlying scientific theories and principles explored (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Research": 1}},
+        {"B": "The imaginative technology and thinking how to make it real (Problem Solving).", "score": {"Problem Solving": 3, "Experimental Design": 1}},
+        {"C": "The ethical dilemmas and moral questions raised by the science (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Interdisciplinary Reasoning": 2}},
+        {"D": "How the science connects with society or other fields in the story (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Scientific Ethics": 1}},
+        {"E": "Noticing which parts of the science are realistic or well-researched (Research).", "score": {"Research": 3, "Observation": 1}}
+      ],
+      "category": "Science Fiction"
+    },
+    {
+      "questionId": "Q25",
+      "questionText": "Scenario: A kitchen appliance at home is malfunctioning intermittently. How do you figure out or fix the problem?",
+      "options": [
+        {"A": "Systematically check each component to troubleshoot the issue (Problem Solving).", "score": {"Problem Solving": 3, "Observation": 2}},
+        {"B": "Refer to the user manual or search online for similar problems (Research).", "score": {"Research": 3, "Problem Solving": 1}},
+        {"C": "Carefully take it apart (with safety) to inspect and test each part (Experimental Design).", "score": {"Experimental Design": 3, "Spatial Thinking": 1}},
+        {"D": "Think about the physics or mechanics of how it works to deduce the issue (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Mathematical Reasoning": 1}},
+        {"E": "Observe when and how it malfunctions to find patterns or clues (Observation).", "score": {"Observation": 3, "Data Interpretation": 1}}
+      ],
+      "category": "Troubleshooting"
+    },
+    {
+      "questionId": "Q26",
+      "questionText": "Scenario: You're in a science quiz and face a question you don't know immediately. How do you tackle it?",
+      "options": [
+        {"A": "Try to recall a formula or concept that might be related (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Mathematical Reasoning": 2}},
+        {"B": "Use logic to eliminate wrong answers or break the problem down (Problem Solving).", "score": {"Problem Solving": 3, "Observation": 1}},
+        {"C": "Sketch a quick diagram or picture to help visualize the problem (Spatial Thinking).", "score": {"Spatial Thinking": 3, "Observation": 1}},
+        {"D": "Pay close attention to details or data given in the question for clues (Observation).", "score": {"Observation": 3, "Data Interpretation": 2}},
+        {"E": "Consider if something from another subject you know could apply here (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Research": 1}}
+      ],
+      "category": "Quiz Strategy"
+    },
+    {
+      "questionId": "Q27",
+      "questionText": "Scenario: You are in a group study session for a science exam. What role do you naturally take in the group?",
+      "options": [
+        {"A": "Solve numerical problems for the group and explain the solutions (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Problem Solving": 2}},
+        {"B": "Draw diagrams or use visual aids to help explain concepts (Spatial Thinking).", "score": {"Spatial Thinking": 3, "Theoretical Logic": 1}},
+        {"C": "Suggest a step-by-step plan so the group covers all topics (Problem Solving).", "score": {"Problem Solving": 3, "Research": 1}},
+        {"D": "Share interesting facts or extra information from reading beyond the textbook (Research).", "score": {"Research": 3, "Interdisciplinary Reasoning": 1}},
+        {"E": "Pose challenging questions that connect different chapters or subjects (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Theoretical Logic": 1}}
+      ],
+      "category": "Group Study"
+    },
+    {
+      "questionId": "Q28",
+      "questionText": "Scenario: You need to create a project for a science exhibition on the \"Future of Science and Technology.\" What do you decide to do?",
+      "options": [
+        {"A": "Develop a mathematical model or simulation to predict future trends (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Data Interpretation": 2}},
+        {"B": "Build a working prototype of a new technology or device (Experimental Design).", "score": {"Experimental Design": 3, "Problem Solving": 2}},
+        {"C": "Prepare a detailed research presentation comparing scientific progress (Research).", "score": {"Research": 3, "Data Interpretation": 1}},
+        {"D": "Focus on ethical considerations of emerging technologies (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Interdisciplinary Reasoning": 2}},
+        {"E": "Combine ideas from multiple fields (e.g., biology and AI) to solve a problem (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Problem Solving": 1}}
+      ],
+      "category": "Science Exhibition"
+    },
+    {
+      "questionId": "Q29",
+      "questionText": "Scenario: While riding your bicycle, you start wondering about the science of balancing and motion. What do you do with this curiosity?",
+      "options": [
+        {"A": "Try to derive equations or calculations to describe the balance and motion (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Theoretical Logic": 2}},
+        {"B": "Do little experiments, like changing your speed or adding weight, to see the effects (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"C": "Observe closely how the bike behaves on turns or different roads and note it down (Observation).", "score": {"Observation": 3, "Data Interpretation": 1}},
+        {"D": "Read about the physics of cycling (gyroscopic effect, friction, etc.) (Research).", "score": {"Research": 3, "Theoretical Logic": 1}},
+        {"E": "Compare it to other situations, like how motorbikes or animals maintain balance (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Observation": 1}}
+      ],
+      "category": "Everyday Physics"
+    },
+    {
+      "questionId": "Q30",
+      "questionText": "Scenario: You notice that sliced apples turn brown after some time in the air. How would you investigate or explain this phenomenon?",
+      "options": [
+        {"A": "Use chemistry knowledge to explain it's due to oxidation reactions (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Research": 1}},
+        {"B": "Try different things like lemon juice or refrigeration on apple slices to see if it prevents browning (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"C": "Observe and time how quickly apple pieces brown under different conditions (Observation).", "score": {"Observation": 3, "Data Interpretation": 2}},
+        {"D": "Look up why this happens and how people usually keep apples fresh (Research).", "score": {"Research": 3, "Theoretical Logic": 1}},
+        {"E": "Relate it to other examples like metal rusting or food spoiling, to see the similarities (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Theoretical Logic": 1}}
+      ],
+      "category": "Everyday Chemistry"
+    },
+    {
+      "questionId": "Q31",
+      "questionText": "Scenario: In biology class, students can either dissect a frog or do an alternative project. What do you choose?",
+      "options": [
+        {"A": "Perform the dissection to directly observe the frog’s anatomy (Observation).", "score": {"Observation": 3, "Research": 1}},
+        {"B": "Use a virtual dissection or alternative method to avoid harming an animal (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Observation": 1}},
+        {"C": "Study the frog's anatomy through books, diagrams, and research instead (Research).", "score": {"Research": 3, "Theoretical Logic": 1}},
+        {"D": "Focus on learning the theory of anatomy from the textbook rather than doing the dissection (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Research": 1}},
+        {"E": "Build a detailed 3D model or drawing of the frog’s organs for a visual study (Spatial Thinking).", "score": {"Spatial Thinking": 3, "Observation": 2}}
+      ],
+      "category": "Ethical Dilemma"
+    },
+    {
+      "questionId": "Q32",
+      "questionText": "Scenario: You are inspired by the story of a famous scientist. What aspect of their work impresses you the most?",
+      "options": [
+        {"A": "How they used mathematics and calculations in their discoveries (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Theoretical Logic": 1}},
+        {"B": "The ingenious experiments they designed to test their ideas (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 1}},
+        {"C": "Their keen observations that led to breakthroughs (Observation).", "score": {"Observation": 3, "Data Interpretation": 1}},
+        {"D": "Their habit of extensive reading and research that guided their work (Research).", "score": {"Research": 3, "Theoretical Logic": 1}},
+        {"E": "How their contributions spanned multiple fields or benefited society (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Scientific Ethics": 1}}
+      ],
+      "category": "Scientific Inspiration"
+    },
+    {
+      "questionId": "Q33",
+      "questionText": "Scenario: You have an idea to invent a gadget that solves a common problem (e.g., a device to sort waste automatically). How do you begin working on it?",
+      "options": [
+        {"A": "Sketch the design and diagram how each part will work (Spatial Thinking).", "score": {"Spatial Thinking": 3, "Observation": 1}},
+        {"B": "Calculate the mechanics or electronics needed using formulas (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Theoretical Logic": 2}},
+        {"C": "Build a prototype with available materials and test it repeatedly (Experimental Design).", "score": {"Experimental Design": 3, "Problem Solving": 2}},
+        {"D": "Research existing solutions or similar inventions for ideas (Research).", "score": {"Research": 3, "Interdisciplinary Reasoning": 1}},
+        {"E": "Make sure your design is safe and ethically responsible (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Problem Solving": 1}}
+      ],
+      "category": "Innovation"
+    },
+    {
+      "questionId": "Q34",
+      "questionText": "Scenario: You are planning a scientific expedition, either to outer space or the deep ocean. What is your main focus in planning?",
+      "options": [
+        {"A": "Developing the technology and equipment needed for the mission (Problem Solving).", "score": {"Problem Solving": 3, "Experimental Design": 2}},
+        {"B": "Planning out how to observe and document everything in detail (Observation).", "score": {"Observation": 3, "Research": 1}},
+        {"C": "Ensuring all safety protocols and ethical guidelines are followed (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Research": 1}},
+        {"D": "Studying theoretical models and predictions of what you might find (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Data Interpretation": 1}},
+        {"E": "Integrating knowledge from different fields to cover all aspects (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Problem Solving": 1}}
+      ],
+      "category": "Expedition Planning"
+    },
+    {
+      "questionId": "Q35",
+      "questionText": "Scenario: Your home’s electricity bill spiked unexpectedly last month. How would you go about finding the cause or reducing the bill?",
+      "options": [
+        {"A": "Analyze last month's electricity usage data and compare it with previous months (Data Interpretation).", "score": {"Data Interpretation": 3, "Mathematical Reasoning": 2}},
+        {"B": "Check each appliance or room methodically to find what’s using extra power (Problem Solving).", "score": {"Problem Solving": 3, "Observation": 1}},
+        {"C": "Research ways to save energy and what could cause high consumption (Research).", "score": {"Research": 3, "Interdisciplinary Reasoning": 1}},
+        {"D": "Calculate the power use of each major appliance to identify the culprit (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Data Interpretation": 1}},
+        {"E": "Think about any unusual factors last month (weather, guests) that might explain it (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Observation": 1}}
+      ],
+      "category": "Energy Problem Solving"
+    },
+    {
+      "questionId": "Q36",
+      "questionText": "Scenario: On a free weekend, you want to do something related to science just for fun. What do you choose?",
+      "options": [
+        {"A": "Solve some brain-teaser math puzzles or logic riddles (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Theoretical Logic": 1}},
+        {"B": "Try out a DIY science experiment kit at home (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"C": "Go for a nature walk or stargazing night to observe and enjoy (Observation).", "score": {"Observation": 3, "Interdisciplinary Reasoning": 1}},
+        {"D": "Read a popular science book or science articles to learn something new (Research).", "score": {"Research": 3, "Theoretical Logic": 1}},
+        {"E": "Work on a small project to apply science to solve a home problem (Problem Solving).", "score": {"Problem Solving": 3, "Interdisciplinary Reasoning": 1}}
+      ],
+      "category": "Science Leisure"
+    },
+    {
+      "questionId": "Q37",
+      "questionText": "Scenario: While studying, you find two sources giving different explanations for the same scientific concept. How do you resolve this confusion?",
+      "options": [
+        {"A": "Analyze each explanation logically to see which makes more sense (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Problem Solving": 1}},
+        {"B": "Look for data or evidence that supports either of the explanations (Data Interpretation).", "score": {"Data Interpretation": 3, "Research": 2}},
+        {"C": "Design a quick experiment or simulation to test which explanation might be right (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 1}},
+        {"D": "Consult additional books or ask an expert/teacher for more information (Research).", "score": {"Research": 3, "Interdisciplinary Reasoning": 1}},
+        {"E": "Consider if both explanations could be correct in different contexts (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Theoretical Logic": 1}}
+      ],
+      "category": "Conflicting Sources"
+    },
+    {
+      "questionId": "Q38",
+      "questionText": "Scenario: Your class visits a large science museum with many different sections. Which exhibit do you find most interesting?",
+      "options": [
+        {"A": "The mathematics and puzzles corner where you solve interactive problems (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Problem Solving": 2}},
+        {"B": "The planetarium show that visualizes astronomy concepts (Spatial Thinking).", "score": {"Spatial Thinking": 3, "Observation": 2}},
+        {"C": "The hands-on physics experiment section where you can try things out (Experimental Design).", "score": {"Experimental Design": 3, "Data Interpretation": 1}},
+        {"D": "The exhibit on environmental issues and ethical challenges in science (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Interdisciplinary Reasoning": 2}},
+        {"E": "The gallery of famous discoveries and the research behind them (Research).", "score": {"Research": 3, "Theoretical Logic": 1}}
+      ],
+      "category": "Museum Visit"
+    },
+    {
+      "questionId": "Q39",
+      "questionText": "Scenario: Imagine it's 10 years in the future and you have a dream job in science. Which role sounds most like your dream?",
+      "options": [
+        {"A": "A theoretical physicist or mathematician working on fundamental theories (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Research": 2}},
+        {"B": "A lead scientist running experiments in a cutting-edge lab (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"C": "A data scientist/statistician crunching numbers to find insights (Data Interpretation).", "score": {"Data Interpretation": 3, "Mathematical Reasoning": 2}},
+        {"D": "An engineer or inventor developing new technologies (Problem Solving).", "score": {"Problem Solving": 3, "Experimental Design": 1}},
+        {"E": "A science policy advisor or ethics committee member ensuring research is responsible (Scientific Ethics).", "score": {"Scientific Ethics": 3, "Interdisciplinary Reasoning": 2}}
+      ],
+      "category": "Future Career"
+    },
+    {
+      "questionId": "Q40",
+      "questionText": "Scenario: You win a contest to have a one-hour chat with any scientist (living or historical). Whom do you choose?",
+      "options": [
+        {"A": "Albert Einstein – to discuss profound theories of physics (Theoretical Logic).", "score": {"Theoretical Logic": 3, "Mathematical Reasoning": 2}},
+        {"B": "Marie Curie – to learn about her groundbreaking experiments (Experimental Design).", "score": {"Experimental Design": 3, "Observation": 2}},
+        {"C": "Srinivasa Ramanujan – to explore extraordinary mathematical ideas (Mathematical Reasoning).", "score": {"Mathematical Reasoning": 3, "Theoretical Logic": 2}},
+        {"D": "Dr. A.P.J. Abdul Kalam – to talk about engineering innovations and problem-solving (Problem Solving).", "score": {"Problem Solving": 3, "Interdisciplinary Reasoning": 2}},
+        {"E": "Jagadish Chandra Bose – to understand how he bridged physics and biology (Interdisciplinary Reasoning).", "score": {"Interdisciplinary Reasoning": 3, "Research": 2}}
+      ],
+      "category": "Scientific Role Model"
+    }
+  ],
+  "scoringCategories": [
+    "Mathematical Reasoning",
+    "Data Interpretation",
+    "Experimental Design",
+    "Spatial Thinking",
+    "Observation",
+    "Problem Solving",
+    "Scientific Ethics",
+    "Research",
+    "Theoretical Logic",
+    "Interdisciplinary Reasoning"
+  ],
+  "careerSuggestions": {
+    "highMathematicalReasoning": [
+      "Mathematician",
+      "Theoretical Physicist",
+      "Statistician",
+      "Data Scientist",
+      "Cryptographer"
+    ],
+    "highDataInterpretation": [
+      "Data Scientist/Analyst",
+      "Biostatistician",
+      "Epidemiologist",
+      "Bioinformatics Specialist",
+      "Climate Data Analyst"
+    ],
+    "highExperimentalDesign": [
+      "Research Scientist (Lab-Based)",
+      "Chemical Engineer or Chemist",
+      "Laboratory Technician",
+      "Experimental Physicist",
+      "R&D Engineer"
+    ],
+    "highSpatialThinking": [
+      "Architect",
+      "Mechanical/Civil Engineer",
+      "Geologist or Geophysicist",
+      "Urban Planner/Cartographer",
+      "3D Modeler or CAD Specialist"
+    ],
+    "highObservation": [
+      "Field Biologist or Ecologist",
+      "Astronomer",
+      "Forensic Scientist",
+      "Quality Control Analyst",
+      "Lab Technician"
+    ],
+    "highProblemSolving": [
+      "Engineer (any field, e.g., Mechanical, Electrical)",
+      "Inventor or Innovator",
+      "Software Developer/Systems Analyst",
+      "Robotics Specialist",
+      "Operations Research Analyst"
+    ],
+    "highScientificEthics": [
+      "Bioethicist or Ethics Board Member",
+      "Environmental Policy Advisor",
+      "Science Policy Analyst",
+      "Regulatory Affairs Manager",
+      "Health & Safety Officer"
+    ],
+    "highResearch": [
+      "Scientific Researcher (various fields)",
+      "University Professor",
+      "Science Writer or Journalist",
+      "Archivist/Librarian (Science)",
+      "Historian of Science"
+    ],
+    "highTheoreticalLogic": [
+      "Theoretical Physicist",
+      "Mathematician (Academic)",
+      "Algorithm Designer/Computational Theorist",
+      "Philosopher of Science",
+      "Theoretical Computer Scientist"
+    ],
+    "highInterdisciplinaryReasoning": [
+      "Environmental Scientist",
+      "Biomedical Engineer",
+      "Astrobiologist",
+      "Science Communicator/Educator",
+      "Sustainability Consultant"
+    ],
+    "mixedHighScores": {
+      "MathematicalReasoning_DataInterpretation": [
+        "Statistician",
+        "Actuary",
+        "Financial Data Analyst"
+      ],
+      "MathematicalReasoning_TheoreticalLogic": [
+        "Theoretical Mathematician",
+        "Quantum Physicist",
+        "Cryptography Researcher"
+      ],
+      "MathematicalReasoning_ExperimentalDesign": [
+        "Experimental Physicist",
+        "Aerospace Engineer",
+        "Physical Chemist"
+      ],
+      "DataInterpretation_ExperimentalDesign": [
+        "Analytical Chemist",
+        "Experimental Physicist (Particle Physics)",
+        "Quality Assurance Scientist"
+      ],
+      "DataInterpretation_Research": [
+        "Data Analyst in Research Labs",
+        "Science Policy Researcher",
+        "Public Health Analyst"
+      ],
+      "ExperimentalDesign_Observation": [
+        "Lab Technician (Experimental)",
+        "Field Scientist",
+        "Agricultural Scientist"
+      ],
+      "ExperimentalDesign_ProblemSolving": [
+        "Product Development Engineer",
+        "Mechanical Engineer (Design & Test)",
+        "Innovation Specialist"
+      ],
+      "SpatialThinking_ProblemSolving": [
+        "Architect",
+        "Industrial Designer",
+        "Automotive Engineer"
+      ],
+      "SpatialThinking_Observation": [
+        "Geologist (Field Mapping)",
+        "Archaeologist",
+        "Astronomer (Observational)"
+      ],
+      "Observation_Research": [
+        "Field Ecologist",
+        "Wildlife Biologist",
+        "Conservation Scientist"
+      ],
+      "Observation_ScientificEthics": [
+        "Environmental Conservationist",
+        "Food Safety Inspector",
+        "Clinical Trial Monitor"
+      ],
+      "ProblemSolving_InterdisciplinaryReasoning": [
+        "Technology Entrepreneur",
+        "Renewable Energy Engineer",
+        "Systems Analyst (Interdisciplinary Projects)"
+      ],
+      "ProblemSolving_Research": [
+        "R&D Project Manager",
+        "Management Consultant (Tech Focus)",
+        "Innovations Manager in a Lab"
+      ],
+      "ScientificEthics_InterdisciplinaryReasoning": [
+        "Science Policy Maker",
+        "Environmental Lawyer",
+        "Public Health Policy Director"
+      ],
+      "ScientificEthics_Research": [
+        "Clinical Ethics Researcher",
+        "Regulatory Compliance Specialist",
+        "Bioethics Professor"
+      ],
+      "Research_InterdisciplinaryReasoning": [
+        "Science Journalist (covering multiple fields)",
+        "Patent Examiner",
+        "Scientific Consultant"
+      ],
+      "Research_TheoreticalLogic": [
+        "Theoretical Research Scientist",
+        "Think Tank Researcher",
+        "AI Research Scientist (Theory)"
+      ],
+      "TheoreticalLogic_InterdisciplinaryReasoning": [
+        "Complex Systems Analyst",
+        "Futurist (Technology Foresight)",
+        "Computational Biologist"
+      ],
+      "TheoreticalLogic_ExperimentalDesign": [
+        "Physicist (both theory and experiment)",
+        "Materials Scientist",
+        "Electronics R&D Specialist"
+      ],
+      "InterdisciplinaryReasoning_ExperimentalDesign": [
+        "Biomedical Researcher",
+        "Astrophysicist (observational & theoretical)",
+        "Climate Scientist (field and modeling)"
+      ]
+    }
+  },
+  "scoringInstructions": "Sum the scores for each category based on the student's answers. The category (or categories) with the highest score(s) represent the student's strongest aptitudes. Use the 'careerSuggestions' mapping to identify science careers (or combinations of careers) that align with those dominant aptitudes.",
+  "disclaimer": "This aptitude questionnaire is a guidance tool to explore interests and is not a definitive predictor of future success. Students should consider their individual passions and seek further counseling before making career decisions."
+}

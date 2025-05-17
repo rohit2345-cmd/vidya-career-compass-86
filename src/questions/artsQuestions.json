@@ -1,0 +1,1496 @@
+{
+  "testName": "Arts Stream Aptitude Test",
+  "instructions": "Please answer the following scenario-based questions honestly. Choose the option that best reflects your interests or likely actions. There are no right or wrong answers.",
+  "questions": [
+      {
+          "questionId": "Q1",
+          "questionText": "Scenario: Your school is hosting an annual cultural festival with music, art, and drama. Which role would you volunteer for?",
+          "options": [
+              {
+                  "A": "Designing and creating the stage backdrop and decorations (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 3
+                  }
+              },
+              {
+                  "B": "Performing in a musical or dance act on stage (Performing).",
+                  "score": {
+                      "Communication": 3,
+                      "Creative": 2
+                  }
+              },
+              {
+                  "C": "Writing scripts or content for the event program (Literary).",
+                  "score": {
+                      "Communication": 3,
+                      "Creative": 2
+                  }
+              },
+              {
+                  "D": "Coordinating schedules, logistics, and managing the event (Organizing).",
+                  "score": {
+                      "CriticalThinking": 4
+                  }
+              }
+          ],
+          "category": "School Event & Arts"
+      },
+      {
+          "questionId": "Q2",
+          "questionText": "Scenario: In your English class, you can choose a final project. Which one appeals to you most?",
+          "options": [
+              {
+                  "A": "Write an original short story or poem and present it (Creative Writing).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 3
+                  }
+              },
+              {
+                  "B": "Analyze a famous literary work and share your insights (Analytical).",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "Cultural": 1
+                  }
+              },
+              {
+                  "C": "Perform a scene from a play or recite a poem dramatically (Performing).",
+                  "score": {
+                      "Communication": 4,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "D": "Create artwork or illustrations that depict themes from the literature (Artistic).",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 3
+                  }
+              }
+          ],
+          "category": "Literature & Expression"
+      },
+      {
+          "questionId": "Q3",
+          "questionText": "Scenario: For a history project, your group can present the topic in different ways. Which approach would you choose?",
+          "options": [
+              {
+                  "A": "Compile data and timelines into charts and figures (Analytical).",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "AbstractReasoning": 1
+                  }
+              },
+              {
+                  "B": "Dramatize a historical event with costumes and acting (Creative).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Create a detailed poster or model depicting the era (Artistic).",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 3
+                  }
+              },
+              {
+                  "D": "Write a first-person diary from a historical figure's perspective (Empathy).",
+                  "score": {
+                      "Communication": 3,
+                      "Empathy": 3
+                  }
+              }
+          ],
+          "category": "History & Learning"
+      },
+      {
+          "questionId": "Q4",
+          "questionText": "Scenario: During a family vacation, you have time for one extra activity. Which would you pick?",
+          "options": [
+              {
+                  "A": "Visit an art gallery or handicraft fair to see creative works.",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "B": "Attend a live music, dance, or theater performance.",
+                  "score": {
+                      "Creative": 2,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Explore a historical monument or museum.",
+                  "score": {
+                      "Cultural": 4
+                  }
+              },
+              {
+                  "D": "Go to a science and technology museum or planetarium.",
+                  "score": {
+                      "CriticalThinking": 3,
+                      "AbstractReasoning": 2
+                  }
+              }
+          ],
+          "category": "Interests & Leisure"
+      },
+      {
+          "questionId": "Q5",
+          "questionText": "Scenario: On a free Sunday, how are you most likely to spend your time?",
+          "options": [
+              {
+                  "A": "Drawing, painting, or doing DIY art/craft projects.",
+                  "score": {
+                      "Creative": 4,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "B": "Reading a novel, writing in my journal, or composing a poem.",
+                  "score": {
+                      "Communication": 4,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "C": "Listening to music or practicing a musical instrument.",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "Solving puzzles, playing chess or video games, or watching science videos.",
+                  "score": {
+                      "AbstractReasoning": 3,
+                      "CriticalThinking": 2
+                  }
+              }
+          ],
+          "category": "Hobbies & Interests"
+      },
+      {
+          "questionId": "Q6",
+          "questionText": "Scenario: Your close friend is feeling upset and stressed about a personal issue. How do you help them?",
+          "options": [
+              {
+                  "A": "Write them a heartfelt note or a poem to cheer them up.",
+                  "score": {
+                      "Creative": 2,
+                      "Empathy": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "B": "Take them out to do something fun like watch a movie or play music together.",
+                  "score": {
+                      "Empathy": 2,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Sit down and discuss the problem logically to find a solution.",
+                  "score": {
+                      "CriticalThinking": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "Offer to simply listen and be there for them without pushing advice.",
+                  "score": {
+                      "Empathy": 4
+                  }
+              }
+          ],
+          "category": "Empathy & Support"
+      },
+      {
+          "questionId": "Q7",
+          "questionText": "Scenario: In art class, your teacher says you can create anything you like for a project. How do you react?",
+          "options": [
+              {
+                  "A": "I get excited and immediately start brainstorming a unique idea.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "B": "I feel a bit unsure and would prefer some guidelines to follow.",
+                  "score": {
+                      "CriticalThinking": 3
+                  }
+              },
+              {
+                  "C": "I look for inspiration from famous artworks or cultural themes.",
+                  "score": {
+                      "Cultural": 2,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "D": "I discuss ideas with friends to decide on something together.",
+                  "score": {
+                      "Communication": 3,
+                      "Empathy": 1
+                  }
+              }
+          ],
+          "category": "Creative Process"
+      },
+      {
+          "questionId": "Q8",
+          "questionText": "Scenario: Your school requires you to join an extracurricular club. Which one do you choose?",
+          "options": [
+              {
+                  "A": "Theater or drama club to act and perform on stage.",
+                  "score": {
+                      "Communication": 4,
+                      "Creative": 2
+                  }
+              },
+              {
+                  "B": "Art and craft club to work on paintings and designs.",
+                  "score": {
+                      "Creative": 4,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "C": "Literary club to discuss books and write stories or poems.",
+                  "score": {
+                      "Communication": 3,
+                      "Cultural": 2
+                  }
+              },
+              {
+                  "D": "Science or robotics club to build and experiment.",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "AbstractReasoning": 1
+                  }
+              },
+              {
+                  "E": "Community service club to plan charity events and help others.",
+                  "score": {
+                      "Empathy": 4,
+                      "Communication": 1
+                  }
+              }
+          ],
+          "category": "Extracurricular Preferences"
+      },
+      {
+          "questionId": "Q9",
+          "questionText": "Scenario: You are doing a group project with classmates. What role do you naturally take?",
+          "options": [
+              {
+                  "A": "Coming up with original ideas and designing the project output.",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 1
+                  }
+              },
+              {
+                  "B": "Leading the team, coordinating everyone's tasks and motivating others.",
+                  "score": {
+                      "Communication": 3,
+                      "Empathy": 1
+                  }
+              },
+              {
+                  "C": "Researching the topic thoroughly and providing facts and references.",
+                  "score": {
+                      "Cultural": 3,
+                      "CriticalThinking": 2
+                  }
+              },
+              {
+                  "D": "Writing and editing the content or presentation script.",
+                  "score": {
+                      "Communication": 4,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "E": "Managing the time schedule and making sure everything stays organized.",
+                  "score": {
+                      "CriticalThinking": 4
+                  }
+              }
+          ],
+          "category": "Teamwork & Roles"
+      },
+      {
+          "questionId": "Q10",
+          "questionText": "Scenario: Which school event or activity do you look forward to the most?",
+          "options": [
+              {
+                  "A": "The art exhibitions or craft fairs.",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 3
+                  }
+              },
+              {
+                  "B": "The annual music, dance, or drama performances.",
+                  "score": {
+                      "Creative": 2,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Debates, literature festivals, or poetry competitions.",
+                  "score": {
+                      "Communication": 3,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "D": "The science fair or math Olympiad.",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "AbstractReasoning": 1
+                  }
+              }
+          ],
+          "category": "School Interests"
+      },
+      {
+          "questionId": "Q11",
+          "questionText": "Scenario: During a class discussion or project meeting, what kind of contribution do you usually make?",
+          "options": [
+              {
+                  "A": "I suggest creative ideas or unique perspectives that others might not think of.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "B": "I provide logical arguments, facts, or data to support points.",
+                  "score": {
+                      "CriticalThinking": 4
+                  }
+              },
+              {
+                  "C": "I draw connections to historical events, books, or examples from culture.",
+                  "score": {
+                      "Cultural": 4
+                  }
+              },
+              {
+                  "D": "I make sure everyone gets a chance to speak and help mediate differences.",
+                  "score": {
+                      "Empathy": 3,
+                      "Communication": 2
+                  }
+              }
+          ],
+          "category": "Class Participation"
+      },
+      {
+          "questionId": "Q12",
+          "questionText": "Scenario: You need to create a presentation or report for class. What approach do you take?",
+          "options": [
+              {
+                  "A": "Turn it into a story or creative narrative to make it interesting.",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "B": "Stick to facts and organize it in a clear, logical structure.",
+                  "score": {
+                      "CriticalThinking": 4
+                  }
+              },
+              {
+                  "C": "Include visuals, artwork or even a short performance to engage the audience.",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "D": "Emphasize the real-world impact or human aspect of the topic.",
+                  "score": {
+                      "Empathy": 2,
+                      "CriticalThinking": 2
+                  }
+              }
+          ],
+          "category": "Communication Style"
+      },
+      {
+          "questionId": "Q13",
+          "questionText": "Scenario: Which of the following ways do you most enjoy expressing yourself?",
+          "options": [
+              {
+                  "A": "Through visual art like drawing, painting, or photography.",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 3
+                  }
+              },
+              {
+                  "B": "Through performing arts like singing, dancing, or acting.",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Through writing stories, poems, or keeping a diary.",
+                  "score": {
+                      "Communication": 4,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "D": "Through solving problems, puzzles, or building things.",
+                  "score": {
+                      "CriticalThinking": 3,
+                      "AbstractReasoning": 2
+                  }
+              }
+          ],
+          "category": "Self-Expression"
+      },
+      {
+          "questionId": "Q14",
+          "questionText": "Scenario: When faced with a complex problem or challenge, what do you do first?",
+          "options": [
+              {
+                  "A": "Brainstorm imaginative or unconventional solutions.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "B": "Consider how the people involved feel and what they need.",
+                  "score": {
+                      "Empathy": 4
+                  }
+              },
+              {
+                  "C": "Research if similar issues happened before or look up background information.",
+                  "score": {
+                      "Cultural": 3,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "D": "Break the problem into parts and tackle it step by step logically.",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "AbstractReasoning": 1
+                  }
+              }
+          ],
+          "category": "Problem-Solving"
+      },
+      {
+          "questionId": "Q15",
+          "questionText": "Scenario: If you could choose an elective subject to add to your studies, which would it be?",
+          "options": [
+              {
+                  "A": "Fine Arts (e.g., painting, sculpture, design).",
+                  "score": {
+                      "Creative": 4,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "B": "Theatre, Music or Dance (Performing Arts).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Creative Writing or Journalism.",
+                  "score": {
+                      "Communication": 4,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "D": "Computer Science or Advanced Math.",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "AbstractReasoning": 2
+                  }
+              },
+              {
+                  "E": "History, Civics or Cultural Studies.",
+                  "score": {
+                      "Cultural": 4
+                  }
+              }
+          ],
+          "category": "Academic Preference"
+      },
+      {
+          "questionId": "Q16",
+          "questionText": "Scenario: You are in charge of decorating a room for a school event. How would you approach it?",
+          "options": [
+              {
+                  "A": "Come up with a creative theme and make handmade decorations.",
+                  "score": {
+                      "Creative": 4,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "B": "Incorporate elements that reflect a cultural or historical theme.",
+                  "score": {
+                      "Cultural": 3,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "C": "Arrange the space to make sure people feel comfortable and welcomed.",
+                  "score": {
+                      "Empathy": 3,
+                      "Aesthetic": 1
+                  }
+              },
+              {
+                  "D": "Organize everything neatly and focus on practical setup (seating, equipment, etc.).",
+                  "score": {
+                      "CriticalThinking": 4
+                  }
+              }
+          ],
+          "category": "Design Approach"
+      },
+      {
+          "questionId": "Q17",
+          "questionText": "Scenario: Your school is publishing a magazine. Which task would you volunteer for?",
+          "options": [
+              {
+                  "A": "Designing the cover page and overall layout.",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 3
+                  }
+              },
+              {
+                  "B": "Writing articles, stories or poems for it.",
+                  "score": {
+                      "Communication": 4,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "C": "Interviewing students and teachers for interesting stories.",
+                  "score": {
+                      "Communication": 3,
+                      "Empathy": 2
+                  }
+              },
+              {
+                  "D": "Proofreading all the content and checking facts.",
+                  "score": {
+                      "CriticalThinking": 4
+                  }
+              },
+              {
+                  "E": "Coordinating the team and managing deadlines for submissions.",
+                  "score": {
+                      "CriticalThinking": 3,
+                      "Communication": 1
+                  }
+              }
+          ],
+          "category": "Media & Journalism"
+      },
+      {
+          "questionId": "Q18",
+          "questionText": "Scenario: A local cultural festival is looking for student volunteers. What would you most likely do?",
+          "options": [
+              {
+                  "A": "Perform a dance, song or drama piece representing our culture.",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "B": "Create art, posters or decorations for the event.",
+                  "score": {
+                      "Creative": 4,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "C": "Take photographs or make a video documentary of the event.",
+                  "score": {
+                      "Creative": 2,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "D": "Help organize the event schedule and coordinate with participants.",
+                  "score": {
+                      "CriticalThinking": 4
+                  }
+              },
+              {
+                  "E": "Guide visitors and explain the cultural significance of exhibits.",
+                  "score": {
+                      "Communication": 3,
+                      "Empathy": 2,
+                      "Cultural": 1
+                  }
+              }
+          ],
+          "category": "Cultural Engagement"
+      },
+      {
+          "questionId": "Q19",
+          "questionText": "Scenario: If you could spend a day shadowing a professional at work, who would you choose?",
+          "options": [
+              {
+                  "A": "A renowned artist or designer, working in their studio.",
+                  "score": {
+                      "Creative": 4,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "B": "A famous musician, dancer or actor rehearsing for a performance.",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "An author, journalist or language professor working with literature.",
+                  "score": {
+                      "Communication": 3,
+                      "Cultural": 2
+                  }
+              },
+              {
+                  "D": "A historian or museum curator researching and preserving artifacts.",
+                  "score": {
+                      "Cultural": 4,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "E": "A scientist or engineer conducting experiments.",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "AbstractReasoning": 2
+                  }
+              }
+          ],
+          "category": "Career Interests"
+      },
+      {
+          "questionId": "Q20",
+          "questionText": "Scenario: When learning about a new topic, what method excites you the most?",
+          "options": [
+              {
+                  "A": "Drawing diagrams, mind maps or visualizing the information.",
+                  "score": {
+                      "Creative": 2,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "B": "Discussing it in a group or acting it out in a role-play.",
+                  "score": {
+                      "Communication": 3,
+                      "Empathy": 1
+                  }
+              },
+              {
+                  "C": "Reading books or articles to dive deep into the subject.",
+                  "score": {
+                      "Cultural": 3,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "D": "Doing practical experiments or solving problems related to it.",
+                  "score": {
+                      "CriticalThinking": 3,
+                      "AbstractReasoning": 2
+                  }
+              }
+          ],
+          "category": "Learning Style"
+      },
+      {
+          "questionId": "Q21",
+          "questionText": "Scenario: If you had to compete in a school competition, which one would you choose?",
+          "options": [
+              {
+                  "A": "An art or design competition (painting, sketching, etc.).",
+                  "score": {
+                      "Creative": 4,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "B": "A music, dance, or drama contest.",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "A debate or public speaking competition.",
+                  "score": {
+                      "Communication": 4,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "D": "A science, math, or technology competition.",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "AbstractReasoning": 2
+                  }
+              }
+          ],
+          "category": "Competition Interest"
+      },
+      {
+          "questionId": "Q22",
+          "questionText": "Scenario: When watching a movie or play, what fascinates you the most?",
+          "options": [
+              {
+                  "A": "The visuals, cinematography, and artistic scenes.",
+                  "score": {
+                      "Aesthetic": 4
+                  }
+              },
+              {
+                  "B": "The characters and emotional storylines.",
+                  "score": {
+                      "Empathy": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "The deeper message, theme or historical setting.",
+                  "score": {
+                      "Cultural": 3,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "D": "The special effects, sound design, or technical aspects.",
+                  "score": {
+                      "AbstractReasoning": 2,
+                      "CriticalThinking": 2
+                  }
+              }
+          ],
+          "category": "Art Appreciation"
+      },
+      {
+          "questionId": "Q23",
+          "questionText": "Scenario: You have some free time at the school library. Which section do you browse first?",
+          "options": [
+              {
+                  "A": "Fiction and literature – novels, stories, poetry.",
+                  "score": {
+                      "Communication": 3,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "B": "Art and photography – books full of images and drawings.",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "C": "History and culture – biographies, history books, social studies.",
+                  "score": {
+                      "Cultural": 4
+                  }
+              },
+              {
+                  "D": "Science and technology – science magazines, how-things-work books.",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "AbstractReasoning": 1
+                  }
+              },
+              {
+                  "E": "Psychology and self-improvement – books about people and mind.",
+                  "score": {
+                      "Empathy": 3,
+                      "CriticalThinking": 1
+                  }
+              }
+          ],
+          "category": "Reading Preference"
+      },
+      {
+          "questionId": "Q24",
+          "questionText": "Which statement sounds the most like you?",
+          "options": [
+              {
+                  "A": "I constantly have new ideas and imaginative stories or art in my head.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "B": "I often think about other people’s feelings and want to understand them.",
+                  "score": {
+                      "Empathy": 4
+                  }
+              },
+              {
+                  "C": "I love learning about different cultures, histories, and ideas.",
+                  "score": {
+                      "Cultural": 4
+                  }
+              },
+              {
+                  "D": "I enjoy brainteasers, riddles, or solving tricky problems.",
+                  "score": {
+                      "AbstractReasoning": 4
+                  }
+              }
+          ],
+          "category": "Self-Reflection"
+      },
+      {
+          "questionId": "Q25",
+          "questionText": "Scenario: You are looking at an abstract painting in an art gallery. What are you most likely thinking or doing?",
+          "options": [
+              {
+                  "A": "Imagining what the painting represents and coming up with my own story for it.",
+                  "score": {
+                      "Creative": 3,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "B": "Appreciating the colors, shapes, and how it makes me feel without needing a clear meaning.",
+                  "score": {
+                      "Aesthetic": 4
+                  }
+              },
+              {
+                  "C": "Talking with a friend about what the artist might be trying to say or convey.",
+                  "score": {
+                      "Communication": 2,
+                      "Empathy": 2
+                  }
+              },
+              {
+                  "D": "Reading the description or researching the artist to understand the context.",
+                  "score": {
+                      "Cultural": 3,
+                      "CriticalThinking": 1
+                  }
+              }
+          ],
+          "category": "Art Interpretation"
+      },
+      {
+          "questionId": "Q26",
+          "questionText": "Scenario: When you think about your future career, what matters most to you?",
+          "options": [
+              {
+                  "A": "Having the freedom to be creative and express myself.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "B": "Helping others and making a positive impact on people’s lives.",
+                  "score": {
+                      "Empathy": 4
+                  }
+              },
+              {
+                  "C": "Constantly learning and exploring ideas, history, or culture.",
+                  "score": {
+                      "Cultural": 4
+                  }
+              },
+              {
+                  "D": "Achieving financial stability and a secure life.",
+                  "score": {
+                      "CriticalThinking": 3
+                  }
+              }
+          ],
+          "category": "Career Values"
+      },
+      {
+          "questionId": "Q27",
+          "questionText": "Scenario: Imagine you open a magazine with different sections. Which section do you go to first?",
+          "options": [
+              {
+                  "A": "The word puzzles section (crosswords, word games).",
+                  "score": {
+                      "Communication": 2,
+                      "AbstractReasoning": 2
+                  }
+              },
+              {
+                  "B": "The number puzzles section (like Sudoku or brain teasers).",
+                  "score": {
+                      "AbstractReasoning": 4
+                  }
+              },
+              {
+                  "C": "The spot-the-difference or comic/art page.",
+                  "score": {
+                      "Aesthetic": 3,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "D": "The advice column or personality quiz page.",
+                  "score": {
+                      "Empathy": 3,
+                      "Communication": 1
+                  }
+              }
+          ],
+          "category": "Cognitive Preferences"
+      },
+      {
+          "questionId": "Q28",
+          "questionText": "Scenario: You have to perform or speak in front of a large audience. How do you feel about it?",
+          "options": [
+              {
+                  "A": "Very comfortable – I enjoy being on stage and engaging the audience.",
+                  "score": {
+                      "Communication": 4
+                  }
+              },
+              {
+                  "B": "Somewhat comfortable – I can manage but I prefer smaller groups.",
+                  "score": {
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Not very comfortable – I get quite nervous speaking or performing in public.",
+                  "score": {
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "I would avoid it if possible – being in front of a crowd isn’t for me.",
+                  "score": {
+                      "Communication": 0
+                  }
+              }
+          ],
+          "category": "Performing Confidence"
+      },
+      {
+          "questionId": "Q29",
+          "questionText": "Scenario: When working on any project or assignment, what is your top priority?",
+          "options": [
+              {
+                  "A": "That it’s creative and visually appealing.",
+                  "score": {
+                      "Creative": 2,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "B": "That it’s well-researched and informative.",
+                  "score": {
+                      "Cultural": 2,
+                      "CriticalThinking": 2
+                  }
+              },
+              {
+                  "C": "That it’s finished on time and meets all requirements.",
+                  "score": {
+                      "CriticalThinking": 3
+                  }
+              },
+              {
+                  "D": "That it has a personal touch and meaning to me.",
+                  "score": {
+                      "Creative": 2,
+                      "Empathy": 1
+                  }
+              }
+          ],
+          "category": "Work Priorities"
+      },
+      {
+          "questionId": "Q30",
+          "questionText": "Scenario: Your school is hosting an exhibition where each student presents a project of their choice. What do you choose to do?",
+          "options": [
+              {
+                  "A": "Conduct a science experiment or build a gadget to display.",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "AbstractReasoning": 2
+                  }
+              },
+              {
+                  "B": "Prepare a research poster or presentation on a historical or social topic.",
+                  "score": {
+                      "Cultural": 4,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "C": "Create an original artwork or craft to showcase.",
+                  "score": {
+                      "Creative": 4,
+                      "Aesthetic": 2
+                  }
+              },
+              {
+                  "D": "Perform a short play, music piece, or dance at the exhibition.",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              }
+          ],
+          "category": "Project Choice"
+      },
+      {
+          "questionId": "Q31",
+          "questionText": "Scenario: It’s your birthday and you got some extra money as a gift. What would you most likely spend it on?",
+          "options": [
+              {
+                  "A": "New art supplies, a musical instrument, or something creative.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "B": "Books, museum tickets, or an educational course.",
+                  "score": {
+                      "Cultural": 3,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "C": "Tickets to a concert, theater show, or art film festival.",
+                  "score": {
+                      "Creative": 2,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "A new gadget, video game, or science kit.",
+                  "score": {
+                      "CriticalThinking": 3,
+                      "AbstractReasoning": 1
+                  }
+              }
+          ],
+          "category": "Interests & Spending"
+      },
+      {
+          "questionId": "Q32",
+          "questionText": "Scenario: Your friends often praise you for:",
+          "options": [
+              {
+                  "A": "Your creativity and imaginative ideas.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "B": "Your empathy and ability to understand them.",
+                  "score": {
+                      "Empathy": 4
+                  }
+              },
+              {
+                  "C": "Your knowledge and interesting facts or stories you share.",
+                  "score": {
+                      "Cultural": 4
+                  }
+              },
+              {
+                  "D": "Your practicality and problem-solving skills.",
+                  "score": {
+                      "CriticalThinking": 4
+                  }
+              }
+          ],
+          "category": "Strengths"
+      },
+      {
+          "questionId": "Q33",
+          "questionText": "Scenario: Which type of news or articles are you most drawn to?",
+          "options": [
+              {
+                  "A": "Arts and entertainment news (films, music, art shows).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "B": "Human interest stories or social issues.",
+                  "score": {
+                      "Empathy": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "Global news, history, or cultural articles.",
+                  "score": {
+                      "Cultural": 4
+                  }
+              },
+              {
+                  "D": "Science and technology updates.",
+                  "score": {
+                      "CriticalThinking": 4
+                  }
+              }
+          ],
+          "category": "Media Interests"
+      },
+      {
+          "questionId": "Q34",
+          "questionText": "Scenario: A friend is struggling to understand a difficult lesson. How would you help them learn it?",
+          "options": [
+              {
+                  "A": "Break it down into simple, logical steps with examples.",
+                  "score": {
+                      "CriticalThinking": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "B": "Create a fun analogy, drawing or demo to explain the idea.",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 1
+                  }
+              },
+              {
+                  "C": "Relate it to something in real life or how it might affect people.",
+                  "score": {
+                      "Empathy": 2,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "D": "Find a good reference book or online resource that explains it well.",
+                  "score": {
+                      "Cultural": 3
+                  }
+              }
+          ],
+          "category": "Teaching Style"
+      },
+      {
+          "questionId": "Q35",
+          "questionText": "Scenario: You have a really unusual, creative idea for a project, but you’re not sure how it will be received. What do you do?",
+          "options": [
+              {
+                  "A": "Go for it fully – I love taking creative risks and trying new ideas.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "B": "Try it out but keep a backup plan in case it doesn’t work.",
+                  "score": {
+                      "Creative": 2,
+                      "CriticalThinking": 2
+                  }
+              },
+              {
+                  "C": "Tone it down to be more in line with what’s expected.",
+                  "score": {
+                      "CriticalThinking": 3
+                  }
+              },
+              {
+                  "D": "Decide not to take the risk and stick with a safer approach.",
+                  "score": {}
+              }
+          ],
+          "category": "Risk Tolerance"
+      },
+      {
+          "questionId": "Q36",
+          "questionText": "Scenario: What kind of work environment do you think you'd thrive in?",
+          "options": [
+              {
+                  "A": "A bustling studio or office with lots of people and constant creative collaboration.",
+                  "score": {
+                      "Communication": 3,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "B": "A quiet, private space like a library or art studio to work on my own ideas.",
+                  "score": {
+                      "Creative": 2,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "C": "A structured office environment with clear routines and tasks.",
+                  "score": {
+                      "CriticalThinking": 4
+                  }
+              },
+              {
+                  "D": "Out in the field, meeting people and doing something different every day.",
+                  "score": {
+                      "Communication": 3,
+                      "Empathy": 1
+                  }
+              }
+          ],
+          "category": "Work Environment"
+      },
+      {
+          "questionId": "Q37",
+          "questionText": "Scenario: If you could change one thing in the world for the better, what would it be?",
+          "options": [
+              {
+                  "A": "I would make sure everyone has more opportunities to experience art and creativity.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "B": "I would foster greater empathy and understanding among people.",
+                  "score": {
+                      "Empathy": 4
+                  }
+              },
+              {
+                  "C": "I would preserve cultural heritage and encourage people to learn about history.",
+                  "score": {
+                      "Cultural": 4
+                  }
+              },
+              {
+                  "D": "I would advance science and technology to improve lives.",
+                  "score": {
+                      "CriticalThinking": 4
+                  }
+              }
+          ],
+          "category": "Values & Society"
+      },
+      {
+          "questionId": "Q38",
+          "questionText": "Scenario: When you're browsing online or on your phone, what content do you spend the most time on?",
+          "options": [
+              {
+                  "A": "Watching art, DIY, or creative videos (like painting, music, crafts).",
+                  "score": {
+                      "Creative": 3,
+                      "Aesthetic": 1
+                  }
+              },
+              {
+                  "B": "Scrolling through social media, interacting with friends or following inspiring stories.",
+                  "score": {
+                      "Communication": 3,
+                      "Empathy": 1
+                  }
+              },
+              {
+                  "C": "Reading articles or watching documentaries about history, culture, or ideas.",
+                  "score": {
+                      "Cultural": 4
+                  }
+              },
+              {
+                  "D": "Watching science, tech, or how-to videos and solving quizzes/games.",
+                  "score": {
+                      "CriticalThinking": 3,
+                      "AbstractReasoning": 1
+                  }
+              }
+          ],
+          "category": "Digital Interests"
+      },
+      {
+          "questionId": "Q39",
+          "questionText": "Scenario: Think about your school classes. Which subject do you enjoy the most?",
+          "options": [
+              {
+                  "A": "Languages or Literature (like English, Hindi, etc.)",
+                  "score": {
+                      "Communication": 3,
+                      "Cultural": 1
+                  }
+              },
+              {
+                  "B": "Art, Music or Drama class.",
+                  "score": {
+                      "Creative": 4,
+                      "Aesthetic": 1
+                  }
+              },
+              {
+                  "C": "Social Studies (History, Geography, Economics).",
+                  "score": {
+                      "Cultural": 3,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "D": "Mathematics or Science.",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "AbstractReasoning": 1
+                  }
+              }
+          ],
+          "category": "Academic Interests"
+      },
+      {
+          "questionId": "Q40",
+          "questionText": "Scenario: Imagine yourself 10 years from now, successful and happy. Which scene do you picture?",
+          "options": [
+              {
+                  "A": "I am in a creative field, like an artist, designer, writer, or filmmaker, creating something new.",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "B": "I am in a role where I work closely with people or communities, making a difference in their lives.",
+                  "score": {
+                      "Empathy": 4,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "I am an academic or expert, immersed in research, culture, or education (like a professor or historian).",
+                  "score": {
+                      "Cultural": 4,
+                      "CriticalThinking": 1
+                  }
+              },
+              {
+                  "D": "I am in a technical or corporate field, solving problems or managing projects in a big organization.",
+                  "score": {
+                      "CriticalThinking": 4,
+                      "AbstractReasoning": 1
+                  }
+              }
+          ],
+          "category": "Future Goals"
+      }
+  ],
+  "scoringCategories": [
+      "Creative",
+      "Communication",
+      "Empathy",
+      "Cultural",
+      "CriticalThinking",
+      "Aesthetic",
+      "AbstractReasoning"
+  ],
+  "careerSuggestions": {
+      "highCreative": [
+          "Artist (Painter, Sculptor)",
+          "Graphic/Fashion Designer",
+          "Writer or Novelist",
+          "Filmmaker or Content Creator",
+          "Advertising Creative Director"
+      ],
+      "highCommunication": [
+          "Journalist or News Reporter",
+          "Teacher or Professor",
+          "Public Relations Specialist",
+          "Actor/Performer",
+          "Lawyer"
+      ],
+      "highEmpathy": [
+          "Counselor or Psychologist",
+          "Social Worker",
+          "NGO Project Coordinator",
+          "Nurse or Healthcare Worker",
+          "Teacher/Mentor"
+      ],
+      "highCultural": [
+          "Historian",
+          "Museum Curator",
+          "Anthropologist",
+          "Archivist or Librarian",
+          "Travel Writer"
+      ],
+      "highCriticalThinking": [
+          "Lawyer",
+          "Research Analyst",
+          "Policy Analyst",
+          "Professor/Academician",
+          "Editor"
+      ],
+      "highAesthetic": [
+          "Interior Designer",
+          "Photographer",
+          "Fashion Designer",
+          "Architect",
+          "UX/UI Designer"
+      ],
+      "highAbstractReasoning": [
+          "Music Composer",
+          "Choreographer",
+          "Data Analyst",
+          "Software Developer",
+          "Logician/Philosopher"
+      ],
+      "mixedHighScores": {
+          "Creative_Communication": [
+              "Advertising or Marketing Professional",
+              "Film/Video Director",
+              "Event Planner/Host",
+              "Content Creator (YouTube, etc.)"
+          ],
+          "Communication_Empathy": [
+              "Therapist (e.g., Art Therapist)",
+              "Human Resources Manager",
+              "Community Outreach Coordinator",
+              "Mediations Specialist"
+          ],
+          "Creative_CriticalThinking": [
+              "Architect",
+              "Game Designer",
+              "Innovation Consultant",
+              "Product Designer"
+          ],
+          "Creative_Cultural": [
+              "Museum Exhibit Designer",
+              "Cultural Event Organizer",
+              "Art Historian",
+              "Heritage Conservationist"
+          ],
+          "CriticalThinking_Cultural": [
+              "Policy Researcher",
+              "Sociologist",
+              "Economist",
+              "Urban Planner"
+          ]
+      }
+  }
+}

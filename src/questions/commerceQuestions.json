@@ -1,0 +1,1470 @@
+{
+  "testName": "Commerce Aptitude and Personality Test",
+  "instructions": "Please answer the following questions honestly, choosing the option that best reflects your likely behavior or preference. There are no right or wrong answers.",
+  "questions": [
+      {
+          "questionId": "Q1",
+          "questionText": "Scenario: Your class is organizing the annual school cultural festival, but funds are limited. How do you contribute to managing the finances?",
+          "options": [
+              {
+                  "A": "Create a detailed budget and track all expenses to stay within limits (Financial Acumen).",
+                  "score": {
+                      "Financial": 3,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "B": "Find ways to cut costs and secure discounts or sponsors to boost the budget (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "Launch a creative fundraising campaign to raise additional money for the event (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 3,
+                      "Creative": 2
+                  }
+              },
+              {
+                  "D": "Prioritize essential expenses and ensure transparency and fairness in all spending (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 3,
+                      "Logical": 2
+                  }
+              }
+          ],
+          "category": "Finance & Budgeting"
+      },
+      {
+          "questionId": "Q2",
+          "questionText": "Scenario: Your school business club is tasked with promoting a new eco-friendly product made by students. Which role do you take on?",
+          "options": [
+              {
+                  "A": "Conduct market research and analyze data to identify the target audience (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 3,
+                      "Logical": 2
+                  }
+              },
+              {
+                  "B": "Design creative posters and social media content to advertise the product (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "C": "Be the spokesperson who pitches the product to classmates and teachers (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 2
+                  }
+              },
+              {
+                  "D": "Manage the budgeting and pricing strategy to ensure the campaign is financially viable (Financial Acumen).",
+                  "score": {
+                      "Financial": 3,
+                      "Business": 2
+                  }
+              }
+          ],
+          "category": "Marketing & Sales"
+      },
+      {
+          "questionId": "Q3",
+          "questionText": "Scenario: Your school is hosting an entrepreneurship competition where teams propose a new business idea. What role would you prefer on your team?",
+          "options": [
+              {
+                  "A": "Brainstorm innovative ideas and take bold risks to shape the business concept (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 4,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "B": "Calculate costs, revenue projections, and handle the finances for the idea (Financial Acumen).",
+                  "score": {
+                      "Financial": 3,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "C": "Craft and deliver the business pitch to persuade the judges (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 2
+                  }
+              },
+              {
+                  "D": "Organize the team’s tasks and ensure the project stays on schedule (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Logical": 2
+                  }
+              }
+          ],
+          "category": "Entrepreneurship"
+      },
+      {
+          "questionId": "Q4",
+          "questionText": "Scenario: During a school commerce fair, you discover your friend’s stall is using an exaggerated claim to sell a product. How do you respond?",
+          "options": [
+              {
+                  "A": "Urge your friend to correct the information so customers get an honest description (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 4,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "B": "Help them rephrase the claim into something truthful yet still appealing for sales (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Ethical": 2
+                  }
+              },
+              {
+                  "C": "Stay out of it and focus on your own stall; after all, it’s a competition (Entrepreneurial Thinking).",
+                  "score": {
+                      "Business": 2
+                  }
+              },
+              {
+                  "D": "Quietly inform a teacher or organizer so they can address it and ensure fair play (Social Interaction).",
+                  "score": {
+                      "Ethical": 2,
+                      "Social": 2
+                  }
+              }
+          ],
+          "category": "Business Ethics"
+      },
+      {
+          "questionId": "Q5",
+          "questionText": "Scenario: For a class economics project, your team is stuck because members strongly disagree on the approach. How do you help resolve the impasse?",
+          "options": [
+              {
+                  "A": "Take charge, assign clear roles, and decide on a plan so the team can move forward (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Social": 2
+                  }
+              },
+              {
+                  "B": "Facilitate an open discussion to hear everyone’s viewpoint and reach a compromise (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 2
+                  }
+              },
+              {
+                  "C": "Lay out the pros and cons of each idea logically to guide the team toward the best solution (Logical Reasoning).",
+                  "score": {
+                      "Logical": 4,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "D": "Suggest a creative solution that combines elements of each idea to satisfy everyone (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Social": 1
+                  }
+              }
+          ],
+          "category": "Teamwork & Collaboration"
+      },
+      {
+          "questionId": "Q6",
+          "questionText": "Scenario: You won ₹ 5,000 in a school contest. How do you plan to use this money?",
+          "options": [
+              {
+                  "A": "Save or invest most of it for the future, spending only a little now if needed (Financial Acumen).",
+                  "score": {
+                      "Financial": 4,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "B": "Put it towards starting a small venture or project you’ve been wanting to try (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 4,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "C": "Buy yourself something nice and maybe get gifts for your family or friends (Social Interaction).",
+                  "score": {
+                      "Social": 2
+                  }
+              },
+              {
+                  "D": "Donate a part of it to a good cause and use the rest responsibly (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 3,
+                      "Social": 1
+                  }
+              }
+          ],
+          "category": "Personal Finance & Values"
+      },
+      {
+          "questionId": "Q7",
+          "questionText": "Scenario: While helping manage your school’s store accounts, you notice a Rs. 100 discrepancy in the records. What is your first reaction?",
+          "options": [
+              {
+                  "A": "Go back through all calculations and receipts to find and fix any mistake (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 4,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "B": "Suspect possible misplacement or theft, and quietly gather information or clues (Logical Reasoning).",
+                  "score": {
+                      "Logical": 3,
+                      "Social": 1
+                  }
+              },
+              {
+                  "C": "Inform the supervising teacher about the issue and offer to help resolve it transparently (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "Cover the shortfall from your own money or another source to quickly set the accounts right (Business Sense).",
+                  "score": {
+                      "Business": 2,
+                      "Social": 1
+                  }
+              }
+          ],
+          "category": "Accounting & Honesty"
+      },
+      {
+          "questionId": "Q8",
+          "questionText": "Scenario: Your school canteen raised the price of a snack you buy daily by 20%. How do you react?",
+          "options": [
+              {
+                  "A": "Try to understand the reason for the increase—maybe higher costs or inflation—before deciding if you’ll still buy it (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 3,
+                      "Logical": 2
+                  }
+              },
+              {
+                  "B": "Find an alternative: either buy something else or figure out a way to get the snack more cheaply elsewhere (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 3,
+                      "Financial": 2
+                  }
+              },
+              {
+                  "C": "Continue buying it if you really like it, accepting that prices can change with demand and costs (Business Sense).",
+                  "score": {
+                      "Business": 3
+                  }
+              },
+              {
+                  "D": "Discuss the increase with friends and consider giving feedback to the canteen about the impact on students (Social Interaction).",
+                  "score": {
+                      "Social": 3,
+                      "Communication": 1
+                  }
+              }
+          ],
+          "category": "Economics & Decision-Making"
+      },
+      {
+          "questionId": "Q9",
+          "questionText": "Scenario: You are volunteering at a school charity sale and a customer complains that an item they bought is defective. How do you handle it?",
+          "options": [
+              {
+                  "A": "Apologize sincerely and offer a refund or replacement to make sure the customer is happy (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 2
+                  }
+              },
+              {
+                  "B": "Explain logically that the items were sold as-is and try to reassure them it’s a minor issue (Logical Reasoning).",
+                  "score": {
+                      "Logical": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "Think of a creative fix or improvement for the item right there to solve the customer’s problem (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Entrepreneurial": 1
+                  }
+              },
+              {
+                  "D": "Ask a fellow volunteer or teacher for help so you can address the complaint together (Social Interaction).",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 1
+                  }
+              }
+          ],
+          "category": "Customer Service"
+      },
+      {
+          "questionId": "Q10",
+          "questionText": "Scenario: Your school store can get a bulk deal on notebooks (buy 100, get 10 free), but the store currently needs only 80 notebooks. What do you advise?",
+          "options": [
+              {
+                  "A": "Calculate the long-term savings versus storage costs to see if the bulk purchase will pay off (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 4,
+                      "Financial": 1
+                  }
+              },
+              {
+                  "B": "Take the bulk deal and store the extra notebooks for future use, saving money over time (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "C": "Buy only the 80 needed to avoid overspending now, since money is tight at the moment (Financial Acumen).",
+                  "score": {
+                      "Financial": 4,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "D": "Try to negotiate with the supplier for a smaller deal or a custom offer that fits your needs (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Business": 1
+                  }
+              }
+          ],
+          "category": "Business Decision-Making"
+      },
+      {
+          "questionId": "Q11",
+          "questionText": "Scenario: You are selling your old textbooks online. A potential buyer is bargaining for a much lower price than you listed. How do you respond?",
+          "options": [
+              {
+                  "A": "Negotiate and try to agree on a middle price that seems fair to both of you (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "B": "Hold firm on your original price, since you know the books’ value and don’t want to lose money (Financial Acumen).",
+                  "score": {
+                      "Financial": 3,
+                      "Logical": 2
+                  }
+              },
+              {
+                  "C": "Agree to the lower price to sell quickly and not lose the buyer (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 2,
+                      "Business": 1
+                  }
+              },
+              {
+                  "D": "Offer something extra (like study notes) to justify your original price and convince the buyer (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Business": 1
+                  }
+              }
+          ],
+          "category": "Negotiation & Sales"
+      },
+      {
+          "questionId": "Q12",
+          "questionText": "Scenario: In a group business studies assignment, you can choose the kind of contribution you’ll make. Which role do you prefer?",
+          "options": [
+              {
+                  "A": "Take the lead, organize the team, and ensure everyone does their part on time (Social Interaction).",
+                  "score": {
+                      "Social": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "B": "Do in-depth research and analysis to provide data and insights for the project (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 3,
+                      "Logical": 2
+                  }
+              },
+              {
+                  "C": "Devise creative ideas and design the project’s content or visual aids (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Entrepreneurial": 1
+                  }
+              },
+              {
+                  "D": "Write up the report and present our findings to the class (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 1
+                  }
+              }
+          ],
+          "category": "Team Role Preference"
+      },
+      {
+          "questionId": "Q13",
+          "questionText": "Scenario: A friend invites you to invest a small amount of your savings in their new business idea. What do you do?",
+          "options": [
+              {
+                  "A": "Examine their business plan and figures carefully first; I only invest if I’m convinced it will likely succeed (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 4,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "B": "Take the chance and invest if the idea sounds exciting, accepting the risk for a possible reward (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 4,
+                      "Business": 1
+                  }
+              },
+              {
+                  "C": "Decline the offer; I prefer to save my money or put it into something less risky (Financial Acumen).",
+                  "score": {
+                      "Financial": 3,
+                      "Logical": 2
+                  }
+              },
+              {
+                  "D": "Offer to help them with the business (like planning or marketing) instead of investing cash (Social Interaction).",
+                  "score": {
+                      "Social": 3,
+                      "Communication": 1
+                  }
+              }
+          ],
+          "category": "Risk Tolerance"
+      },
+      {
+          "questionId": "Q14",
+          "questionText": "Scenario: You’re considering a future career related to commerce. Which aspect of the field appeals to you most?",
+          "options": [
+              {
+                  "A": "Dealing with numbers, finances, and economic data (Financial Acumen).",
+                  "score": {
+                      "Financial": 4,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "B": "Designing marketing campaigns and coming up with business ideas (Creativity).",
+                  "score": {
+                      "Creative": 4,
+                      "Business": 1
+                  }
+              },
+              {
+                  "C": "Networking, negotiating deals, and working directly with clients (Communication).",
+                  "score": {
+                      "Communication": 4,
+                      "Social": 1
+                  }
+              },
+              {
+                  "D": "Launching and managing my own business venture (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 4,
+                      "Business": 1
+                  }
+              }
+          ],
+          "category": "Career Interests"
+      },
+      {
+          "questionId": "Q15",
+          "questionText": "Scenario: For an extra credit assignment, you need to analyze a local small business and suggest improvements. How will you approach it?",
+          "options": [
+              {
+                  "A": "Collect and study the business’s financial records and sales data to identify trends or problems (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 4,
+                      "Financial": 1
+                  }
+              },
+              {
+                  "B": "Interview the owner and some customers to understand their experiences and perspectives (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 2
+                  }
+              },
+              {
+                  "C": "Observe the business in action and brainstorm a creative new idea or product that could help it grow (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Entrepreneurial": 2
+                  }
+              },
+              {
+                  "D": "Examine how the business treats customers and employees, focusing on fairness and ethics in their practices (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 3,
+                      "Social": 1
+                  }
+              }
+          ],
+          "category": "Business Analysis"
+      },
+      {
+          "questionId": "Q16",
+          "questionText": "Scenario: Your friend has an online store selling handmade crafts and asks you for ideas to boost sales. What do you suggest?",
+          "options": [
+              {
+                  "A": "Analyze the store’s sales and website data to see which products or marketing tactics work best, then adjust accordingly (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "B": "Start a creative social media campaign or contest to draw attention and get people talking about the crafts (Creativity).",
+                  "score": {
+                      "Creative": 4,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "Highlight the unique story behind the crafts and interact with customers personally on social media (Social Interaction).",
+                  "score": {
+                      "Social": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "D": "Keep all promotions honest and emphasize any eco-friendly or ethical aspects of the products to attract value-conscious buyers (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 3,
+                      "Business": 1
+                  }
+              }
+          ],
+          "category": "Marketing Strategies"
+      },
+      {
+          "questionId": "Q17",
+          "questionText": "Scenario: Your student startup can buy materials from a cheaper supplier with poor environmental practices, or a more expensive eco-friendly supplier. What do you suggest?",
+          "options": [
+              {
+                  "A": "Use the cheaper supplier to minimize costs and maximize profits, at least for now (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Financial": 2
+                  }
+              },
+              {
+                  "B": "Choose the eco-friendly supplier, because sustainability and ethics come first, even if it costs more (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 4,
+                      "Social": 1
+                  }
+              },
+              {
+                  "C": "Find a middle path: use the eco-friendly supplier for most things but the cheaper one where it won’t do much harm (Logical Reasoning).",
+                  "score": {
+                      "Logical": 3,
+                      "Ethical": 2
+                  }
+              },
+              {
+                  "D": "Get creative – maybe negotiate a better price from the eco-friendly supplier or highlight the green aspect so customers accept higher prices (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Entrepreneurial": 1
+                  }
+              }
+          ],
+          "category": "Ethical Decision-Making"
+      },
+      {
+          "questionId": "Q18",
+          "questionText": "Scenario: You’re managing the accounting for a school fundraiser. Last year’s students left a detailed procedure to follow, but you have an idea to improve it. What do you do?",
+          "options": [
+              {
+                  "A": "Stick to the established procedure exactly to avoid any chance of error (Logical Reasoning).",
+                  "score": {
+                      "Logical": 3,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "B": "Apply your new idea right away because you’re confident it will make things more efficient (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 3,
+                      "Creative": 2
+                  }
+              },
+              {
+                  "C": "Follow the old procedure but make a few minor tweaks where you see obvious improvements (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "D": "Run your idea by a teacher or the team first to get feedback before making changes (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 1
+                  }
+              }
+          ],
+          "category": "Work Style"
+      },
+      {
+          "questionId": "Q19",
+          "questionText": "Scenario: Your school business club’s event made a good profit. The team needs to decide what to do with this extra money. What do you suggest?",
+          "options": [
+              {
+                  "A": "Reinvest most of it into the club for future projects, competitions, or better equipment (Business Sense).",
+                  "score": {
+                      "Business": 4,
+                      "Entrepreneurial": 1
+                  }
+              },
+              {
+                  "B": "Donate a large portion to a charity or school cause to give back to the community (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 4,
+                      "Social": 1
+                  }
+              },
+              {
+                  "C": "Split the funds between improving the club (future events or resources) and donating to charity for a balance (Logical Reasoning).",
+                  "score": {
+                      "Logical": 3,
+                      "Ethical": 2
+                  }
+              },
+              {
+                  "D": "Use it to organize a fun team outing or party to reward everyone’s hard work (Social Interaction).",
+                  "score": {
+                      "Social": 3,
+                      "Creative": 1
+                  }
+              }
+          ],
+          "category": "Values & Priorities"
+      },
+      {
+          "questionId": "Q20",
+          "questionText": "Scenario: Imagine you start your own business in the future. What would you consider the primary measure of success for your venture?",
+          "options": [
+              {
+                  "A": "Strong profits and continuous financial growth (Financial Acumen).",
+                  "score": {
+                      "Financial": 4,
+                      "Business": 1
+                  }
+              },
+              {
+                  "B": "Innovative products or services that have a big impact on the market (Creativity).",
+                  "score": {
+                      "Creative": 4,
+                      "Entrepreneurial": 1
+                  }
+              },
+              {
+                  "C": "A cohesive team and highly satisfied, loyal customers (Social Interaction).",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "Operating ethically and positively impacting society (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 4,
+                      "Social": 1
+                  }
+              }
+          ],
+          "category": "Success Metrics"
+      },
+      {
+          "questionId": "Q21",
+          "questionText": "Scenario: In a business plan competition, your teammate presenting your project is struggling to answer a judge’s question. What do you do?",
+          "options": [
+              {
+                  "A": "Step in and answer the question myself to help out, since I know the answer (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 2
+                  }
+              },
+              {
+                  "B": "Whisper some key information or data to my teammate quietly so they can answer (Analytical Thinking).",
+                  "score": {
+                      "Logical": 3,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "C": "Chime in with a creative example or analogy to clarify the point for the judges (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "Stay back and let my teammate handle it, to avoid adding confusion with another voice (Logical Reasoning).",
+                  "score": {
+                      "Logical": 2
+                  }
+              }
+          ],
+          "category": "Communication Skills"
+      },
+      {
+          "questionId": "Q22",
+          "questionText": "Scenario: In your summer internship, two supervisors each give you a high-priority task to finish by today. How do you handle this situation?",
+          "options": [
+              {
+                  "A": "Figure out which task is more critical and let each supervisor know what can be done by when (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Communication": 2
+                  }
+              },
+              {
+                  "B": "Analyze both tasks and create an efficient plan to tackle parts of each so I can finish both on time (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 3,
+                      "Logical": 2
+                  }
+              },
+              {
+                  "C": "Ask a colleague for help or delegate one task so that both get completed (Social Interaction).",
+                  "score": {
+                      "Social": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "Concentrate on doing one task really well first, even if it means the other might be a bit late (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 2
+                  }
+              }
+          ],
+          "category": "Work Prioritization"
+      },
+      {
+          "questionId": "Q23",
+          "questionText": "Scenario: Your school is offering an optional after-school workshop on stock market investing and personal finance. What do you do?",
+          "options": [
+              {
+                  "A": "Enroll right away; I’m eager to learn about investing and analyze how the stock market works (Financial Acumen).",
+                  "score": {
+                      "Financial": 4,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "B": "Join the workshop mainly to meet like-minded people and discuss business ideas (Social Interaction).",
+                  "score": {
+                      "Social": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "Skip it; I would rather spend that time on a creative project or another hobby (Creativity).",
+                  "score": {
+                      "Creative": 3
+                  }
+              },
+              {
+                  "D": "Attend only if I see it directly benefiting a future career plan or project of mine (Logical Reasoning).",
+                  "score": {
+                      "Logical": 3,
+                      "Business": 1
+                  }
+              }
+          ],
+          "category": "Learning Opportunities"
+      },
+      {
+          "questionId": "Q24",
+          "questionText": "Scenario: When working on a commerce-related project, which part do you enjoy the most?",
+          "options": [
+              {
+                  "A": "Solving the numerical and data-related aspects, like calculations and analysis (Logical Reasoning).",
+                  "score": {
+                      "Analytical": 3,
+                      "Logical": 2
+                  }
+              },
+              {
+                  "B": "Brainstorming creative ideas and innovative solutions (Creativity).",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "C": "Interacting with teammates or clients and communicating the plan (Social Interaction).",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "Ensuring everything is done correctly, ethically, and according to rules (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 4,
+                      "Analytical": 1
+                  }
+              }
+          ],
+          "category": "Work Preference"
+      },
+      {
+          "questionId": "Q25",
+          "questionText": "Scenario: In a classroom debate about a new economic policy, what kind of point are you most likely to bring up?",
+          "options": [
+              {
+                  "A": "Statistics, numbers, or historical data that support my argument (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 4,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "B": "How the policy impacts people’s lives and issues of fairness or justice (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 3,
+                      "Social": 2
+                  }
+              },
+              {
+                  "C": "The effects on businesses and the overall economy in practical terms (Business Sense).",
+                  "score": {
+                      "Business": 4,
+                      "Financial": 1
+                  }
+              },
+              {
+                  "D": "A creative alternative solution or an unusual perspective that others haven’t mentioned (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Entrepreneurial": 1
+                  }
+              }
+          ],
+          "category": "Discussion Style"
+      },
+      {
+          "questionId": "Q26",
+          "questionText": "Scenario: Your family runs a small shop, and it’s a very busy day. They ask you to help out. What are you most likely to do?",
+          "options": [
+              {
+                  "A": "Manage the cash register and record all the sales accurately (Financial Acumen).",
+                  "score": {
+                      "Financial": 3,
+                      "Analytical": 2
+                  }
+              },
+              {
+                  "B": "Assist customers by answering questions and helping them find items (Social Interaction).",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "Redesign product displays and make the shop look attractive to draw in more buyers (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Business": 1
+                  }
+              },
+              {
+                  "D": "Suggest new ideas for the business, like adding popular products or special discounts (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 3,
+                      "Logical": 1
+                  }
+              }
+          ],
+          "category": "Family Business"
+      },
+      {
+          "questionId": "Q27",
+          "questionText": "Scenario: You run a small but profitable homemade snacks business. To expand production, you could take out a bank loan. What do you decide?",
+          "options": [
+              {
+                  "A": "Go for the loan and expand quickly; it’s a risk, but it could pay off greatly (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 4,
+                      "Business": 1
+                  }
+              },
+              {
+                  "B": "Take only a small loan or partial funding to expand gradually without too much risk (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Logical": 2
+                  }
+              },
+              {
+                  "C": "Don’t take a loan; grow the business slowly using your existing profits to stay debt-free (Financial Acumen).",
+                  "score": {
+                      "Financial": 4,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "D": "Hold off on expanding for now; keep the business as it is until you’re more certain (Logical Reasoning).",
+                  "score": {
+                      "Logical": 2
+                  }
+              }
+          ],
+          "category": "Risk Management"
+      },
+      {
+          "questionId": "Q28",
+          "questionText": "Scenario: Your team’s business idea did not win in the entrepreneurship competition finals. How do you react?",
+          "options": [
+              {
+                  "A": "Study the judges’ feedback carefully to understand what we can improve next time (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 3,
+                      "Logical": 2
+                  }
+              },
+              {
+                  "B": "Use it as motivation to come back with a better idea; failure is just a learning step (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 3,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "C": "Seek advice from the judges or mentors to learn how we can do better in the future (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 1
+                  }
+              },
+              {
+                  "D": "Feel discouraged and consider focusing on other things; maybe business isn’t my strength (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 0,
+                      "Social": 0
+                  }
+              }
+          ],
+          "category": "Resilience"
+      },
+      {
+          "questionId": "Q29",
+          "questionText": "Scenario: You are preparing the final report for a business case competition. Which best describes your approach?",
+          "options": [
+              {
+                  "A": "Check every calculation and detail multiple times to be sure everything is accurate (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 4,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "B": "Emphasize making the overall story and presentation engaging, and not worry too much about tiny details (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "Structure the report clearly and logically so that it’s very easy to follow (Logical Reasoning).",
+                  "score": {
+                      "Logical": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "Make sure the report is transparent about any limitations and that all sources are properly credited (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 3,
+                      "Analytical": 1
+                  }
+              }
+          ],
+          "category": "Work Approach"
+      },
+      {
+          "questionId": "Q30",
+          "questionText": "Scenario: You have the opportunity to attend one of four special commerce-related workshops this summer. Which do you choose?",
+          "options": [
+              {
+                  "A": "An accounting and finance bootcamp to learn about bookkeeping and investments (Financial Acumen).",
+                  "score": {
+                      "Financial": 4,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "B": "A creative marketing and advertising workshop to practice designing campaigns (Creativity).",
+                  "score": {
+                      "Creative": 4,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "An economics research seminar to explore economic theories and data analysis (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 4,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "D": "An entrepreneurship incubator program to develop and pitch startup ideas (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 4,
+                      "Business": 1
+                  }
+              }
+          ],
+          "category": "Field Preference"
+      },
+      {
+          "questionId": "Q31",
+          "questionText": "Scenario: In your internship, you notice a procedure that could be improved, but fixing it isn’t part of your assigned tasks. What do you do?",
+          "options": [
+              {
+                  "A": "Take initiative and develop a better process on my own, then show my supervisor the results (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 3,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "B": "Bring up the idea to my supervisor and offer to help implement the improvement (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Business": 1
+                  }
+              },
+              {
+                  "C": "Stick to my assigned tasks to avoid overstepping or risking a mistake outside my scope (Logical Reasoning).",
+                  "score": {
+                      "Logical": 3
+                  }
+              },
+              {
+                  "D": "Try a small-scale version of the improvement quietly to see if it works before telling anyone (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 2,
+                      "Entrepreneurial": 1
+                  }
+              }
+          ],
+          "category": "Initiative"
+      },
+      {
+          "questionId": "Q32",
+          "questionText": "Scenario: You hear news that the Indian rupee’s value has significantly fallen against the US dollar. What are you most likely to do?",
+          "options": [
+              {
+                  "A": "Read articles or reports to understand why it happened and what it could lead to (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 4,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "B": "Talk with a teacher or parent to get their perspective on what this means (Communication).",
+                  "score": {
+                      "Communication": 3,
+                      "Social": 1
+                  }
+              },
+              {
+                  "C": "Consider how it might affect businesses, prices, or people’s lives in India (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "D": "I wouldn’t pay much attention; it doesn’t really affect my daily life (Low Interest).",
+                  "score": {
+                      "Financial": 0,
+                      "Analytical": 0
+                  }
+              }
+          ],
+          "category": "Current Affairs"
+      },
+      {
+          "questionId": "Q33",
+          "questionText": "Scenario: You have two internship offers: one at a large established corporation and another at a small innovative startup. Which do you choose?",
+          "options": [
+              {
+                  "A": "The fast-paced startup, for the excitement, innovation, and broad learning opportunities (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 4,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "B": "The big corporation, for a structured environment and formal training experience (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Logical": 2
+                  }
+              },
+              {
+                  "C": "Try to split time or do a short stint at both to gain experience in each environment (Creativity).",
+                  "score": {
+                      "Creative": 2,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "Neither; I’d prefer not to take on an internship right now and focus on other things (Low Engagement).",
+                  "score": {
+                      "Entrepreneurial": 0,
+                      "Business": 0
+                  }
+              }
+          ],
+          "category": "Work Environment Preference"
+      },
+      {
+          "questionId": "Q34",
+          "questionText": "Scenario: You are working on a lengthy school project (for example, organizing a commerce fair). What motivates you most to work hard on it?",
+          "options": [
+              {
+                  "A": "Achieving concrete results and a successful outcome that I can be proud of (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "B": "Having the chance to express new ideas and be creative (Creativity).",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "C": "Knowing that the project will help others or make a positive impact (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 3,
+                      "Social": 1
+                  }
+              },
+              {
+                  "D": "Learning new skills or solving a challenging problem along the way (Logical Reasoning).",
+                  "score": {
+                      "Logical": 3,
+                      "Analytical": 1
+                  }
+              }
+          ],
+          "category": "Motivation"
+      },
+      {
+          "questionId": "Q35",
+          "questionText": "Scenario: For a major commerce project, you can choose to work alone or in a team. What would you prefer?",
+          "options": [
+              {
+                  "A": "Work with a team, because I enjoy collaborating and exchanging ideas with others (Social Interaction).",
+                  "score": {
+                      "Social": 4,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "B": "Work with a team, so we can divide tasks and finish the project more efficiently (Business Sense).",
+                  "score": {
+                      "Business": 3,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "C": "Work alone, so I can control the project and work at my own pace without coordination issues (Logical Reasoning).",
+                  "score": {
+                      "Logical": 3,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "D": "Work alone, because I do my most creative thinking when I’m by myself (Creativity).",
+                  "score": {
+                      "Creative": 4
+                  }
+              }
+          ],
+          "category": "Collaboration Preference"
+      },
+      {
+          "questionId": "Q36",
+          "questionText": "Scenario: For your commerce class final project, you are allowed to choose the topic and format. Which project do you choose to do?",
+          "options": [
+              {
+                  "A": "Analyze financial or economic data to find interesting trends and insights (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 4,
+                      "Financial": 1
+                  }
+              },
+              {
+                  "B": "Create a marketing campaign for a product, complete with designs and slogans (Creativity).",
+                  "score": {
+                      "Creative": 4,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "Do a group project where we simulate running a small business, and I can help lead the team (Social Interaction).",
+                  "score": {
+                      "Social": 3,
+                      "Business": 2
+                  }
+              },
+              {
+                  "D": "Write a research paper on an ethical issue in commerce, examining different viewpoints (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 3,
+                      "Analytical": 1
+                  }
+              }
+          ],
+          "category": "Project Preference"
+      },
+      {
+          "questionId": "Q37",
+          "questionText": "Scenario: You need to pitch a new business idea to potential investors. How would you prefer to communicate your idea?",
+          "options": [
+              {
+                  "A": "Prepare a detailed written proposal or report with thorough analysis (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "B": "Give a persuasive oral presentation to pitch the idea in person (Communication).",
+                  "score": {
+                      "Communication": 4,
+                      "Social": 1
+                  }
+              },
+              {
+                  "C": "Show an engaging visual presentation or a prototype of the product (Creativity).",
+                  "score": {
+                      "Creative": 4,
+                      "Entrepreneurial": 1
+                  }
+              },
+              {
+                  "D": "Network and discuss it in casual one-on-one conversations to build interest (Social Interaction).",
+                  "score": {
+                      "Social": 3,
+                      "Communication": 1
+                  }
+              }
+          ],
+          "category": "Communication Style"
+      },
+      {
+          "questionId": "Q38",
+          "questionText": "Scenario: If you were to start a new extracurricular club related to commerce at your school, which would you choose to start?",
+          "options": [
+              {
+                  "A": "An investment club to learn about stocks and managing money (Financial Acumen).",
+                  "score": {
+                      "Financial": 4,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "B": "An entrepreneurship club where students can develop and pitch startup ideas (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 4,
+                      "Creative": 1
+                  }
+              },
+              {
+                  "C": "A marketing and advertising club to create fun campaigns and designs (Creativity).",
+                  "score": {
+                      "Creative": 4,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "D": "A social enterprise club to work on business projects that help the community (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 4,
+                      "Social": 1
+                  }
+              }
+          ],
+          "category": "Initiative Interests"
+      },
+      {
+          "questionId": "Q39",
+          "questionText": "Scenario: On the day of a big business presentation, your computer crashes and you lose some of your work. How do you respond?",
+          "options": [
+              {
+                  "A": "Stay calm and logically figure out how to recover or quickly redo the lost parts (Logical Reasoning).",
+                  "score": {
+                      "Logical": 3,
+                      "Analytical": 1
+                  }
+              },
+              {
+                  "B": "Reach out to teammates or friends immediately to help recover backups or redo the work together (Social Interaction).",
+                  "score": {
+                      "Social": 3,
+                      "Communication": 1
+                  }
+              },
+              {
+                  "C": "Wing it creatively during the presentation, using whatever material I remember and engaging improvisation (Creativity).",
+                  "score": {
+                      "Creative": 3,
+                      "Entrepreneurial": 1
+                  }
+              },
+              {
+                  "D": "Explain the situation honestly to the judges or audience and present what I can, showing I can handle adversity (Ethical Reasoning).",
+                  "score": {
+                      "Ethical": 2,
+                      "Communication": 1
+                  }
+              }
+          ],
+          "category": "Stress Management"
+      },
+      {
+          "questionId": "Q40",
+          "questionText": "Scenario: Which of these extracurricular activities sounds most appealing to you?",
+          "options": [
+              {
+                  "A": "Debate club or Model United Nations, where I can discuss and persuade (Communication).",
+                  "score": {
+                      "Communication": 4,
+                      "Social": 1
+                  }
+              },
+              {
+                  "B": "Art, design, or photography club, where I can create and express myself (Creativity).",
+                  "score": {
+                      "Creative": 4
+                  }
+              },
+              {
+                  "C": "Math or economics club, where I can solve problems and analyze data (Analytical Thinking).",
+                  "score": {
+                      "Analytical": 4,
+                      "Logical": 1
+                  }
+              },
+              {
+                  "D": "Business or entrepreneurship club, where I can plan ventures and take the lead (Entrepreneurial Thinking).",
+                  "score": {
+                      "Entrepreneurial": 4,
+                      "Business": 1
+                  }
+              }
+          ],
+          "category": "Extracurricular Interests"
+      }
+  ],
+  "scoringCategories": [
+      "Logical",
+      "Financial",
+      "Communication",
+      "Social",
+      "Business",
+      "Entrepreneurial",
+      "Analytical",
+      "Creative",
+      "Ethical"
+  ],
+  "careerSuggestions": {
+      "highLogical": [
+          "Management Consultant",
+          "Business Analyst",
+          "Operations Manager",
+          "Supply Chain Analyst",
+          "Policy Analyst"
+      ],
+      "highFinancial": [
+          "Chartered Accountant",
+          "Financial Analyst",
+          "Investment Banker",
+          "Auditor",
+          "Financial Planner"
+      ],
+      "highCommunication": [
+          "Public Relations Specialist",
+          "Marketing Executive",
+          "Journalist",
+          "Sales Manager",
+          "Lawyer"
+      ],
+      "highSocial": [
+          "Human Resources Manager",
+          "Customer Service Manager",
+          "Event Planner",
+          "Community Outreach Coordinator",
+          "Hospitality Manager"
+      ],
+      "highBusiness": [
+          "Business Development Manager",
+          "Project Manager",
+          "Management Consultant",
+          "Operations Manager",
+          "Corporate Manager"
+      ],
+      "highEntrepreneurial": [
+          "Entrepreneur/Startup Founder",
+          "Small Business Owner",
+          "Product Manager",
+          "Venture Capitalist",
+          "Innovation Consultant"
+      ],
+      "highAnalytical": [
+          "Data Analyst",
+          "Market Research Analyst",
+          "Economist",
+          "Actuary",
+          "Financial Risk Analyst"
+      ],
+      "highCreative": [
+          "Advertising Creative Director",
+          "Graphic Designer",
+          "Content Creator",
+          "Brand Manager",
+          "UX/UI Designer"
+      ],
+      "highEthical": [
+          "CSR (Corporate Social Responsibility) Manager",
+          "Compliance Officer",
+          "Non-profit Director",
+          "Sustainability Consultant",
+          "Ethics and Governance Officer"
+      ]
+  }
+}
