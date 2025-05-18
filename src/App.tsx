@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 // Pages
 import Landing from "./pages/Landing";
@@ -24,31 +24,41 @@ import Footer from "./components/Footer";
 
 const queryClient = new QueryClient();
 
+// Create a wrapper component that conditionally renders the footer
+const AppContent = () => {
+  const location = useLocation();
+  const isLandingPage = location.pathname === '/';
+  
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/assessments" element={<Assessments />} />
+          <Route path="/assessment/:assessmentType" element={<Assessment />} />
+          <Route path="/results/:assessmentType" element={<Results />} />
+          <Route path="/results-demo" element={<ResultsDemo />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/ai-counselor" element={<AICounselor />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+      {isLandingPage && <Footer />}
+    </div>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <div className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Landing />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/assessments" element={<Assessments />} />
-              <Route path="/assessment/:assessmentType" element={<Assessment />} />
-              <Route path="/results/:assessmentType" element={<Results />} />
-              <Route path="/results-demo" element={<ResultsDemo />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/ai-counselor" element={<AICounselor />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </div>
-          <Footer />
-        </div>
+        <AppContent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

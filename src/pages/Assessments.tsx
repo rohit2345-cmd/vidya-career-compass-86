@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -17,7 +16,6 @@ import {
   BarChart,
   Clock,
   FileText,
-  Check,
   School,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -155,24 +153,6 @@ const Assessments = () => {
               path="/assessment/arts"
               category="Arts Stream"
             />
-            <AssessmentCard
-              title="Quick Aptitude Test"
-              description="Brief assessment of your core abilities"
-              icon={<Check className="h-8 w-8 text-secondary" />}
-              duration="15-20 minutes"
-              questions={25}
-              path="/assessment/aptitude"
-              category="All Streams"
-            />
-            <AssessmentCard
-              title="Personality Assessment"
-              description="Understand your work style and preferences"
-              icon={<FileText className="h-8 w-8 text-violet-600" />}
-              duration="20-30 minutes"
-              questions={30}
-              path="/assessment/personality"
-              category="All Streams"
-            />
           </div>
         </TabsContent>
 
@@ -188,24 +168,6 @@ const Assessments = () => {
               category="All Streams"
               popular={true}
             />
-            <AssessmentCard
-              title="Quick Aptitude Test"
-              description="Brief assessment of your core abilities"
-              icon={<Check className="h-8 w-8 text-secondary" />}
-              duration="15-20 minutes"
-              questions={25}
-              path="/assessment/aptitude"
-              category="All Streams"
-            />
-            <AssessmentCard
-              title="Personality Assessment"
-              description="Understand your work style and preferences"
-              icon={<FileText className="h-8 w-8 text-violet-600" />}
-              duration="20-30 minutes"
-              questions={30}
-              path="/assessment/personality"
-              category="All Streams"
-            />
           </div>
         </TabsContent>
 
@@ -218,24 +180,6 @@ const Assessments = () => {
               duration="45-60 minutes"
               questions={scienceCount}
               path="/assessment/science"
-              category="Science Stream"
-            />
-            <AssessmentCard
-              title="Engineering Aptitude"
-              description="Assessment for engineering aspirants"
-              icon={<Brain className="h-8 w-8 text-blue-600" />}
-              duration="30-45 minutes"
-              questions={40}
-              path="/assessment/engineering"
-              category="Science Stream"
-            />
-            <AssessmentCard
-              title="Medical Field Assessment"
-              description="For students interested in healthcare"
-              icon={<FileText className="h-8 w-8 text-red-600" />}
-              duration="30-45 minutes"
-              questions={40}
-              path="/assessment/medical"
               category="Science Stream"
             />
           </div>
@@ -252,24 +196,6 @@ const Assessments = () => {
               path="/assessment/commerce"
               category="Commerce Stream"
             />
-            <AssessmentCard
-              title="Business Aptitude"
-              description="Assessment for business career aspirants"
-              icon={<Brain className="h-8 w-8 text-amber-600" />}
-              duration="30-45 minutes"
-              questions={40}
-              path="/assessment/business"
-              category="Commerce Stream"
-            />
-            <AssessmentCard
-              title="Finance Career Assessment"
-              description="For students interested in finance"
-              icon={<FileText className="h-8 w-8 text-green-600" />}
-              duration="30-45 minutes"
-              questions={40}
-              path="/assessment/finance"
-              category="Commerce Stream"
-            />
           </div>
         </TabsContent>
 
@@ -282,24 +208,6 @@ const Assessments = () => {
               duration="45-60 minutes"
               questions={artsCount}
               path="/assessment/arts"
-              category="Arts Stream"
-            />
-            <AssessmentCard
-              title="Design Aptitude"
-              description="Assessment for creative design careers"
-              icon={<Brain className="h-8 w-8 text-pink-600" />}
-              duration="30-45 minutes"
-              questions={40}
-              path="/assessment/design"
-              category="Arts Stream"
-            />
-            <AssessmentCard
-              title="Language & Literature Assessment"
-              description="For students interested in language careers"
-              icon={<FileText className="h-8 w-8 text-purple-600" />}
-              duration="30-45 minutes"
-              questions={40}
-              path="/assessment/language"
               category="Arts Stream"
             />
           </div>
