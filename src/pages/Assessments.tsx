@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -19,7 +20,6 @@ import {
   School,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Import assessment data to get metrics
 import scienceQuestions from "../questions/scienceQuestions.json";
@@ -103,116 +103,45 @@ const Assessments = () => {
         </p>
       </div>
 
-      <Tabs defaultValue="all" className="w-full">
-        <div className="flex justify-center mb-8">
-          <TabsList className="grid grid-cols-2 md:grid-cols-5 w-full md:w-auto">
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="comprehensive">Comprehensive</TabsTrigger>
-            <TabsTrigger value="science">Science</TabsTrigger>
-            <TabsTrigger value="commerce">Commerce</TabsTrigger>
-            <TabsTrigger value="arts">Arts</TabsTrigger>
-          </TabsList>
-        </div>
-
-        <TabsContent value="all">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AssessmentCard
-              title="Comprehensive Career Assessment"
-              description="Complete assessment covering all career paths"
-              icon={<Brain className="h-8 w-8 text-primary" />}
-              duration="60-75 minutes"
-              questions={commonCount}
-              path="/assessment/comprehensive"
-              category="All Streams"
-              popular={true}
-            />
-            <AssessmentCard
-              title="Science Stream Assessment"
-              description="For students interested in STEM fields"
-              icon={<GraduationCap className="h-8 w-8 text-emerald-600" />}
-              duration="45-60 minutes"
-              questions={scienceCount}
-              path="/assessment/science"
-              category="Science Stream"
-            />
-            <AssessmentCard
-              title="Commerce Stream Assessment"
-              description="For business and economics oriented students"
-              icon={<BarChart className="h-8 w-8 text-amber-600" />}
-              duration="45-60 minutes"
-              questions={commerceCount}
-              path="/assessment/commerce"
-              category="Commerce Stream"
-            />
-            <AssessmentCard
-              title="Arts Stream Assessment"
-              description="For humanities and liberal arts focused students"
-              icon={<BookOpen className="h-8 w-8 text-indigo-600" />}
-              duration="45-60 minutes"
-              questions={artsCount}
-              path="/assessment/arts"
-              category="Arts Stream"
-            />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="comprehensive">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AssessmentCard
-              title="Comprehensive Career Assessment"
-              description="Complete assessment covering all career paths"
-              icon={<Brain className="h-8 w-8 text-primary" />}
-              duration="60-75 minutes"
-              questions={commonCount}
-              path="/assessment/comprehensive"
-              category="All Streams"
-              popular={true}
-            />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="science">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AssessmentCard
-              title="Science Stream Assessment"
-              description="For students interested in STEM fields"
-              icon={<GraduationCap className="h-8 w-8 text-emerald-600" />}
-              duration="45-60 minutes"
-              questions={scienceCount}
-              path="/assessment/science"
-              category="Science Stream"
-            />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="commerce">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AssessmentCard
-              title="Commerce Stream Assessment"
-              description="For business and economics oriented students"
-              icon={<BarChart className="h-8 w-8 text-amber-600" />}
-              duration="45-60 minutes"
-              questions={commerceCount}
-              path="/assessment/commerce"
-              category="Commerce Stream"
-            />
-          </div>
-        </TabsContent>
-
-        <TabsContent value="arts">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AssessmentCard
-              title="Arts Stream Assessment"
-              description="For humanities and liberal arts focused students"
-              icon={<BookOpen className="h-8 w-8 text-indigo-600" />}
-              duration="45-60 minutes"
-              questions={artsCount}
-              path="/assessment/arts"
-              category="Arts Stream"
-            />
-          </div>
-        </TabsContent>
-      </Tabs>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <AssessmentCard
+          title="Comprehensive Career Assessment"
+          description="Complete assessment covering all career paths"
+          icon={<Brain className="h-8 w-8 text-primary" />}
+          duration="60-75 minutes"
+          questions={commonCount}
+          path="/assessment/comprehensive"
+          category="All Streams"
+          popular={true}
+        />
+        <AssessmentCard
+          title="Science Stream Assessment"
+          description="For students interested in STEM fields"
+          icon={<GraduationCap className="h-8 w-8 text-emerald-600" />}
+          duration="45-60 minutes"
+          questions={scienceCount}
+          path="/assessment/science"
+          category="Science Stream"
+        />
+        <AssessmentCard
+          title="Commerce Stream Assessment"
+          description="For business and economics oriented students"
+          icon={<BarChart className="h-8 w-8 text-amber-600" />}
+          duration="45-60 minutes"
+          questions={commerceCount}
+          path="/assessment/commerce"
+          category="Commerce Stream"
+        />
+        <AssessmentCard
+          title="Arts Stream Assessment"
+          description="For humanities and liberal arts focused students"
+          icon={<BookOpen className="h-8 w-8 text-indigo-600" />}
+          duration="45-60 minutes"
+          questions={artsCount}
+          path="/assessment/arts"
+          category="Arts Stream"
+        />
+      </div>
     </div>
   );
 };
