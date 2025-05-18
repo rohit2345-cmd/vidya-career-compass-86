@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 interface Message {
@@ -14,7 +15,7 @@ export const useAICounselor = (assessmentResults?: any) => {
       setIsLoading(true);
       
       // Add user message to chat
-      const userMessage = { role: "user", content };
+      const userMessage: Message = { role: "user", content };
       setMessages(prev => [...prev, userMessage]);
 
       // Call edge function
@@ -37,10 +38,12 @@ export const useAICounselor = (assessmentResults?: any) => {
       }
 
       // Add AI response to chat
-      setMessages(prev => [...prev, {
+      const assistantMessage: Message = {
         role: "assistant",
         content: data.response.content,
-      }]);
+      };
+      
+      setMessages(prev => [...prev, assistantMessage]);
 
     } catch (error) {
       console.error("Error sending message:", error);
