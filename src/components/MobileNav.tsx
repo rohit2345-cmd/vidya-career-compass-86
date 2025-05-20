@@ -1,83 +1,92 @@
 
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, LogIn } from "lucide-react";
 import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { useIsMobile } from "@/hooks/use-mobile";
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Menu, Home, BookOpen, BarChart, Info, LogIn, User, LogOut, LayoutDashboard } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { useAuth } from "@/context/AuthContext";
+
+interface NavItemProps {
+  to: string;
+  icon: React.ReactNode;
+  label: string;
+}
+
+const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => (
+  <SheetClose asChild>
+    <Link to={to}>
+      <Button
+        variant="ghost"
+        className="w-full justify-start text-base font-normal mb-1"
+      >
+        {icon}
+        <span className="ml-2">{label}</span>
+      </Button>
+    </Link>
+  </SheetClose>
+);
 
 const MobileNav = () => {
-  const location = useLocation();
-  
-  const isActive = (path: string) => {
-    return location.pathname === path;
-  };
+  const { user, signOut } = useAuth();
 
   return (
-    <Drawer direction="right">
-      <DrawerTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden">
+    <Sheet>
+      <SheetTrigger asChild className="md:hidden">
+        <Button
+          variant="outline"
+          size="icon"
+          className="h-10 w-10 rounded-md md:hidden"
+        >
           <Menu className="h-5 w-5" />
-          <span className="sr-only">Toggle menu</span>
+          <span className="sr-only">Toggle navigation menu</span>
         </Button>
-      </DrawerTrigger>
-      <DrawerContent className="w-[75%] h-full">
-        <div className="flex flex-col h-full p-6">
-          <div className="flex items-center justify-end mb-8">
-            <DrawerClose asChild>
-              <Button variant="ghost" size="icon">
-                <X className="h-5 w-5" />
-                <span className="sr-only">Close menu</span>
+      </SheetTrigger>
+      <SheetContent side="left" className="w-[250px]">
+        <SheetHeader>
+          <SheetTitle className="flex items-center gap-2">
+            <BookOpen className="h-5 w-5 text-primary" />
+            <span>CareerPath</span>
+          </SheetTitle>
+        </SheetHeader>
+        <Separator className="my-4" />
+        <div className="flex flex-col gap-1 pt-2">
+          <NavItem to="/" icon={<Home className="h-5 w-5" />} label="Home" />
+          <NavItem to="/assessments" icon={<BookOpen className="h-5 w-5" />} label="Assessments" />
+          <NavItem to="/results-demo" icon={<BarChart className="h-5 w-5" />} label="Demo Results" />
+          <NavItem to="/about" icon={<Info className="h-5 w-5" />} label="About" />
+          
+          <Separator className="my-3" />
+          
+          {user ? (
+            <>
+              <NavItem to="/dashboard" icon={<LayoutDashboard className="h-5 w-5" />} label="Dashboard" />
+              <NavItem to="/profile" icon={<User className="h-5 w-5" />} label="Profile" />
+              <Button
+                variant="ghost"
+                className="w-full justify-start text-base font-normal mb-1"
+                onClick={() => signOut()}
+              >
+                <LogOut className="h-5 w-5" />
+                <span className="ml-2">Log out</span>
               </Button>
-            </DrawerClose>
-          </div>
-          
-          <nav className="flex flex-col gap-4 mb-10">
-            <DrawerClose asChild>
-              <Link to="/" className={`text-lg py-2 ${isActive("/") ? "text-primary font-medium" : "text-foreground/80"}`}>
-                Home
-              </Link>
-            </DrawerClose>
-            <DrawerClose asChild>
-              <Link to="/assessments" className={`text-lg py-2 ${isActive("/assessments") ? "text-primary font-medium" : "text-foreground/80"}`}>
-                Assessments
-              </Link>
-            </DrawerClose>
-            <DrawerClose asChild>
-              <Link to="/results-demo" className={`text-lg py-2 ${isActive("/results-demo") ? "text-primary font-medium" : "text-foreground/80"}`}>
-                Demo Results
-              </Link>
-            </DrawerClose>
-            <DrawerClose asChild>
-              <Link to="/about" className={`text-lg py-2 ${isActive("/about") ? "text-primary font-medium" : "text-foreground/80"}`}>
-                About
-              </Link>
-            </DrawerClose>
-          </nav>
-          
-          <div className="mt-auto flex flex-col gap-4">
-            <DrawerClose asChild>
-              <Link to="/login" className="w-full">
-                <Button variant="outline" className="w-full justify-start gap-2">
-                  <LogIn className="h-4 w-4" />
-                  Log In
-                </Button>
-              </Link>
-            </DrawerClose>
-            <DrawerClose asChild>
-              <Link to="/register" className="w-full">
-                <Button className="w-full">Sign Up</Button>
-              </Link>
-            </DrawerClose>
-          </div>
+            </>
+          ) : (
+            <>
+              <NavItem to="/login" icon={<LogIn className="h-5 w-5" />} label="Log In" />
+              <NavItem to="/register" icon={<User className="h-5 w-5" />} label="Sign Up" />
+            </>
+          )}
         </div>
-      </DrawerContent>
-    </Drawer>
+      </SheetContent>
+    </Sheet>
   );
 };
 

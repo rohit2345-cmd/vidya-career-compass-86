@@ -9,7 +9,125 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      admin_users: {
+        Row: {
+          created_at: string
+          id: string
+          password_hash: string
+          username: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          password_hash: string
+          username: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          password_hash?: string
+          username?: string
+        }
+        Relationships: []
+      }
+      assessment_results: {
+        Row: {
+          assessment_type: string
+          completed_on: string
+          id: string
+          interests: Json | null
+          is_guest: boolean
+          questions: Json
+          scores: Json | null
+          strengths: Json | null
+          student_name: string
+          user_id: string | null
+        }
+        Insert: {
+          assessment_type: string
+          completed_on?: string
+          id?: string
+          interests?: Json | null
+          is_guest?: boolean
+          questions: Json
+          scores?: Json | null
+          strengths?: Json | null
+          student_name: string
+          user_id?: string | null
+        }
+        Update: {
+          assessment_type?: string
+          completed_on?: string
+          id?: string
+          interests?: Json | null
+          is_guest?: boolean
+          questions?: Json
+          scores?: Json | null
+          strengths?: Json | null
+          student_name?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      chat_messages: {
+        Row: {
+          assessment_result_id: string | null
+          content: string
+          created_at: string
+          id: string
+          is_guest: boolean
+          role: string
+          user_id: string | null
+        }
+        Insert: {
+          assessment_result_id?: string | null
+          content: string
+          created_at?: string
+          id?: string
+          is_guest?: boolean
+          role: string
+          user_id?: string | null
+        }
+        Update: {
+          assessment_result_id?: string | null
+          content?: string
+          created_at?: string
+          id?: string
+          is_guest?: boolean
+          role?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_assessment_result_id_fkey"
+            columns: ["assessment_result_id"]
+            isOneToOne: false
+            referencedRelation: "assessment_results"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          first_name: string | null
+          id: string
+          last_name: string | null
+        }
+        Insert: {
+          created_at?: string
+          first_name?: string | null
+          id: string
+          last_name?: string | null
+        }
+        Update: {
+          created_at?: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
