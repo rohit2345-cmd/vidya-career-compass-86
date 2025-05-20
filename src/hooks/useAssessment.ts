@@ -8,8 +8,6 @@ import artsQuestions from "../questions/artsQuestions.json";
 import commerceQuestions from "../questions/commerceQuestions.json";
 import comprehensiveQuestions from "../questions/common_test.json";
 import { saveAssessmentResult } from "../services/assessmentService";
-import { useAuth } from "@/context/AuthContext";
-import { toast } from "sonner";
 
 export const useAssessment = (assessmentType: string) => {
   const navigate = useNavigate();
@@ -19,9 +17,7 @@ export const useAssessment = (assessmentType: string) => {
   const [timeRemaining, setTimeRemaining] = useState(45 * 60); // 45 minutes in seconds
   const [showExitDialog, setShowExitDialog] = useState(false);
   const [showTimeWarning, setShowTimeWarning] = useState(false);
-  
-  const { user, isGuest, guestName, setGuestName } = useAuth();
-  const [studentName, setStudentName] = useState(user ? `${user.user_metadata?.first_name || ""} ${user.user_metadata?.last_name || ""}`.trim() : guestName);
+  const [studentName, setStudentName] = useState("");
 
   // Get the appropriate questions based on assessment type
   const getQuestions = () => {
@@ -56,16 +52,6 @@ export const useAssessment = (assessmentType: string) => {
   const questions = getQuestions();
   const currentQuestion = questions[currentQuestionIndex];
   const progress = questions.length ? ((currentQuestionIndex + 1) / questions.length) * 100 : 0;
-
-  // Update name when user changes
-  useEffect(() => {
-    if (user) {
-      const userName = `${user.user_metadata?.first_name || ""} ${user.user_metadata?.last_name || ""}`.trim();
-      setStudentName(userName || guestName);
-    } else {
-      setStudentName(guestName);
-    }
-  }, [user, guestName]);
 
   // Timer effect
   useEffect(() => {
@@ -125,25 +111,15 @@ export const useAssessment = (assessmentType: string) => {
   };
 
   const handleSaveAndExit = () => {
+    // In a real app, we would save progress to database
     navigate("/dashboard");
   };
 
   const handleCompleteAssessment = async () => {
-    // Require student name for guest users
-    if (isGuest && !studentName) {
-      toast.error("Please enter your name before completing the assessment");
-      return;
-    }
-
-    // If guest name provided, save it
-    if (isGuest && studentName) {
-      setGuestName(studentName);
-    }
-    
     // Prepare results for saving
-    try {
+    if (studentName) {
       const assessmentResults = {
-        studentName: studentName || "Anonymous User",
+        studentName,
         assessmentType,
         completedOn: new Date().toISOString(),
         questions: questions.map(q => ({
@@ -151,21 +127,15 @@ export const useAssessment = (assessmentType: string) => {
           question: q.questionText,
           selectedOption: answers[q.questionId] || "Not answered",
           correctOption: q.options.find(opt => opt.isCorrect)?.optionText || ""
-        })),
-        userId: user?.id || null,
-        isGuest: isGuest
+        }))
       };
       
       // Save results
       await saveAssessmentResult(assessmentResults);
-      toast.success("Assessment completed successfully!");
-      
-      // Navigate to results page
-      navigate(`/results/${assessmentType}`);
-    } catch (error) {
-      console.error("Error saving assessment:", error);
-      toast.error("There was a problem saving your assessment. Please try again.");
     }
+    
+    // Navigate to results page
+    navigate(`/results/${assessmentType}`);
   };
 
   return {
