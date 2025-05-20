@@ -14,23 +14,17 @@ const AdminLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Hard-coded admin credentials
+  const ADMIN_USERNAME = "admin";
+  const ADMIN_PASSWORD = "admin@123";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/rest/v1/admin_users`, {
-        method: "GET",
-        headers: {
-          "apikey": import.meta.env.VITE_SUPABASE_ANON_KEY,
-          "Content-Type": "application/json",
-        },
-      });
-
-      const admins = await response.json();
-      const admin = admins.find((admin: any) => admin.username === username);
-
-      if (admin && admin.password_hash === password) {
+      // Check against hard-coded credentials
+      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
         localStorage.setItem("admin_auth", "true");
         localStorage.setItem("admin_username", username);
         toast.success("Admin login successful");
@@ -90,10 +84,14 @@ const AdminLogin = () => {
             </div>
           </form>
         </CardContent>
-        <CardFooter className="justify-center">
+        <CardFooter className="flex flex-col gap-2">
           <Button variant="link" onClick={() => navigate("/")}>
             Return to Home
           </Button>
+          <div className="text-xs text-muted-foreground">
+            <p>Admin username: <strong>admin</strong></p>
+            <p>Admin password: <strong>admin@123</strong></p>
+          </div>
         </CardFooter>
       </Card>
     </div>
