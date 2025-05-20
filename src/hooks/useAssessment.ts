@@ -7,6 +7,7 @@ import scienceQuestions from "../questions/scienceQuestions.json";
 import artsQuestions from "../questions/artsQuestions.json";
 import commerceQuestions from "../questions/commerceQuestions.json";
 import comprehensiveQuestions from "../questions/common_test.json";
+import { saveAssessmentResult } from "../services/assessmentService";
 
 export const useAssessment = (assessmentType: string) => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ export const useAssessment = (assessmentType: string) => {
   const [timeRemaining, setTimeRemaining] = useState(45 * 60); // 45 minutes in seconds
   const [showExitDialog, setShowExitDialog] = useState(false);
   const [showTimeWarning, setShowTimeWarning] = useState(false);
+  const [studentName, setStudentName] = useState("");
 
   // Get the appropriate questions based on assessment type
   const getQuestions = () => {
@@ -59,7 +61,7 @@ export const useAssessment = (assessmentType: string) => {
       setTimeRemaining((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          navigate(`/results/${assessmentType}`);
+          handleCompleteAssessment();
           return 0;
         }
         
@@ -73,7 +75,7 @@ export const useAssessment = (assessmentType: string) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [assessmentType, navigate, questions.length]);
+  }, [assessmentType, questions.length]);
 
   useEffect(() => {
     // Reset selected option when question changes
@@ -97,7 +99,7 @@ export const useAssessment = (assessmentType: string) => {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
         // Complete the assessment
-        navigate(`/results/${assessmentType}`);
+        handleCompleteAssessment();
       }
     }
   };
@@ -113,6 +115,29 @@ export const useAssessment = (assessmentType: string) => {
     navigate("/dashboard");
   };
 
+  const handleCompleteAssessment = async () => {
+    // Prepare results for saving
+    if (studentName) {
+      const assessmentResults = {
+        studentName,
+        assessmentType,
+        completedOn: new Date().toISOString(),
+        questions: questions.map(q => ({
+          questionId: q.questionId,
+          question: q.questionText,
+          selectedOption: answers[q.questionId] || "Not answered",
+          correctOption: q.options.find(opt => opt.isCorrect)?.optionText || ""
+        }))
+      };
+      
+      // Save results
+      await saveAssessmentResult(assessmentResults);
+    }
+    
+    // Navigate to results page
+    navigate(`/results/${assessmentType}`);
+  };
+
   return {
     currentQuestionIndex,
     questions,
@@ -122,6 +147,7 @@ export const useAssessment = (assessmentType: string) => {
     showExitDialog,
     showTimeWarning,
     progress,
+    studentName,
     assessmentTitle: getAssessmentTitle(),
     handleOptionSelect,
     handleNext,
@@ -129,6 +155,7 @@ export const useAssessment = (assessmentType: string) => {
     handleSaveAndExit,
     setShowExitDialog,
     setShowTimeWarning,
+    setStudentName,
   };
 };
 

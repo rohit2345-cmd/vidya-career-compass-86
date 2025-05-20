@@ -3,6 +3,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BookOpen, LogIn } from "lucide-react";
+import MobileNav from "./MobileNav";
 
 const Navbar = () => {
   const location = useLocation();
@@ -37,15 +38,16 @@ const Navbar = () => {
         </nav>
         
         <div className="flex items-center gap-4">
-          <Link to="/login">
-            <Button variant="outline" size="sm" className="hidden md:flex items-center gap-1">
+          <Link to="/login" className="hidden md:block">
+            <Button variant="outline" size="sm" className="items-center gap-1">
               <LogIn className="mr-1 h-4 w-4" />
               Log In
             </Button>
           </Link>
-          <Link to="/register">
+          <Link to="/register" className="hidden md:block">
             <Button size="sm">Sign Up</Button>
           </Link>
+          <MobileNav />
         </div>
       </div>
     </header>
