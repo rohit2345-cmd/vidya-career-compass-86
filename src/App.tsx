@@ -16,6 +16,8 @@ import Results from "./pages/Results";
 import ResultsDemo from "./pages/ResultsDemo";
 import About from "./pages/About";
 import AICounselor from "./pages/AICounselor";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 // Components
@@ -28,10 +30,11 @@ const queryClient = new QueryClient();
 const AppContent = () => {
   const location = useLocation();
   const isLandingPage = location.pathname === '/';
+  const isAdminPage = location.pathname.includes('/admin');
   
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
+      {!isAdminPage && <Navbar />}
       <div className="flex-grow">
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -44,6 +47,8 @@ const AppContent = () => {
           <Route path="/results-demo" element={<ResultsDemo />} />
           <Route path="/about" element={<About />} />
           <Route path="/ai-counselor" element={<AICounselor />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

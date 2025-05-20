@@ -2,7 +2,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, LogIn } from "lucide-react";
+import { BookOpen, LogIn, Lock } from "lucide-react";
 import MobileNav from "./MobileNav";
 
 const Navbar = () => {
@@ -35,6 +35,9 @@ const Navbar = () => {
           <Link to="/about" className={isActive("/about") ? "nav-link-active" : "nav-link"}>
             About
           </Link>
+          <Link to="/ai-counselor" className={isActive("/ai-counselor") ? "nav-link-active" : "nav-link"}>
+            AI Counselor
+          </Link>
         </nav>
         
         <div className="flex items-center gap-4">
@@ -46,6 +49,11 @@ const Navbar = () => {
           </Link>
           <Link to="/register" className="hidden md:block">
             <Button size="sm">Sign Up</Button>
+          </Link>
+          <Link to="/admin-login" className="hidden md:block">
+            <Button variant="ghost" size="icon" className="ml-2">
+              <Lock className="h-4 w-4" />
+            </Button>
           </Link>
           <MobileNav />
         </div>

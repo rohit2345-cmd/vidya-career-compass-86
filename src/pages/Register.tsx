@@ -1,18 +1,26 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
+import { toast } from "sonner";
 
 const Register = () => {
+  const navigate = useNavigate();
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Registration logic will be implemented later
     console.log("Registration submitted");
+  };
+
+  const handleContinueAsGuest = () => {
+    toast.success("Continuing as guest");
+    navigate("/assessments");
   };
 
   return (
@@ -65,6 +73,28 @@ const Register = () => {
               <Button type="submit" className="w-full">Create Account</Button>
             </div>
           </form>
+          
+          <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  Or continue as guest
+                </span>
+              </div>
+            </div>
+            
+            <Button 
+              variant="outline" 
+              className="w-full mt-4" 
+              onClick={handleContinueAsGuest}
+            >
+              Continue Without Registration
+            </Button>
+          </div>
+          
           <div className="mt-4 text-center text-sm">
             By clicking "Create Account", you agree to our{" "}
             <Link to="/terms" className="text-primary hover:underline">Terms of Service</Link> and{" "}

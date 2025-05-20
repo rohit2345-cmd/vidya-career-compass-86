@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface Message {
   role: "user" | "assistant";
@@ -9,10 +10,20 @@ interface Message {
 export const useAICounselor = (assessmentResults?: any) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [messageCount, setMessageCount] = useState(0);
+  const isGuest = !localStorage.getItem("auth.token");
+  const MAX_GUEST_MESSAGES = 5;
 
   const sendMessage = async (content: string) => {
     try {
       setIsLoading(true);
+      
+      // Check guest message limit
+      if (isGuest && messageCount >= MAX_GUEST_MESSAGES) {
+        toast.error("You've reached the maximum number of messages as a guest. Please sign up to continue.");
+        setIsLoading(false);
+        return;
+      }
       
       // Add user message to chat
       const userMessage: Message = { role: "user", content };
@@ -44,12 +55,41 @@ export const useAICounselor = (assessmentResults?: any) => {
       };
       
       setMessages(prev => [...prev, assistantMessage]);
+      setMessageCount(prevCount => prevCount + 1);
+
+      // Store chat in database if possible
+      try {
+        await saveChatMessage(userMessage.content, "user", isGuest);
+        await saveChatMessage(assistantMessage.content, "assistant", isGuest);
+      } catch (error) {
+        console.error("Could not save chat messages:", error);
+      }
 
     } catch (error) {
       console.error("Error sending message:", error);
-      throw error;
+      toast.error("Failed to get response. Please try again.");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const saveChatMessage = async (content: string, role: "user" | "assistant", isGuest: boolean) => {
+    try {
+      await fetch(`${import.meta.env.VITE_SUPABASE_URL}/rest/v1/chat_messages`, {
+        method: "POST",
+        headers: {
+          "apikey": import.meta.env.VITE_SUPABASE_ANON_KEY,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal",
+        },
+        body: JSON.stringify({
+          content,
+          role,
+          is_guest: isGuest
+        }),
+      });
+    } catch (error) {
+      console.error("Error saving chat message:", error);
     }
   };
 
@@ -57,5 +97,8 @@ export const useAICounselor = (assessmentResults?: any) => {
     messages,
     isLoading,
     sendMessage,
+    messageCount,
+    maxGuestMessages: MAX_GUEST_MESSAGES,
+    isGuest,
   };
 };
