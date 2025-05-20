@@ -72,8 +72,8 @@ const AICounselor = () => {
           </div>
           
           {isGuest && (
-            <Alert variant="warning" className="mt-4">
-              <AlertCircle className="h-4 w-4" />
+            <Alert variant="default" className="mt-4 border-amber-500 bg-amber-50 dark:bg-amber-950/20">
+              <AlertCircle className="h-4 w-4 text-amber-500" />
               <AlertDescription>
                 Guest users are limited to {maxGuestMessages} messages. You have used {messageCount} messages.{" "}
                 <Link to="/register" className="font-medium underline">Sign up</Link> for unlimited access.
