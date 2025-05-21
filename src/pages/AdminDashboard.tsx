@@ -25,6 +25,76 @@ interface ChatMessage {
   is_guest: boolean;
 }
 
+// Sample dummy data
+const dummyAssessments: AssessmentResult[] = [
+  {
+    id: "1",
+    student_name: "Alex Johnson",
+    assessment_type: "Comprehensive",
+    completed_on: "2025-05-15T14:32:00",
+    is_guest: false
+  },
+  {
+    id: "2",
+    student_name: "Mia Rodriguez",
+    assessment_type: "Science",
+    completed_on: "2025-05-14T16:45:00",
+    is_guest: false
+  },
+  {
+    id: "3",
+    student_name: "Guest User",
+    assessment_type: "Commerce",
+    completed_on: "2025-05-14T10:23:00",
+    is_guest: true
+  },
+  {
+    id: "4",
+    student_name: "Ethan Park",
+    assessment_type: "Arts",
+    completed_on: "2025-05-12T09:15:00",
+    is_guest: false
+  },
+  {
+    id: "5",
+    student_name: "Sofia Chen",
+    assessment_type: "Comprehensive",
+    completed_on: "2025-05-11T13:40:00",
+    is_guest: false
+  }
+];
+
+const dummyChatMessages: ChatMessage[] = [
+  {
+    id: "1",
+    content: "I'm interested in pursuing medicine but concerned about the long training period. What alternatives should I consider?",
+    role: "user",
+    created_at: "2025-05-15T15:10:00",
+    is_guest: false
+  },
+  {
+    id: "2",
+    content: "Based on your assessment results and interests, you might consider fields like biomedical research, healthcare administration, or medical technology. These careers still allow you to make an impact in healthcare without the extensive medical school requirements.",
+    role: "assistant",
+    created_at: "2025-05-15T15:11:00",
+    is_guest: false
+  },
+  {
+    id: "3",
+    content: "How can I best prepare for a career in data science with my arts background?",
+    role: "user",
+    created_at: "2025-05-14T11:22:00",
+    is_guest: true
+  },
+  {
+    id: "4",
+    content: "Your arts background gives you unique perspectives in data visualization and storytelling. I recommend starting with online courses in statistics and programming (Python or R), then building projects that combine your creative strengths with analytical skills. Consider specializing in data visualization or UX research.",
+    role: "assistant",
+    created_at: "2025-05-14T11:24:00",
+    is_guest: true
+  }
+];
+
 const AdminDashboard = () => {
   const [assessments, setAssessments] = useState<AssessmentResult[]>([]);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
@@ -46,30 +116,56 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      // Fetch assessment results
-      const assessmentsResponse = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/rest/v1/assessment_results?select=*&order=completed_on.desc`, {
-        method: "GET",
-        headers: {
-          "apikey": import.meta.env.VITE_SUPABASE_ANON_KEY,
-          "Content-Type": "application/json",
-        },
-      });
-      const assessmentsData = await assessmentsResponse.json();
-      setAssessments(assessmentsData);
+      // Try fetching real data first
+      try {
+        // Fetch assessment results
+        const assessmentsResponse = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/rest/v1/assessment_results?select=*&order=completed_on.desc`, {
+          method: "GET",
+          headers: {
+            "apikey": import.meta.env.VITE_SUPABASE_ANON_KEY,
+            "Content-Type": "application/json",
+          },
+        });
+        const assessmentsData = await assessmentsResponse.json();
+        
+        // Only use real data if it exists and is not empty
+        if (assessmentsData && Array.isArray(assessmentsData) && assessmentsData.length > 0) {
+          setAssessments(assessmentsData);
+        } else {
+          // Use dummy data if no real data
+          setAssessments(dummyAssessments);
+        }
 
-      // Fetch chat messages
-      const messagesResponse = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/rest/v1/chat_messages?select=*&order=created_at.desc`, {
-        method: "GET",
-        headers: {
-          "apikey": import.meta.env.VITE_SUPABASE_ANON_KEY,
-          "Content-Type": "application/json",
-        },
-      });
-      const messagesData = await messagesResponse.json();
-      setChatMessages(messagesData);
+        // Fetch chat messages
+        const messagesResponse = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/rest/v1/chat_messages?select=*&order=created_at.desc`, {
+          method: "GET",
+          headers: {
+            "apikey": import.meta.env.VITE_SUPABASE_ANON_KEY,
+            "Content-Type": "application/json",
+          },
+        });
+        const messagesData = await messagesResponse.json();
+        
+        // Only use real data if it exists and is not empty
+        if (messagesData && Array.isArray(messagesData) && messagesData.length > 0) {
+          setChatMessages(messagesData);
+        } else {
+          // Use dummy data if no real data
+          setChatMessages(dummyChatMessages);
+        }
+      } catch (error) {
+        console.log("Using dummy data due to API error:", error);
+        // Use dummy data if API fails
+        setAssessments(dummyAssessments);
+        setChatMessages(dummyChatMessages);
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
-      toast.error("Failed to load data");
+      toast.error("Failed to load data, showing demo data");
+      
+      // Use dummy data on any error
+      setAssessments(dummyAssessments);
+      setChatMessages(dummyChatMessages);
     } finally {
       setIsLoading(false);
     }
