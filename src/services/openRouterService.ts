@@ -86,7 +86,7 @@ export const getAIResponse = async (
 // New streaming function for AI responses
 export const streamAIResponse = async (
   messages: Message[],
-  assessmentResults?: any,
+  assessmentResults: any | undefined,
   onChunk: (chunk: string) => void,
   onComplete: () => void
 ) => {
