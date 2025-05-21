@@ -59,10 +59,15 @@ const ResultsDemo = () => {
         {/* Student Information Card */}
         <StudentInfoCard studentInfo={studentInfo} />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {/* Aptitude and Personality Charts - 2 columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <AptitudeChart data={aptitudeData} />
-          <InterestChart data={interestData} />
           <PersonalityChart data={personalityData} />
+        </div>
+
+        {/* Interest Distribution Chart - Separate row */}
+        <div className="mb-8">
+          <InterestChart data={interestData} />
         </div>
 
         <Tabs defaultValue="careers" className="w-full">
