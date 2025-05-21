@@ -25,8 +25,8 @@ interface OpenRouterResponse {
   }[];
 }
 
-// Updated OpenRouter model - Claude 3 Haiku (affordable yet powerful)
-const MODEL = "anthropic/claude-3-haiku-20240307";
+// Updated model to a valid OpenRouter model - Claude 2
+const MODEL = "anthropic/claude-2";
 
 export const getAIResponse = async (
   messages: Message[], 
@@ -51,6 +51,9 @@ export const getAIResponse = async (
       conversationMessages.push(message);
     });
     
+    console.log("Sending to OpenRouter with model:", MODEL);
+    console.log("Messages:", JSON.stringify(conversationMessages));
+    
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -68,6 +71,7 @@ export const getAIResponse = async (
     
     if (!response.ok) {
       const errorData = await response.json();
+      console.error("OpenRouter error response:", errorData);
       throw new Error(`API error: ${errorData.error?.message || response.statusText}`);
     }
     
