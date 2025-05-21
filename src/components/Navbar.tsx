@@ -22,21 +22,21 @@ const Navbar = () => {
           </Link>
         </div>
         
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-3 px-3 py-1 border rounded-md">
           <Link to="/" className={isActive("/") ? "nav-link-active" : "nav-link"}>
             Home
           </Link>
           <Link to="/assessments" className={isActive("/assessments") ? "nav-link-active" : "nav-link"}>
-            Assessments
+            Tests
           </Link>
           <Link to="/results-demo" className={isActive("/results-demo") ? "nav-link-active" : "nav-link"}>
-            Demo Results
+            Demo
           </Link>
           <Link to="/about" className={isActive("/about") ? "nav-link-active" : "nav-link"}>
             About
           </Link>
           <Link to="/ai-counselor" className={isActive("/ai-counselor") ? "nav-link-active" : "nav-link"}>
-            AI Counselor
+            AI Help
           </Link>
         </nav>
         

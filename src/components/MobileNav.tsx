@@ -37,7 +37,7 @@ const MobileNav = () => {
             </DrawerClose>
           </div>
           
-          <nav className="flex flex-col gap-4 mb-10">
+          <nav className="flex flex-col gap-4 mb-10 border rounded-md p-4">
             <DrawerClose asChild>
               <Link to="/" className={`text-lg py-2 ${isActive("/") ? "text-primary font-medium" : "text-foreground/80"}`}>
                 Home
@@ -45,17 +45,22 @@ const MobileNav = () => {
             </DrawerClose>
             <DrawerClose asChild>
               <Link to="/assessments" className={`text-lg py-2 ${isActive("/assessments") ? "text-primary font-medium" : "text-foreground/80"}`}>
-                Assessments
+                Tests
               </Link>
             </DrawerClose>
             <DrawerClose asChild>
               <Link to="/results-demo" className={`text-lg py-2 ${isActive("/results-demo") ? "text-primary font-medium" : "text-foreground/80"}`}>
-                Demo Results
+                Demo
               </Link>
             </DrawerClose>
             <DrawerClose asChild>
               <Link to="/about" className={`text-lg py-2 ${isActive("/about") ? "text-primary font-medium" : "text-foreground/80"}`}>
                 About
+              </Link>
+            </DrawerClose>
+            <DrawerClose asChild>
+              <Link to="/ai-counselor" className={`text-lg py-2 ${isActive("/ai-counselor") ? "text-primary font-medium" : "text-foreground/80"}`}>
+                AI Help
               </Link>
             </DrawerClose>
           </nav>
