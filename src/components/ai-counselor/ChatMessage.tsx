@@ -7,9 +7,15 @@ interface ChatMessageProps {
   role: "user" | "assistant";
   content: string;
   timestamp?: Date;
+  isStreaming?: boolean;
 }
 
-const ChatMessage: React.FC<ChatMessageProps> = ({ role, content, timestamp = new Date() }) => {
+const ChatMessage: React.FC<ChatMessageProps> = ({ 
+  role, 
+  content, 
+  timestamp = new Date(),
+  isStreaming = false 
+}) => {
   return (
     <div className={`flex ${role === "user" ? "justify-end" : "justify-start"}`}>
       <div
@@ -26,7 +32,14 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ role, content, timestamp = ne
             </Avatar>
           )}
           <div>
-            <p className="text-sm whitespace-pre-wrap">{content}</p>
+            <p className="text-sm whitespace-pre-wrap">
+              {content}
+              {isStreaming && (
+                <span className="animate-pulse inline-block h-4 w-2 ml-0.5 bg-current rounded-sm" aria-hidden="true">
+                  |
+                </span>
+              )}
+            </p>
             <p className="text-xs opacity-70 mt-1">
               {timestamp.toLocaleTimeString([], {
                 hour: "2-digit",

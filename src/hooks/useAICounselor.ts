@@ -1,12 +1,13 @@
 
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
-import { getAIResponse } from "../services/openRouterService";
+import { getAIResponse, streamAIResponse } from "../services/openRouterService";
 import { saveChatMessage, getLatestAssessmentResult } from "../services/localStorageService";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
+  isStreaming?: boolean;
 }
 
 export const useAICounselor = (assessmentResults?: any) => {
@@ -59,25 +60,76 @@ export const useAICounselor = (assessmentResults?: any) => {
         content
       });
 
-      // Get response from AI
-      const aiResponse = await getAIResponse(apiMessages, resultsToUse);
-      
-      // Add AI response to chat
-      const assistantMessage: Message = {
-        role: "assistant",
-        content: aiResponse,
-      };
-      
-      setMessages(prev => [...prev, assistantMessage]);
-      setMessageCount(prevCount => prevCount + 1);
+      // Create a placeholder for the AI response with streaming flag
+      const assistantMessageId = Date.now().toString();
+      setMessages(prev => [
+        ...prev, 
+        { role: "assistant", content: "", isStreaming: true }
+      ]);
 
-      // Save assistant message to local storage
-      saveChatMessage(aiResponse, "assistant");
+      // Initialize full response text
+      let fullResponse = "";
 
+      // Use streaming API
+      try {
+        await streamAIResponse(
+          apiMessages,
+          resultsToUse,
+          // On each chunk received
+          (chunk) => {
+            fullResponse += chunk;
+            setMessages(prev => {
+              const newMessages = [...prev];
+              const lastMessage = newMessages[newMessages.length - 1];
+              if (lastMessage && lastMessage.isStreaming) {
+                lastMessage.content = fullResponse;
+              }
+              return newMessages;
+            });
+          },
+          // On complete
+          () => {
+            // Update streaming status
+            setMessages(prev => {
+              const newMessages = [...prev];
+              const lastMessage = newMessages[newMessages.length - 1];
+              if (lastMessage && lastMessage.isStreaming) {
+                lastMessage.isStreaming = false;
+              }
+              return newMessages;
+            });
+            
+            // Save assistant message to local storage
+            saveChatMessage(fullResponse, "assistant");
+            setMessageCount(prevCount => prevCount + 1);
+            setIsLoading(false);
+          }
+        );
+      } catch (error) {
+        // If streaming fails, fall back to non-streaming method
+        console.error("Streaming failed, falling back to standard response:", error);
+        const aiResponse = await getAIResponse(apiMessages, resultsToUse);
+        
+        setMessages(prev => {
+          const newMessages = [...prev];
+          const lastMessage = newMessages[newMessages.length - 1];
+          if (lastMessage && lastMessage.isStreaming) {
+            lastMessage.content = aiResponse;
+            lastMessage.isStreaming = false;
+          }
+          return newMessages;
+        });
+        
+        saveChatMessage(aiResponse, "assistant");
+        setMessageCount(prevCount => prevCount + 1);
+        setIsLoading(false);
+      }
     } catch (error) {
       console.error("Error sending message:", error);
       toast.error("Failed to get response. Please try again.");
-    } finally {
+      
+      // Remove the placeholder streaming message if it exists
+      setMessages(prev => prev.filter(msg => !msg.isStreaming));
       setIsLoading(false);
     }
   };

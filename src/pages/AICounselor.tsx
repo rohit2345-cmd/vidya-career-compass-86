@@ -1,7 +1,6 @@
 
 import React, { useRef, useEffect } from "react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Loader2 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { useAICounselor } from "@/hooks/useAICounselor";
 import { useLocation } from "react-router-dom";
@@ -77,17 +76,10 @@ const AICounselor = () => {
                 key={index}
                 role={message.role}
                 content={message.content}
+                isStreaming={message.isStreaming}
               />
             ))}
             
-            {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-muted rounded-lg p-3 flex items-center gap-2">
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  <p className="text-sm">AI Counselor is typing...</p>
-                </div>
-              </div>
-            )}
             <div ref={messagesEndRef} />
           </div>
         </CardContent>
