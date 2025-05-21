@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  Download,
-  Share2,
   MessageSquare,
   Brain,
   Lightbulb,
@@ -37,23 +35,11 @@ const ResultsDemo = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-emerald-50 animate-fade-in">
       <div className="container py-8">
-        <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
-          <div>
-            <h1 className="text-3xl font-bold mb-2">Demo Assessment Results</h1>
-            <p className="text-muted-foreground">
-              See how our comprehensive assessment analyzes aptitude, interests, and personality
-            </p>
-          </div>
-          <div className="flex gap-3">
-            <Button variant="outline" className="flex items-center gap-2">
-              <Download className="h-4 w-4" />
-              Download Report
-            </Button>
-            <Button variant="outline" className="flex items-center gap-2">
-              <Share2 className="h-4 w-4" />
-              Share Results
-            </Button>
-          </div>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">Career Guide</h1>
+          <p className="text-muted-foreground">
+            Key insights from research-backed guidance for impactful career decisions
+          </p>
         </div>
 
         {/* Student Information Card */}
@@ -72,7 +58,7 @@ const ResultsDemo = () => {
 
         <Tabs defaultValue="careers" className="w-full">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="careers">Career Recommendations</TabsTrigger>
+            <TabsTrigger value="careers">Career Guide</TabsTrigger>
             <TabsTrigger value="education">Educational Pathways</TabsTrigger>
             <TabsTrigger value="skills">Skill Development</TabsTrigger>
           </TabsList>
