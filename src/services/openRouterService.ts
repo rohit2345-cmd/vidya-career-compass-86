@@ -33,21 +33,23 @@ export const getAIResponse = async (
   assessmentResults?: any
 ): Promise<string> => {
   try {
-    // Add system prompt and assessment results to the messages
-    const conversationMessages = [
-      { role: "system" as const, content: systemPrompt },
+    // Create a new array for the conversation that can include all role types
+    const conversationMessages: Message[] = [
+      { role: "system", content: systemPrompt },
     ];
     
     // Add assessment results if provided
     if (assessmentResults) {
       conversationMessages.push({ 
-        role: "system" as const, 
+        role: "system", 
         content: `Student's Assessment Results: ${JSON.stringify(assessmentResults)}` 
       });
     }
     
-    // Add user messages
-    conversationMessages.push(...messages);
+    // Add user messages - safely copying them to the conversation array
+    messages.forEach(message => {
+      conversationMessages.push(message);
+    });
     
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
