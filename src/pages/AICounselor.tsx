@@ -9,10 +9,44 @@ import { Separator } from "@/components/ui/separator";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useAICounselor } from "@/hooks/useAICounselor";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { getLatestAssessmentResult } from "../services/localStorageService";
+
+// Sample assessment data for demo mode
+const sampleAssessmentData = {
+  studentName: "Demo Student",
+  assessmentType: "comprehensive",
+  completedOn: new Date().toISOString(),
+  scores: {
+    "Logical Reasoning": 85,
+    "Verbal Ability": 78,
+    "Numerical Ability": 90,
+    "Abstract Reasoning": 82
+  },
+  strengths: ["Problem Solving", "Critical Thinking", "Data Analysis"],
+  interests: ["Technology", "Mathematics", "Science"],
+  questions: [
+    {
+      questionId: "q1",
+      question: "Which career field interests you the most?",
+      selectedOption: "Technology"
+    },
+    {
+      questionId: "q2", 
+      question: "What is your favorite subject?", 
+      selectedOption: "Mathematics"
+    }
+  ]
+};
 
 const AICounselor = () => {
-  const { messages, isLoading, sendMessage, messageCount, maxGuestMessages, isGuest } = useAICounselor();
+  const location = useLocation();
+  const isDemo = location.pathname.includes("ai-counselor") && !getLatestAssessmentResult();
+  
+  // Use sample data if in demo mode, otherwise use latest assessment
+  const assessmentData = isDemo ? sampleAssessmentData : undefined;
+  
+  const { messages, isLoading, sendMessage, messageCount, maxGuestMessages, isGuest } = useAICounselor(assessmentData);
   const [inputMessage, setInputMessage] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -77,6 +111,16 @@ const AICounselor = () => {
               <AlertDescription>
                 Guest users are limited to {maxGuestMessages} messages. You have used {messageCount} messages.{" "}
                 <Link to="/register" className="font-medium underline">Sign up</Link> for unlimited access.
+              </AlertDescription>
+            </Alert>
+          )}
+          
+          {isDemo && (
+            <Alert variant="default" className="mt-4 border-blue-500 bg-blue-50 dark:bg-blue-950/20">
+              <Info className="h-4 w-4 text-blue-500" />
+              <AlertDescription>
+                You're using the demo version with sample data. Take an{" "}
+                <Link to="/assessments" className="font-medium underline">assessment</Link> for personalized guidance.
               </AlertDescription>
             </Alert>
           )}

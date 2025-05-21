@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 // Import all question JSON files
 import scienceQuestions from "../questions/scienceQuestions.json";
@@ -118,20 +119,33 @@ export const useAssessment = (assessmentType: string) => {
   const handleCompleteAssessment = async () => {
     // Prepare results for saving
     if (studentName) {
-      const assessmentResults = {
-        studentName,
-        assessmentType,
-        completedOn: new Date().toISOString(),
-        questions: questions.map(q => ({
-          questionId: q.questionId,
-          question: q.questionText,
-          selectedOption: answers[q.questionId] || "Not answered",
-          correctOption: q.options.find(opt => opt.isCorrect)?.optionText || ""
-        }))
-      };
-      
-      // Save results
-      await saveAssessmentResult(assessmentResults);
+      try {
+        const assessmentResults = {
+          studentName,
+          assessmentType,
+          completedOn: new Date().toISOString(),
+          questions: questions.map(q => ({
+            questionId: q.questionId,
+            question: q.questionText,
+            selectedOption: answers[q.questionId] || "Not answered",
+            correctOption: q.options.find((opt: any) => opt.isCorrect)?.optionText || ""
+          }))
+        };
+        
+        // Save results
+        const success = await saveAssessmentResult(assessmentResults);
+        
+        if (success) {
+          toast.success("Assessment completed successfully!");
+        } else {
+          toast.error("Failed to save assessment results.");
+        }
+      } catch (error) {
+        console.error("Error saving assessment results:", error);
+        toast.error("An error occurred while saving your results.");
+      }
+    } else {
+      toast.info("Please enter your name to save results");
     }
     
     // Navigate to results page

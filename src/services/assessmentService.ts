@@ -1,6 +1,7 @@
 
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
+import { saveAssessmentResult as saveToLocalStorage } from "./localStorageService";
 
 interface AssessmentResult {
   studentName: string;
@@ -17,19 +18,13 @@ interface AssessmentResult {
   interests?: string[];
 }
 
-// This function would typically save results to a database
+// This function saves results to local storage
 export const saveAssessmentResult = async (result: AssessmentResult): Promise<boolean> => {
   try {
-    // Placeholder for database saving logic
-    console.log("Saving assessment result to database:", result);
+    console.log("Saving assessment result:", result);
     
-    // In a real implementation, this would be a call to your backend API
-    // For example, with Supabase:
-    // const { error } = await supabase
-    //   .from('assessment_results')
-    //   .insert([result]);
-    
-    // if (error) throw error;
+    // Save to local storage
+    saveToLocalStorage(result);
     
     return true;
   } catch (error) {

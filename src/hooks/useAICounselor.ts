@@ -1,6 +1,8 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { getAIResponse } from "../services/openRouterService";
+import { saveChatMessage, getLatestAssessmentResult } from "../services/localStorageService";
 
 interface Message {
   role: "user" | "assistant";
@@ -13,6 +15,16 @@ export const useAICounselor = (assessmentResults?: any) => {
   const [messageCount, setMessageCount] = useState(0);
   const isGuest = !localStorage.getItem("auth.token");
   const MAX_GUEST_MESSAGES = 5;
+
+  // Fetch the latest assessment result if not provided
+  useEffect(() => {
+    if (!assessmentResults) {
+      const latestResult = getLatestAssessmentResult();
+      if (latestResult) {
+        console.log("Using latest assessment result:", latestResult);
+      }
+    }
+  }, [assessmentResults]);
 
   const sendMessage = async (content: string) => {
     try {
@@ -29,67 +41,44 @@ export const useAICounselor = (assessmentResults?: any) => {
       const userMessage: Message = { role: "user", content };
       setMessages(prev => [...prev, userMessage]);
 
-      // Call edge function
-      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-counselor`, {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messages: [...messages, userMessage],
-          assessmentResults,
-        }),
+      // Save user message to local storage
+      saveChatMessage(content, "user");
+
+      // Either use provided assessment results or get the most recent one
+      const resultsToUse = assessmentResults || getLatestAssessmentResult();
+      
+      // Format messages for the API
+      const apiMessages = messages.map(msg => ({
+        role: msg.role as "user" | "assistant",
+        content: msg.content
+      }));
+      
+      // Add the new user message
+      apiMessages.push({
+        role: "user",
+        content
       });
 
-      const data = await response.json();
+      // Get response from AI
+      const aiResponse = await getAIResponse(apiMessages, resultsToUse);
       
-      if (data.error) {
-        throw new Error(data.error);
-      }
-
       // Add AI response to chat
       const assistantMessage: Message = {
         role: "assistant",
-        content: data.response.content,
+        content: aiResponse,
       };
       
       setMessages(prev => [...prev, assistantMessage]);
       setMessageCount(prevCount => prevCount + 1);
 
-      // Store chat in database if possible
-      try {
-        await saveChatMessage(userMessage.content, "user", isGuest);
-        await saveChatMessage(assistantMessage.content, "assistant", isGuest);
-      } catch (error) {
-        console.error("Could not save chat messages:", error);
-      }
+      // Save assistant message to local storage
+      saveChatMessage(aiResponse, "assistant");
 
     } catch (error) {
       console.error("Error sending message:", error);
       toast.error("Failed to get response. Please try again.");
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const saveChatMessage = async (content: string, role: "user" | "assistant", isGuest: boolean) => {
-    try {
-      await fetch(`${import.meta.env.VITE_SUPABASE_URL}/rest/v1/chat_messages`, {
-        method: "POST",
-        headers: {
-          "apikey": import.meta.env.VITE_SUPABASE_ANON_KEY,
-          "Content-Type": "application/json",
-          "Prefer": "return=minimal",
-        },
-        body: JSON.stringify({
-          content,
-          role,
-          is_guest: isGuest
-        }),
-      });
-    } catch (error) {
-      console.error("Error saving chat message:", error);
     }
   };
 
@@ -102,3 +91,5 @@ export const useAICounselor = (assessmentResults?: any) => {
     isGuest,
   };
 };
+
+export default useAICounselor;
