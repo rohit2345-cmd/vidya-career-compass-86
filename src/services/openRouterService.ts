@@ -25,8 +25,8 @@ interface OpenRouterResponse {
   }[];
 }
 
-// Selected OpenRouter model - Claude Instant (affordable yet powerful)
-const MODEL = "anthropic/claude-instant-1.2";
+// Updated OpenRouter model - Claude 3 Haiku (affordable yet powerful)
+const MODEL = "anthropic/claude-3-haiku-20240307";
 
 export const getAIResponse = async (
   messages: Message[], 
