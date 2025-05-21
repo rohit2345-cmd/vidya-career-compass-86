@@ -17,7 +17,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
   isStreaming = false 
 }) => {
   return (
-    <div className={`flex ${role === "user" ? "justify-end" : "justify-start"}`}>
+    <div className={`flex ${role === "user" ? "justify-end" : "justify-start"} mb-4`}>
       <div
         className={`max-w-[80%] rounded-lg p-3 ${
           role === "user"
@@ -35,8 +35,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
             <p className="text-sm whitespace-pre-wrap">
               {content}
               {isStreaming && (
-                <span className="animate-pulse inline-block h-4 w-2 ml-0.5 bg-current rounded-sm" aria-hidden="true">
-                  |
+                <span className="inline-block h-4 w-1.5 bg-current animate-pulse ml-0.5 rounded-sm" aria-hidden="true">
                 </span>
               )}
             </p>

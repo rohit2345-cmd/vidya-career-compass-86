@@ -116,46 +116,74 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      // Try fetching real data first
-      try {
-        // Fetch assessment results
-        const assessmentsResponse = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/rest/v1/assessment_results?select=*&order=completed_on.desc`, {
-          method: "GET",
-          headers: {
-            "apikey": import.meta.env.VITE_SUPABASE_ANON_KEY,
-            "Content-Type": "application/json",
-          },
-        });
-        const assessmentsData = await assessmentsResponse.json();
-        
-        // Only use real data if it exists and is not empty
-        if (assessmentsData && Array.isArray(assessmentsData) && assessmentsData.length > 0) {
-          setAssessments(assessmentsData);
-        } else {
-          // Use dummy data if no real data
-          setAssessments(dummyAssessments);
-        }
+      // Check if environment variables are defined
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-        // Fetch chat messages
-        const messagesResponse = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/rest/v1/chat_messages?select=*&order=created_at.desc`, {
-          method: "GET",
-          headers: {
-            "apikey": import.meta.env.VITE_SUPABASE_ANON_KEY,
-            "Content-Type": "application/json",
-          },
-        });
-        const messagesData = await messagesResponse.json();
-        
-        // Only use real data if it exists and is not empty
-        if (messagesData && Array.isArray(messagesData) && messagesData.length > 0) {
-          setChatMessages(messagesData);
-        } else {
-          // Use dummy data if no real data
+      // Log information about the connection attempt
+      console.log("Attempting to connect to Supabase with:", { 
+        url: supabaseUrl ? "Set" : "Not set", 
+        key: supabaseKey ? "Set" : "Not set"
+      });
+
+      // Only attempt to fetch if both URL and key are defined
+      if (supabaseUrl && supabaseKey) {
+        try {
+          // Fetch assessment results
+          const assessmentsResponse = await fetch(`${supabaseUrl}/rest/v1/assessment_results?select=*&order=completed_on.desc`, {
+            method: "GET",
+            headers: {
+              "apikey": supabaseKey,
+              "Content-Type": "application/json",
+            },
+          });
+          
+          if (!assessmentsResponse.ok) {
+            throw new Error(`Failed to fetch assessments: ${assessmentsResponse.status}`);
+          }
+          
+          const assessmentsData = await assessmentsResponse.json();
+          
+          // Only use real data if it exists and is not empty
+          if (assessmentsData && Array.isArray(assessmentsData) && assessmentsData.length > 0) {
+            setAssessments(assessmentsData);
+          } else {
+            console.log("No assessment data found, falling back to dummy data");
+            setAssessments(dummyAssessments);
+          }
+
+          // Fetch chat messages
+          const messagesResponse = await fetch(`${supabaseUrl}/rest/v1/chat_messages?select=*&order=created_at.desc`, {
+            method: "GET",
+            headers: {
+              "apikey": supabaseKey,
+              "Content-Type": "application/json",
+            },
+          });
+          
+          if (!messagesResponse.ok) {
+            throw new Error(`Failed to fetch messages: ${messagesResponse.status}`);
+          }
+          
+          const messagesData = await messagesResponse.json();
+          
+          // Only use real data if it exists and is not empty
+          if (messagesData && Array.isArray(messagesData) && messagesData.length > 0) {
+            setChatMessages(messagesData);
+          } else {
+            console.log("No chat messages found, falling back to dummy data");
+            setChatMessages(dummyChatMessages);
+          }
+        } catch (error) {
+          console.error("Supabase API error:", error);
+          toast.error("Failed to connect to database, showing demo data");
+          // Use dummy data if API fails
+          setAssessments(dummyAssessments);
           setChatMessages(dummyChatMessages);
         }
-      } catch (error) {
-        console.log("Using dummy data due to API error:", error);
-        // Use dummy data if API fails
+      } else {
+        console.log("Supabase credentials not found, using dummy data");
+        // Use dummy data if no credentials
         setAssessments(dummyAssessments);
         setChatMessages(dummyChatMessages);
       }

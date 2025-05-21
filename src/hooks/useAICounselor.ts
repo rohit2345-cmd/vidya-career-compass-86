@@ -61,7 +61,6 @@ export const useAICounselor = (assessmentResults?: any) => {
       });
 
       // Create a placeholder for the AI response with streaming flag
-      const assistantMessageId = Date.now().toString();
       setMessages(prev => [
         ...prev, 
         { role: "assistant", content: "", isStreaming: true }
@@ -72,12 +71,18 @@ export const useAICounselor = (assessmentResults?: any) => {
 
       // Use streaming API
       try {
+        // Added logging to track streaming status
+        console.log("Starting AI response streaming...");
+        
         await streamAIResponse(
           apiMessages,
           resultsToUse,
           // On each chunk received
           (chunk) => {
             fullResponse += chunk;
+            // Log chunks as they come in (for debugging)
+            console.log(`Received chunk: "${chunk}"`);
+            
             setMessages(prev => {
               const newMessages = [...prev];
               const lastMessage = newMessages[newMessages.length - 1];
@@ -89,6 +94,7 @@ export const useAICounselor = (assessmentResults?: any) => {
           },
           // On complete
           () => {
+            console.log("Streaming complete");
             // Update streaming status
             setMessages(prev => {
               const newMessages = [...prev];
@@ -106,22 +112,31 @@ export const useAICounselor = (assessmentResults?: any) => {
           }
         );
       } catch (error) {
-        // If streaming fails, fall back to non-streaming method
         console.error("Streaming failed, falling back to standard response:", error);
-        const aiResponse = await getAIResponse(apiMessages, resultsToUse);
         
-        setMessages(prev => {
-          const newMessages = [...prev];
-          const lastMessage = newMessages[newMessages.length - 1];
-          if (lastMessage && lastMessage.isStreaming) {
-            lastMessage.content = aiResponse;
-            lastMessage.isStreaming = false;
-          }
-          return newMessages;
-        });
-        
-        saveChatMessage(aiResponse, "assistant");
-        setMessageCount(prevCount => prevCount + 1);
+        try {
+          // If streaming fails, fall back to non-streaming method
+          const aiResponse = await getAIResponse(apiMessages, resultsToUse);
+          
+          setMessages(prev => {
+            const newMessages = [...prev];
+            const lastMessage = newMessages[newMessages.length - 1];
+            if (lastMessage && lastMessage.isStreaming) {
+              lastMessage.content = aiResponse;
+              lastMessage.isStreaming = false;
+            }
+            return newMessages;
+          });
+          
+          saveChatMessage(aiResponse, "assistant");
+          setMessageCount(prevCount => prevCount + 1);
+        } catch (secondError) {
+          toast.error("Failed to get response. Please try again.");
+          console.error("Standard response also failed:", secondError);
+          
+          // Remove the placeholder streaming message if it exists
+          setMessages(prev => prev.filter(msg => !msg.isStreaming));
+        }
         setIsLoading(false);
       }
     } catch (error) {

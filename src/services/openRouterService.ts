@@ -1,4 +1,3 @@
-
 /**
  * OpenRouter AI Service
  * Handles integration with OpenRouter API for AI responses
@@ -83,7 +82,7 @@ export const getAIResponse = async (
   }
 };
 
-// New streaming function for AI responses
+// Improved streaming function for AI responses with proper text chunking
 export const streamAIResponse = async (
   messages: Message[],
   assessmentResults: any | undefined,
@@ -140,16 +139,21 @@ export const streamAIResponse = async (
 
     const decoder = new TextDecoder("utf-8");
     let fullText = "";
+    let buffer = "";
 
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
       
       // Decode the chunk
-      const chunk = decoder.decode(value);
+      const chunk = decoder.decode(value, { stream: true });
+      buffer += chunk;
       
-      // OpenRouter uses SSE format for streaming
-      const lines = chunk.split("\n");
+      // Process complete SSE messages
+      const lines = buffer.split("\n");
+      // Keep the last potentially incomplete line in the buffer
+      buffer = lines.pop() || "";
+      
       for (const line of lines) {
         if (line.startsWith("data: ") && line !== "data: [DONE]") {
           try {
@@ -160,9 +164,26 @@ export const streamAIResponse = async (
               onChunk(textChunk);
             }
           } catch (e) {
-            console.error("Error parsing SSE data:", e);
+            console.error("Error parsing SSE data:", e, "Line:", line);
           }
+        } else if (line === "data: [DONE]") {
+          // Stream is complete
+          break;
         }
+      }
+    }
+
+    // Process any remaining data in the buffer
+    if (buffer.startsWith("data: ") && buffer !== "data: [DONE]") {
+      try {
+        const jsonData = JSON.parse(buffer.substring(6)); 
+        if (jsonData.choices && jsonData.choices[0]?.delta?.content) {
+          const textChunk = jsonData.choices[0].delta.content;
+          fullText += textChunk;
+          onChunk(textChunk);
+        }
+      } catch (e) {
+        // Ignore any parsing errors in the final buffer chunk
       }
     }
 
