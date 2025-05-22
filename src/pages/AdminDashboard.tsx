@@ -8,96 +8,16 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { LogOut, Users, MessageSquare, BookOpen, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import AdminDataGenerator from "@/components/AdminDataGenerator";
+import { getAssessmentResults, getChatMessages } from "@/services/localStorageService";
 
-interface AssessmentResult {
-  id: string;
-  student_name: string;
-  assessment_type: string;
-  completed_on: string;
-  is_guest: boolean;
+interface AdminUser {
+  username: string;
+  password_hash: string;
 }
-
-interface ChatMessage {
-  id: string;
-  content: string;
-  role: string;
-  created_at: string;
-  is_guest: boolean;
-}
-
-// Sample dummy data
-const dummyAssessments: AssessmentResult[] = [
-  {
-    id: "1",
-    student_name: "Alex Johnson",
-    assessment_type: "Comprehensive",
-    completed_on: "2025-05-15T14:32:00",
-    is_guest: false
-  },
-  {
-    id: "2",
-    student_name: "Mia Rodriguez",
-    assessment_type: "Science",
-    completed_on: "2025-05-14T16:45:00",
-    is_guest: false
-  },
-  {
-    id: "3",
-    student_name: "Guest User",
-    assessment_type: "Commerce",
-    completed_on: "2025-05-14T10:23:00",
-    is_guest: true
-  },
-  {
-    id: "4",
-    student_name: "Ethan Park",
-    assessment_type: "Arts",
-    completed_on: "2025-05-12T09:15:00",
-    is_guest: false
-  },
-  {
-    id: "5",
-    student_name: "Sofia Chen",
-    assessment_type: "Comprehensive",
-    completed_on: "2025-05-11T13:40:00",
-    is_guest: false
-  }
-];
-
-const dummyChatMessages: ChatMessage[] = [
-  {
-    id: "1",
-    content: "I'm interested in pursuing medicine but concerned about the long training period. What alternatives should I consider?",
-    role: "user",
-    created_at: "2025-05-15T15:10:00",
-    is_guest: false
-  },
-  {
-    id: "2",
-    content: "Based on your assessment results and interests, you might consider fields like biomedical research, healthcare administration, or medical technology. These careers still allow you to make an impact in healthcare without the extensive medical school requirements.",
-    role: "assistant",
-    created_at: "2025-05-15T15:11:00",
-    is_guest: false
-  },
-  {
-    id: "3",
-    content: "How can I best prepare for a career in data science with my arts background?",
-    role: "user",
-    created_at: "2025-05-14T11:22:00",
-    is_guest: true
-  },
-  {
-    id: "4",
-    content: "Your arts background gives you unique perspectives in data visualization and storytelling. I recommend starting with online courses in statistics and programming (Python or R), then building projects that combine your creative strengths with analytical skills. Consider specializing in data visualization or UX research.",
-    role: "assistant",
-    created_at: "2025-05-14T11:24:00",
-    is_guest: true
-  }
-];
 
 const AdminDashboard = () => {
-  const [assessments, setAssessments] = useState<AssessmentResult[]>([]);
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [assessments, setAssessments] = useState<any[]>([]);
+  const [chatMessages, setChatMessages] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -113,87 +33,35 @@ const AdminDashboard = () => {
     fetchData();
   }, [navigate]);
 
-  const fetchData = async () => {
+  const fetchData = () => {
     setIsLoading(true);
     try {
-      // Check if environment variables are defined
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+      // Get assessment results from localStorage
+      const assessmentResults = getAssessmentResults();
+      const formattedAssessments = assessmentResults.map(result => ({
+        id: result.id,
+        student_name: result.studentName,
+        assessment_type: result.assessmentType,
+        completed_on: result.completedOn || result.timestamp,
+        is_guest: !localStorage.getItem("auth.token")
+      }));
+      setAssessments(formattedAssessments);
 
-      // Log information about the connection attempt
-      console.log("Attempting to connect to Supabase with:", { 
-        url: supabaseUrl ? "Set" : "Not set", 
-        key: supabaseKey ? "Set" : "Not set"
-      });
+      // Get chat messages from localStorage
+      const messages = getChatMessages();
+      const formattedMessages = messages.map(message => ({
+        id: message.id,
+        content: message.content,
+        role: message.role,
+        created_at: message.timestamp,
+        is_guest: !localStorage.getItem("auth.token")
+      }));
+      setChatMessages(formattedMessages);
 
-      // Only attempt to fetch if both URL and key are defined
-      if (supabaseUrl && supabaseKey) {
-        try {
-          // Fetch assessment results
-          const assessmentsResponse = await fetch(`${supabaseUrl}/rest/v1/assessment_results?select=*&order=completed_on.desc`, {
-            method: "GET",
-            headers: {
-              "apikey": supabaseKey,
-              "Content-Type": "application/json",
-            },
-          });
-          
-          if (!assessmentsResponse.ok) {
-            throw new Error(`Failed to fetch assessments: ${assessmentsResponse.status}`);
-          }
-          
-          const assessmentsData = await assessmentsResponse.json();
-          
-          // Only use real data if it exists and is not empty
-          if (assessmentsData && Array.isArray(assessmentsData) && assessmentsData.length > 0) {
-            setAssessments(assessmentsData);
-          } else {
-            console.log("No assessment data found, falling back to dummy data");
-            setAssessments(dummyAssessments);
-          }
-
-          // Fetch chat messages
-          const messagesResponse = await fetch(`${supabaseUrl}/rest/v1/chat_messages?select=*&order=created_at.desc`, {
-            method: "GET",
-            headers: {
-              "apikey": supabaseKey,
-              "Content-Type": "application/json",
-            },
-          });
-          
-          if (!messagesResponse.ok) {
-            throw new Error(`Failed to fetch messages: ${messagesResponse.status}`);
-          }
-          
-          const messagesData = await messagesResponse.json();
-          
-          // Only use real data if it exists and is not empty
-          if (messagesData && Array.isArray(messagesData) && messagesData.length > 0) {
-            setChatMessages(messagesData);
-          } else {
-            console.log("No chat messages found, falling back to dummy data");
-            setChatMessages(dummyChatMessages);
-          }
-        } catch (error) {
-          console.error("Supabase API error:", error);
-          toast.error("Failed to connect to database, showing demo data");
-          // Use dummy data if API fails
-          setAssessments(dummyAssessments);
-          setChatMessages(dummyChatMessages);
-        }
-      } else {
-        console.log("Supabase credentials not found, using dummy data");
-        // Use dummy data if no credentials
-        setAssessments(dummyAssessments);
-        setChatMessages(dummyChatMessages);
-      }
+      toast.success("Data loaded successfully");
     } catch (error) {
       console.error("Error fetching data:", error);
-      toast.error("Failed to load data, showing demo data");
-      
-      // Use dummy data on any error
-      setAssessments(dummyAssessments);
-      setChatMessages(dummyChatMessages);
+      toast.error("Failed to load data");
     } finally {
       setIsLoading(false);
     }

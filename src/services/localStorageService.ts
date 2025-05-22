@@ -30,6 +30,11 @@ export interface AssessmentResultStorage {
   timestamp: string;
 }
 
+export interface AdminUser {
+  username: string;
+  password_hash: string;
+}
+
 // Generate a unique ID for items
 const generateId = () => {
   return Date.now().toString(36) + Math.random().toString(36).substring(2);
@@ -115,6 +120,32 @@ export const getLatestAssessmentResult = (): AssessmentResultStorage | undefined
   )[0];
 };
 
+// Admin user methods
+export const getAdminUsers = (): AdminUser[] => {
+  const usersStr = localStorage.getItem("admin_users");
+  if (!usersStr) {
+    // Initialize with default admin user if none exists
+    const defaultAdmin: AdminUser = { username: "admin", password_hash: "admin@123" };
+    localStorage.setItem("admin_users", JSON.stringify([defaultAdmin]));
+    return [defaultAdmin];
+  }
+  return JSON.parse(usersStr);
+};
+
+export const verifyAdminLogin = (username: string, password: string): boolean => {
+  const users = getAdminUsers();
+  const user = users.find(u => u.username === username);
+  
+  // Simple password verification (in a real app, use proper hashing)
+  if (user && user.password_hash === password) {
+    localStorage.setItem("admin_auth", "true");
+    localStorage.setItem("admin_username", username);
+    return true;
+  }
+  
+  return false;
+};
+
 export default {
   saveChatMessage,
   getChatMessages,
@@ -125,4 +156,6 @@ export default {
   getAssessmentResultById,
   getLatestAssessmentResult,
   generateSessionId,
+  getAdminUsers,
+  verifyAdminLogin
 };
