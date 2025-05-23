@@ -66,47 +66,47 @@ export const useAICounselor = (assessmentResults?: any) => {
         { role: "assistant", content: "", isStreaming: true }
       ]);
 
-      // Initialize full response text
-      let fullResponse = "";
-
-      // Use streaming API
+      // Initialize streaming response
+      console.log("🚀 Starting AI response streaming...");
+      
       try {
-        // Added logging to track streaming status
-        console.log("Starting AI response streaming...");
-        
         await streamAIResponse(
           apiMessages,
           resultsToUse,
-          // On each chunk received
+          // On each chunk received - update the streaming message immediately
           (chunk) => {
-            fullResponse += chunk;
-            // Log chunks as they come in (for debugging)
-            console.log(`Received chunk: "${chunk}"`);
+            console.log(`📝 Received chunk: "${chunk}"`);
             
             setMessages(prev => {
               const newMessages = [...prev];
               const lastMessage = newMessages[newMessages.length - 1];
               if (lastMessage && lastMessage.isStreaming) {
-                lastMessage.content = fullResponse;
+                // Append the new chunk to existing content
+                lastMessage.content += chunk;
               }
               return newMessages;
             });
           },
           // On complete
           () => {
-            console.log("Streaming complete");
-            // Update streaming status
+            console.log("✅ Streaming complete");
+            let finalContent = "";
+            
+            // Update streaming status and get final content
             setMessages(prev => {
               const newMessages = [...prev];
               const lastMessage = newMessages[newMessages.length - 1];
               if (lastMessage && lastMessage.isStreaming) {
                 lastMessage.isStreaming = false;
+                finalContent = lastMessage.content;
               }
               return newMessages;
             });
             
             // Save assistant message to local storage
-            saveChatMessage(fullResponse, "assistant");
+            if (finalContent) {
+              saveChatMessage(finalContent, "assistant");
+            }
             setMessageCount(prevCount => prevCount + 1);
             setIsLoading(false);
           }
