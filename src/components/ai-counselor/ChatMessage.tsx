@@ -33,7 +33,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
             })}
             </p>
           </div>
-          {role === "user" && <Avatar className="w-8 h-8 bg-gradient-to-r from-blue-400 to-blue-500">
+          {role === "user" && <Avatar className="w-8 h-8 bg-gradient-to-r from-blue-400 to-blue-500 px-[6px] py-[4px]">
               <User className="h-5 w-5 text-white" />
             </Avatar>}
         </div>
