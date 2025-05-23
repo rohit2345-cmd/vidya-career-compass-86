@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Avatar } from "@/components/ui/avatar";
 import { Bot, Info, AlertCircle, X } from "lucide-react";
@@ -8,28 +7,24 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Link } from "react-router-dom";
-
 interface ChatHeaderProps {
   isGuest: boolean;
   isDemo: boolean;
   messageCount: number;
   maxGuestMessages: number;
 }
-
-const ChatHeader: React.FC<ChatHeaderProps> = ({ 
-  isGuest, 
-  isDemo, 
-  messageCount, 
-  maxGuestMessages 
+const ChatHeader: React.FC<ChatHeaderProps> = ({
+  isGuest,
+  isDemo,
+  messageCount,
+  maxGuestMessages
 }) => {
   const [showGuestWarning, setShowGuestWarning] = React.useState(true);
   const [showDemoWarning, setShowDemoWarning] = React.useState(true);
-
-  return (
-    <>
+  return <>
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-4">
-          <Avatar className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500">
+          <Avatar className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 px-[10px] py-[8px]">
             <Bot className="h-7 w-7 text-white" />
           </Avatar>
           <div>
@@ -66,47 +61,31 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
         </Popover>
       </div>
       
-      {isGuest && showGuestWarning && (
-        <Alert variant="default" className="mt-4 border-amber-500 bg-amber-50 dark:bg-amber-950/20">
+      {isGuest && showGuestWarning && <Alert variant="default" className="mt-4 border-amber-500 bg-amber-50 dark:bg-amber-950/20">
           <AlertCircle className="h-4 w-4 text-amber-500" />
           <AlertDescription className="flex items-center justify-between">
             <span>
               Guest users are limited to {maxGuestMessages} messages. You have used {messageCount} messages.{" "}
               <Link to="/register" className="font-medium underline hover:no-underline">Sign up</Link> for unlimited access.
             </span>
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => setShowGuestWarning(false)}
-              className="ml-2 h-6 w-6 p-0"
-            >
+            <Button variant="ghost" size="sm" onClick={() => setShowGuestWarning(false)} className="ml-2 h-6 w-6 p-0">
               <X className="h-3 w-3" />
             </Button>
           </AlertDescription>
-        </Alert>
-      )}
+        </Alert>}
       
-      {isDemo && showDemoWarning && (
-        <Alert variant="default" className="mt-4 border-blue-500 bg-blue-50 dark:bg-blue-950/20">
+      {isDemo && showDemoWarning && <Alert variant="default" className="mt-4 border-blue-500 bg-blue-50 dark:bg-blue-950/20">
           <Info className="h-4 w-4 text-blue-500" />
           <AlertDescription className="flex items-center justify-between">
             <span>
               You're using the demo version with sample data. Take an{" "}
               <Link to="/assessments" className="font-medium underline hover:no-underline">assessment</Link> for personalized guidance.
             </span>
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => setShowDemoWarning(false)}
-              className="ml-2 h-6 w-6 p-0"
-            >
+            <Button variant="ghost" size="sm" onClick={() => setShowDemoWarning(false)} className="ml-2 h-6 w-6 p-0">
               <X className="h-3 w-3" />
             </Button>
           </AlertDescription>
-        </Alert>
-      )}
-    </>
-  );
+        </Alert>}
+    </>;
 };
-
 export default ChatHeader;
