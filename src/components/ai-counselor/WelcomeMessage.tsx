@@ -1,14 +1,11 @@
-
 import React from "react";
 import { Avatar } from "@/components/ui/avatar";
 import { Bot, Sparkles, Target, BookOpen } from "lucide-react";
-
 const WelcomeMessage: React.FC = () => {
-  return (
-    <div className="flex justify-start">
+  return <div className="flex justify-start">
       <div className="max-w-[85%] rounded-2xl p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
         <div className="flex items-start gap-3">
-          <Avatar className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500">
+          <Avatar className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 py-[6px] px-[10px]">
             <Bot className="h-6 w-6 text-white" />
           </Avatar>
           <div className="flex-1">
@@ -39,15 +36,13 @@ const WelcomeMessage: React.FC = () => {
             
             <p className="text-xs text-gray-500 dark:text-gray-400">
               {new Date().toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
+              hour: "2-digit",
+              minute: "2-digit"
+            })}
             </p>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default WelcomeMessage;
