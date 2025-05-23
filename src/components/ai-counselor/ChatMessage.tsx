@@ -1,65 +1,43 @@
-
 import React from "react";
 import { Avatar } from "@/components/ui/avatar";
 import { Bot, User } from "lucide-react";
-
 interface ChatMessageProps {
   role: "user" | "assistant";
   content: string;
   timestamp?: Date;
   isStreaming?: boolean;
 }
-
-const ChatMessage: React.FC<ChatMessageProps> = ({ 
-  role, 
-  content, 
+const ChatMessage: React.FC<ChatMessageProps> = ({
+  role,
+  content,
   timestamp = new Date(),
-  isStreaming = false 
+  isStreaming = false
 }) => {
-  return (
-    <div className={`flex ${role === "user" ? "justify-end" : "justify-start"} mb-6`}>
-      <div
-        className={`max-w-[85%] rounded-2xl p-4 shadow-sm ${
-          role === "user"
-            ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white"
-            : "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
-        }`}
-      >
+  return <div className={`flex ${role === "user" ? "justify-end" : "justify-start"} mb-6`}>
+      <div className={`max-w-[85%] rounded-2xl p-4 shadow-sm ${role === "user" ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white" : "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"}`}>
         <div className="flex items-start gap-3">
-          {role === "assistant" && (
-            <Avatar className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500">
+          {role === "assistant" && <Avatar className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 px-[6px] py-[4px]">
               <Bot className="h-5 w-5 text-white" />
-            </Avatar>
-          )}
+            </Avatar>}
           <div className="flex-1">
-            <div className={`text-sm leading-relaxed whitespace-pre-wrap ${
-              role === "user" ? "text-white" : "text-gray-800 dark:text-gray-200"
-            }`}>
+            <div className={`text-sm leading-relaxed whitespace-pre-wrap ${role === "user" ? "text-white" : "text-gray-800 dark:text-gray-200"}`}>
               {content}
-              {isStreaming && (
-                <span className="inline-flex items-center ml-1">
+              {isStreaming && <span className="inline-flex items-center ml-1">
                   <span className="w-2 h-4 bg-current animate-pulse rounded-sm opacity-75" />
-                </span>
-              )}
+                </span>}
             </div>
-            <p className={`text-xs mt-2 ${
-              role === "user" ? "text-blue-100" : "text-gray-500 dark:text-gray-400"
-            }`}>
+            <p className={`text-xs mt-2 ${role === "user" ? "text-blue-100" : "text-gray-500 dark:text-gray-400"}`}>
               {timestamp.toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
+              hour: "2-digit",
+              minute: "2-digit"
+            })}
             </p>
           </div>
-          {role === "user" && (
-            <Avatar className="w-8 h-8 bg-gradient-to-r from-blue-400 to-blue-500">
+          {role === "user" && <Avatar className="w-8 h-8 bg-gradient-to-r from-blue-400 to-blue-500">
               <User className="h-5 w-5 text-white" />
-            </Avatar>
-          )}
+            </Avatar>}
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default ChatMessage;
