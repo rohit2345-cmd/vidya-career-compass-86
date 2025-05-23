@@ -1,31 +1,8 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  BookOpen,
-  Brain,
-  GraduationCap,
-  BarChart,
-  Clock,
-  FileText,
-  School,
-  Award,
-  Trophy,
-  Star,
-  Users,
-  CheckCircle,
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { BookOpen, Brain, GraduationCap, BarChart, Clock, FileText, School, Award, Trophy, Star, Users, CheckCircle, ArrowRight, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 // Import assessment data to get metrics
@@ -33,7 +10,6 @@ import scienceQuestions from "../questions/scienceQuestions.json";
 import artsQuestions from "../questions/artsQuestions.json";
 import commerceQuestions from "../questions/commerceQuestions.json";
 import commonQuestions from "../questions/common_test.json";
-
 interface AssessmentCardProps {
   title: string;
   description: string;
@@ -46,7 +22,6 @@ interface AssessmentCardProps {
   gradientClass: string;
   iconColor: string;
 }
-
 const AssessmentCard = ({
   title,
   description,
@@ -57,10 +32,9 @@ const AssessmentCard = ({
   category,
   popular,
   gradientClass,
-  iconColor,
+  iconColor
 }: AssessmentCardProps) => {
-  return (
-    <Card className={`card-hover overflow-hidden ${gradientClass} border-0 shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-105 relative group`}>
+  return <Card className={`card-hover overflow-hidden ${gradientClass} border-0 shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-105 relative group`}>
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"></div>
       
@@ -79,12 +53,10 @@ const AssessmentCard = ({
               <CardDescription className="mt-1 text-sm">{description}</CardDescription>
             </div>
           </div>
-          {popular && (
-            <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0 shadow-lg">
+          {popular && <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0 shadow-lg">
               <Star className="mr-1 h-3 w-3" />
               Popular
-            </Badge>
-          )}
+            </Badge>}
         </div>
       </CardHeader>
       <CardContent className="relative z-20">
@@ -116,19 +88,15 @@ const AssessmentCard = ({
           </Button>
         </Link>
       </CardFooter>
-    </Card>
-  );
+    </Card>;
 };
-
 const Assessments = () => {
   // Get question counts
   const scienceCount = scienceQuestions.questions?.length || 0;
   const artsCount = artsQuestions.questions?.length || 0;
   const commerceCount = commerceQuestions.questions?.length || 0;
   const commonCount = commonQuestions.questions?.length || 0;
-  
-  return (
-    <div className="min-h-screen relative animate-fade-in">
+  return <div className="min-h-screen relative animate-fade-in">
       {/* Enhanced background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 -z-10"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(120,119,198,0.1),transparent_50%)] -z-10"></div>
@@ -173,51 +141,10 @@ const Assessments = () => {
 
         {/* Assessment Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8 px-4 mb-20">
-          <AssessmentCard
-            title="Comprehensive Assessment"
-            description="Complete evaluation across all streams"
-            icon={<Brain className="h-6 w-6" />}
-            duration="60-75 minutes"
-            questions={commonCount}
-            path="/assessment/comprehensive"
-            category="All Streams"
-            popular={true}
-            gradientClass="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20"
-            iconColor="bg-gradient-to-r from-blue-500 to-indigo-600"
-          />
-          <AssessmentCard
-            title="Science Stream"
-            description="STEM fields and technical careers"
-            icon={<GraduationCap className="h-6 w-6" />}
-            duration="45-60 minutes"
-            questions={scienceCount}
-            path="/assessment/science"
-            category="Science Stream"
-            gradientClass="bg-gradient-to-br from-emerald-50 to-green-100 dark:from-emerald-900/20 dark:to-green-900/20"
-            iconColor="bg-gradient-to-r from-emerald-500 to-green-600"
-          />
-          <AssessmentCard
-            title="Commerce Stream"
-            description="Business and economics pathways"
-            icon={<BarChart className="h-6 w-6" />}
-            duration="45-60 minutes"
-            questions={commerceCount}
-            path="/assessment/commerce"
-            category="Commerce Stream"
-            gradientClass="bg-gradient-to-br from-amber-50 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20"
-            iconColor="bg-gradient-to-r from-amber-500 to-orange-600"
-          />
-          <AssessmentCard
-            title="Arts Stream"
-            description="Humanities and creative fields"
-            icon={<BookOpen className="h-6 w-6" />}
-            duration="45-60 minutes"
-            questions={artsCount}
-            path="/assessment/arts"
-            category="Arts Stream"
-            gradientClass="bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20"
-            iconColor="bg-gradient-to-r from-purple-500 to-pink-600"
-          />
+          <AssessmentCard title="Comprehensive Assessment" description="Complete evaluation across all streams" icon={<Brain className="h-6 w-6" />} duration="60-75 minutes" questions={commonCount} path="/assessment/comprehensive" category="All Streams" popular={true} gradientClass="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-900/20" iconColor="bg-gradient-to-r from-blue-500 to-indigo-600" />
+          <AssessmentCard title="Science Stream" description="STEM fields and technical careers" icon={<GraduationCap className="h-6 w-6" />} duration="45-60 minutes" questions={scienceCount} path="/assessment/science" category="Science Stream" gradientClass="bg-gradient-to-br from-emerald-50 to-green-100 dark:from-emerald-900/20 dark:to-green-900/20" iconColor="bg-gradient-to-r from-emerald-500 to-green-600" />
+          <AssessmentCard title="Commerce Stream" description="Business and economics pathways" icon={<BarChart className="h-6 w-6" />} duration="45-60 minutes" questions={commerceCount} path="/assessment/commerce" category="Commerce Stream" gradientClass="bg-gradient-to-br from-amber-50 to-orange-100 dark:from-amber-900/20 dark:to-orange-900/20" iconColor="bg-gradient-to-r from-amber-500 to-orange-600" />
+          <AssessmentCard title="Arts Stream" description="Humanities and creative fields" icon={<BookOpen className="h-6 w-6" />} duration="45-60 minutes" questions={artsCount} path="/assessment/arts" category="Arts Stream" gradientClass="bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20" iconColor="bg-gradient-to-r from-purple-500 to-pink-600" />
         </div>
 
         {/* Features Section */}
@@ -270,7 +197,7 @@ const Assessments = () => {
                 </Button>
               </Link>
               <Link to="/ai-counselor">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-semibold px-8 py-3 rounded-xl">
+                <Button size="lg" variant="outline" className="border-white hover:bg-white/10 font-semibold px-8 py-3 rounded-xl text-lime-500">
                   Talk to AI Counselor
                 </Button>
               </Link>
@@ -278,8 +205,6 @@ const Assessments = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Assessments;
