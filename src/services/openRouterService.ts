@@ -1,3 +1,4 @@
+
 /**
  * OpenRouter AI Service
  * Handles integration with OpenRouter API for AI responses
@@ -32,12 +33,10 @@ export const getAIResponse = async (
   assessmentResults?: any
 ): Promise<string> => {
   try {
-    // Create a new array for the conversation that can include all role types
     const conversationMessages: Message[] = [
       { role: "system", content: systemPrompt },
     ];
     
-    // Add assessment results if provided
     if (assessmentResults) {
       conversationMessages.push({ 
         role: "system", 
@@ -45,7 +44,6 @@ export const getAIResponse = async (
       });
     }
     
-    // Add user messages - safely copying them to the conversation array
     messages.forEach(message => {
       conversationMessages.push(message);
     });
@@ -82,7 +80,7 @@ export const getAIResponse = async (
   }
 };
 
-// Improved streaming function for AI responses with proper text chunking
+// Optimized streaming function for real-time AI responses
 export const streamAIResponse = async (
   messages: Message[],
   assessmentResults: any | undefined,
@@ -90,12 +88,10 @@ export const streamAIResponse = async (
   onComplete: () => void
 ) => {
   try {
-    // Create a new array for the conversation that can include all role types
     const conversationMessages: Message[] = [
       { role: "system", content: systemPrompt },
     ];
     
-    // Add assessment results if provided
     if (assessmentResults) {
       conversationMessages.push({ 
         role: "system", 
@@ -103,12 +99,11 @@ export const streamAIResponse = async (
       });
     }
     
-    // Add user messages
     messages.forEach(message => {
       conversationMessages.push(message);
     });
     
-    console.log("Streaming from OpenRouter with model:", MODEL);
+    console.log("🚀 Starting real-time AI response streaming...");
     
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
@@ -122,13 +117,13 @@ export const streamAIResponse = async (
         messages: conversationMessages,
         temperature: 0.7,
         max_tokens: 500,
-        stream: true, // Enable streaming
+        stream: true,
       }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("OpenRouter streaming error:", errorText);
+      console.error("❌ OpenRouter streaming error:", errorText);
       throw new Error(`API error: ${response.statusText}`);
     }
 
@@ -137,60 +132,60 @@ export const streamAIResponse = async (
       throw new Error("Failed to get response reader");
     }
 
+    console.log("✅ Stream reader initialized, starting to process chunks...");
+    
     const decoder = new TextDecoder("utf-8");
-    let fullText = "";
     let buffer = "";
 
     while (true) {
       const { done, value } = await reader.read();
-      if (done) break;
+      if (done) {
+        console.log("✅ Stream completed");
+        break;
+      }
       
-      // Decode the chunk
       const chunk = decoder.decode(value, { stream: true });
       buffer += chunk;
       
-      // Process complete SSE messages
       const lines = buffer.split("\n");
-      // Keep the last potentially incomplete line in the buffer
       buffer = lines.pop() || "";
       
       for (const line of lines) {
         if (line.startsWith("data: ") && line !== "data: [DONE]") {
           try {
-            const jsonData = JSON.parse(line.substring(6)); // Remove "data: " prefix
+            const jsonData = JSON.parse(line.substring(6));
             if (jsonData.choices && jsonData.choices[0]?.delta?.content) {
               const textChunk = jsonData.choices[0].delta.content;
-              fullText += textChunk;
+              console.log(`📝 Streaming chunk: "${textChunk}"`);
               onChunk(textChunk);
             }
           } catch (e) {
-            console.error("Error parsing SSE data:", e, "Line:", line);
+            console.warn("⚠️ Error parsing SSE data:", e, "Line:", line);
           }
         } else if (line === "data: [DONE]") {
-          // Stream is complete
+          console.log("🏁 Stream marked as [DONE]");
           break;
         }
       }
     }
 
-    // Process any remaining data in the buffer
     if (buffer.startsWith("data: ") && buffer !== "data: [DONE]") {
       try {
         const jsonData = JSON.parse(buffer.substring(6)); 
         if (jsonData.choices && jsonData.choices[0]?.delta?.content) {
           const textChunk = jsonData.choices[0].delta.content;
-          fullText += textChunk;
+          console.log(`📝 Final chunk: "${textChunk}"`);
           onChunk(textChunk);
         }
       } catch (e) {
-        // Ignore any parsing errors in the final buffer chunk
+        console.warn("⚠️ Error parsing final buffer chunk");
       }
     }
 
+    console.log("✅ Streaming complete, calling onComplete");
     onComplete();
-    return fullText;
   } catch (error) {
-    console.error("OpenRouter streaming API error:", error);
+    console.error("❌ OpenRouter streaming API error:", error);
     throw error;
   }
 };

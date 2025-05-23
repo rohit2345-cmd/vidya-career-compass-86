@@ -17,29 +17,34 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
   isStreaming = false 
 }) => {
   return (
-    <div className={`flex ${role === "user" ? "justify-end" : "justify-start"} mb-4`}>
+    <div className={`flex ${role === "user" ? "justify-end" : "justify-start"} mb-6`}>
       <div
-        className={`max-w-[80%] rounded-lg p-3 ${
+        className={`max-w-[85%] rounded-2xl p-4 shadow-sm ${
           role === "user"
-            ? "bg-primary text-primary-foreground"
-            : "bg-muted"
+            ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white"
+            : "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700"
         }`}
       >
-        <div className="flex items-start gap-2">
+        <div className="flex items-start gap-3">
           {role === "assistant" && (
-            <Avatar className="w-6 h-6">
-              <Bot className="h-4 w-4" />
+            <Avatar className="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500">
+              <Bot className="h-5 w-5 text-white" />
             </Avatar>
           )}
-          <div>
-            <p className="text-sm whitespace-pre-wrap">
+          <div className="flex-1">
+            <div className={`text-sm leading-relaxed whitespace-pre-wrap ${
+              role === "user" ? "text-white" : "text-gray-800 dark:text-gray-200"
+            }`}>
               {content}
               {isStreaming && (
-                <span className="inline-block h-4 w-1.5 bg-current animate-pulse ml-0.5 rounded-sm" aria-hidden="true">
+                <span className="inline-flex items-center ml-1">
+                  <span className="w-2 h-4 bg-current animate-pulse rounded-sm opacity-75" />
                 </span>
               )}
-            </p>
-            <p className="text-xs opacity-70 mt-1">
+            </div>
+            <p className={`text-xs mt-2 ${
+              role === "user" ? "text-blue-100" : "text-gray-500 dark:text-gray-400"
+            }`}>
               {timestamp.toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
@@ -47,8 +52,8 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
             </p>
           </div>
           {role === "user" && (
-            <Avatar className="w-6 h-6">
-              <User className="h-4 w-4" />
+            <Avatar className="w-8 h-8 bg-gradient-to-r from-blue-400 to-blue-500">
+              <User className="h-5 w-5 text-white" />
             </Avatar>
           )}
         </div>
