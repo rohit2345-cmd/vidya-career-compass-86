@@ -114,9 +114,9 @@ const AICounselor = () => {
             <div className="space-y-6">
               {messages.length === 0 && <WelcomeMessage />}
             
-              {messages.map((message, index) => (
+              {messages.map((message) => (
                 <ChatMessage 
-                  key={index}
+                  key={message.id}
                   role={message.role}
                   content={message.content}
                   isStreaming={message.isStreaming}

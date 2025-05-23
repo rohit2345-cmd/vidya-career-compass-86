@@ -29,17 +29,19 @@ const ChatMessage: React.FC<ChatMessageProps> = ({
             <div className={`text-sm leading-relaxed whitespace-pre-wrap ${role === "user" ? "text-white" : "text-gray-800 dark:text-gray-200"}`}>
               {content}
               {isStreaming && (
-                <span className="inline-flex items-center ml-1">
-                  <span className="w-[2px] h-4 bg-current animate-pulse rounded-sm opacity-75" />
+                <span className="inline-flex items-center ml-1 animate-pulse">
+                  <span className="w-1 h-4 bg-current rounded-sm opacity-75 animate-pulse" />
                 </span>
               )}
             </div>
-            <p className={`text-xs mt-2 ${role === "user" ? "text-blue-100" : "text-gray-500 dark:text-gray-400"}`}>
-              {timestamp.toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit"
-              })}
-            </p>
+            {!isStreaming && (
+              <p className={`text-xs mt-2 ${role === "user" ? "text-blue-100" : "text-gray-500 dark:text-gray-400"}`}>
+                {timestamp.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit"
+                })}
+              </p>
+            )}
           </div>
           {role === "user" && (
             <Avatar className="w-8 h-8 bg-gradient-to-r from-blue-400 to-blue-500 px-[6px] py-[4px]">

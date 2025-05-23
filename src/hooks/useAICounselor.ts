@@ -1,10 +1,11 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
 import { getAIResponse, streamAIResponse } from "../services/openRouterService";
 import { saveChatMessage, getLatestAssessmentResult } from "../services/localStorageService";
 
 interface Message {
+  id: string;
   role: "user" | "assistant";
   content: string;
   isStreaming?: boolean;
@@ -14,6 +15,7 @@ export const useAICounselor = (assessmentResults?: any) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [messageCount, setMessageCount] = useState(0);
+  const streamingMessageRef = useRef<string>("");
   const isGuest = !localStorage.getItem("auth.token");
   const MAX_GUEST_MESSAGES = 5;
 
@@ -39,7 +41,11 @@ export const useAICounselor = (assessmentResults?: any) => {
       }
       
       // Add user message to chat
-      const userMessage: Message = { role: "user", content };
+      const userMessage: Message = { 
+        id: `user-${Date.now()}`,
+        role: "user", 
+        content 
+      };
       setMessages(prev => [...prev, userMessage]);
 
       // Save user message to local storage
@@ -61,10 +67,16 @@ export const useAICounselor = (assessmentResults?: any) => {
       });
 
       // Create a placeholder for the AI response with streaming flag
-      setMessages(prev => [
-        ...prev, 
-        { role: "assistant", content: "", isStreaming: true }
-      ]);
+      const assistantMessageId = `assistant-${Date.now()}`;
+      const assistantMessage: Message = { 
+        id: assistantMessageId,
+        role: "assistant", 
+        content: "", 
+        isStreaming: true 
+      };
+      
+      setMessages(prev => [...prev, assistantMessage]);
+      streamingMessageRef.current = "";
 
       // Initialize streaming response
       console.log("🚀 Starting AI response streaming...");
@@ -76,31 +88,29 @@ export const useAICounselor = (assessmentResults?: any) => {
           // On each chunk received - update the streaming message immediately
           (chunk) => {
             console.log(`📝 Received chunk: "${chunk}"`);
+            streamingMessageRef.current += chunk;
             
+            // Force immediate UI update with the new chunk
             setMessages(prev => {
-              const newMessages = [...prev];
-              const lastMessage = newMessages[newMessages.length - 1];
-              if (lastMessage && lastMessage.isStreaming) {
-                // Append the new chunk to existing content
-                lastMessage.content += chunk;
-              }
-              return newMessages;
+              return prev.map(msg => 
+                msg.id === assistantMessageId 
+                  ? { ...msg, content: streamingMessageRef.current }
+                  : msg
+              );
             });
           },
           // On complete
           () => {
             console.log("✅ Streaming complete");
-            let finalContent = "";
+            const finalContent = streamingMessageRef.current;
             
-            // Update streaming status and get final content
+            // Update streaming status
             setMessages(prev => {
-              const newMessages = [...prev];
-              const lastMessage = newMessages[newMessages.length - 1];
-              if (lastMessage && lastMessage.isStreaming) {
-                lastMessage.isStreaming = false;
-                finalContent = lastMessage.content;
-              }
-              return newMessages;
+              return prev.map(msg => 
+                msg.id === assistantMessageId 
+                  ? { ...msg, content: finalContent, isStreaming: false }
+                  : msg
+              );
             });
             
             // Save assistant message to local storage
@@ -109,6 +119,7 @@ export const useAICounselor = (assessmentResults?: any) => {
             }
             setMessageCount(prevCount => prevCount + 1);
             setIsLoading(false);
+            streamingMessageRef.current = "";
           }
         );
       } catch (error) {
@@ -119,13 +130,11 @@ export const useAICounselor = (assessmentResults?: any) => {
           const aiResponse = await getAIResponse(apiMessages, resultsToUse);
           
           setMessages(prev => {
-            const newMessages = [...prev];
-            const lastMessage = newMessages[newMessages.length - 1];
-            if (lastMessage && lastMessage.isStreaming) {
-              lastMessage.content = aiResponse;
-              lastMessage.isStreaming = false;
-            }
-            return newMessages;
+            return prev.map(msg => 
+              msg.id === assistantMessageId 
+                ? { ...msg, content: aiResponse, isStreaming: false }
+                : msg
+            );
           });
           
           saveChatMessage(aiResponse, "assistant");
@@ -135,17 +144,19 @@ export const useAICounselor = (assessmentResults?: any) => {
           console.error("Standard response also failed:", secondError);
           
           // Remove the placeholder streaming message if it exists
-          setMessages(prev => prev.filter(msg => !msg.isStreaming));
+          setMessages(prev => prev.filter(msg => msg.id !== assistantMessageId));
         }
         setIsLoading(false);
+        streamingMessageRef.current = "";
       }
     } catch (error) {
       console.error("Error sending message:", error);
       toast.error("Failed to get response. Please try again.");
       
-      // Remove the placeholder streaming message if it exists
+      // Remove any placeholder streaming message
       setMessages(prev => prev.filter(msg => !msg.isStreaming));
       setIsLoading(false);
+      streamingMessageRef.current = "";
     }
   };
 
