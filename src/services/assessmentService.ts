@@ -1,6 +1,7 @@
 
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
+import { Timestamp } from "firebase/firestore";
 import { saveAssessmentResult as saveToFirebase } from "./firebaseDbService";
 import { saveAssessmentResult as saveToLocalStorage } from "./localStorageService";
 import { getCurrentUser } from "./firebaseAuthService";
@@ -28,9 +29,17 @@ export const saveAssessmentResult = async (result: AssessmentResult): Promise<bo
     const user = getCurrentUser();
     
     if (user) {
-      // Save to Firebase for authenticated users
-      const firebaseResult = await saveToFirebase(result);
-      return firebaseResult !== null;
+      // Convert string date to Timestamp for Firebase
+      const firebaseResult = {
+        ...result,
+        completedOn: result.completedOn // Keep as string, firebaseDbService will convert to Timestamp
+      };
+      
+      // Remove completedOn from the object we send to Firebase since it will be set there
+      const { completedOn, ...resultWithoutDate } = firebaseResult;
+      
+      const success = await saveToFirebase(resultWithoutDate);
+      return success !== null;
     } else {
       // Save to localStorage for guest users
       saveToLocalStorage(result);
