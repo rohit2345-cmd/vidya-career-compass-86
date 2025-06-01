@@ -1,107 +1,178 @@
-
 export const generateInitialResultsPrompt = (
   studentName: string,
-  assessmentType: string, 
+  assessmentType: string,
   scores: Record<string, number>,
   strengths: string[],
   interests: string[]
 ) => {
   return `
+-- Begin Conciseness Instructions --
+• Keep each section to no more than 5-7 sentences or 5 bullet points.
+• Total output should not exceed ~350 words.
+• Use clear simple and short, direct language—avoid long paragraphs.
+-- End Conciseness Instructions --
+
 Dear ${studentName},
 
-Based on your ${assessmentType} assessment results, I've analyzed your academic profile to provide you with personalized career guidance. Here's what I found:
+Based on your ${assessmentType} assessment results, I have carefully analyzed your academic profile, interests, and strengths to offer personalized career guidance. Below is a comprehensive overview tailored to your unique profile and the Indian context.
 
-APTITUDE PROFILE:
+===========================
+1. APTITUDE PROFILE
+===========================
 ${Object.entries(scores)
   .map(([category, score]) => `- ${category}: ${score}%`)
   .join('\n')}
 
-KEY STRENGTHS:
+===========================
+2. KEY STRENGTHS
+===========================
 ${strengths.map(strength => `- ${strength}`).join('\n')}
 
-INTEREST AREAS:
+===========================
+3. INTEREST AREAS
+===========================
 ${interests.map(interest => `- ${interest}`).join('\n')}
 
-CAREER GUIDANCE OVERVIEW:
-----------------------
+===========================
+4. ASSESSMENT SUMMARY
+===========================
+• You have demonstrated strong aptitude in: ${Object.entries(scores)
+    .filter(([, score]) => score >= 70)
+    .map(([category]) => category)
+    .join(', ') || 'areas to develop further'}.
+• Your key strengths include: ${strengths.join(', ')}.
+• Your primary interests are: ${interests.join(', ')}.
+• Taken together, these suggest a profile that values ${strengths[0] || 'your main strength'} and enjoys ${interests[0] || 'your top interest'}.
 
-Introduction: Why read this guide?
-This guide provides a systematic approach to career decisions based on research, helping you identify high-impact careers matched to your unique profile rather than just following conventional advice about passion or prestige.
+===========================
+5. STREAM RECOMMENDATION
+===========================  
+Based on your aptitude and interests, the most suitable stream in Class 11 appears to be:
 
-Part 1: What makes for a dream job?
-A fulfilling career combines work you're good at, work that helps others, supportive conditions, work-life balance, and engagement. Rather than just "finding your passion," focus on developing valuable skills in areas where you can make a positive impact.
+**Recommended Stream:**
+- \${STREAM_PLACEHOLDER}
 
-Part 2: Can one person make a difference?
-Yes! One person's career choices can significantly impact the world by thoughtfully applying skills where they have the most leverage. Strategic career choices can help you improve many lives.
+**Reasoning:**
+1. **Academic Fit:** Your high proficiency in ${Object.entries(scores)
+    .filter(([, score]) => score >= 70)
+    .map(([category]) => category)
+    .join(', ') || 'core subjects'} aligns well with the rigors of this stream.
+2. **Interest Alignment:** You expressed strong interest in ${interests[0] || 'a relevant subject'}, which is central to this stream.
+3. **Strength Utilization:** Your strength in ${strengths[0] || 'your main strength'} will be valuable in coursework and projects typical of this stream.
 
-Part 3: Three ways anyone can have an impact
-You can create impact through direct work (directly addressing problems), earning to give (taking high-earning jobs to donate), or building career capital (developing skills for greater future impact).
+_If you have already chosen a stream, validate that your interests, strengths, and goals align with your current selection._
 
-Part 4: Scale, neglectedness, and solvability
-When choosing problems to work on, consider their scale (how big), neglectedness (how few resources already dedicated), and solvability (how feasible progress is). This helps identify areas where additional effort makes meaningful differences.
+===========================
+6. SUGGESTED CAREER FIELDS
+===========================  
+Below are 3–5 broad career fields that align with your profile. Each field is explained in the context of your skills, interests, and the Indian job market.
 
-Part 5: The world's most pressing problems
-Consider focusing on pressing global problems like health, development, climate change, AI safety, biosecurity, and institutional decision-making—areas affecting many people that receive insufficient attention but where progress is possible.
+1. **[First Career Field]**
+   - **Why It Fits:** You enjoy ${interests[0] || 'X'}, demonstrate aptitude in ${Object.entries(scores)
+     .filter(([, score]) => score >= 70)
+     .map(([category]) => category)
+     .join(', ') || 'relevant skills'}, and have strength in ${strengths[0] || 'Y'}.
+   - **Indian Context:** Leading institutes like IITs, NITs, and top private universities offer strong programs in this field. Entrance exams include JEE Main/Advanced or related state-level exams.
+   - **Emerging Trends:** Growing demand in India’s technology and service sectors, opportunities for research and innovation.
 
-Part 6: Which jobs help people the most?
-High-impact careers include research roles, leadership positions, entrepreneurship, advocacy, and high-earning jobs that enable giving. The best path depends on your specific skills and circumstances.
+2. **[Second Career Field]**
+   - **Why It Fits:** You have shown interest in ${interests[1] || 'A'} and excel at ${strengths[1] || 'B'}, which are key for this field.
+   - **Indian Context:** Programs available through CBSE and state boards’ Science/Commerce streams, with entrance options like NEET or CLAT if relevant.
+   - **Emerging Trends:** Rising opportunities in India’s startup ecosystem, digital transformation, and global outsourcing.
 
-Part 7: Career capital
-Early in your career, prioritize building versatile skills, credentials, connections, and resources that increase your future impact. Work with outstanding teams, develop rare skills, and choose roles offering multiple future options.
+3. **[Third Career Field]**
+   - **Why It Fits:** Your communication skills and creative flair (e.g., ${interests[2] || 'C'}) make you suitable for this domain.
+   - **Indian Context:** Institutes such as NID, NIFT, and premier liberal arts colleges provide strong foundations. Entrance exams include NID DAT and NIFT CAT.
+   - **Emerging Trends:** Increasing demand for content creation, design thinking, and creative problem-solving in Indian industry.
 
-Part 8: Personal fit
-Choose paths where you can excel, not just where you already have proven abilities. Assess fit through related experience, trials, expert feedback, and remember that abilities are built through mindset and deliberate practice.
+(Optionally include 4th or 5th fields if needed.)
 
-Part 9: How to be successful
-Success comes from focusing on priorities, deliberate skill-building, surrounding yourself with supportive people, maintaining health basics, and developing productive habits—not just passive rule-following.
+===========================
+7. EDUCATIONAL PATHWAYS
+===========================  
+To prepare for the suggested career fields, consider these academic and exam pathways in India:
 
-Part 10: How to make your career plan
-Set high-level goals but remain flexible about specifics. Focus on your next move by exploring options, narrowing based on impact potential and personal fit, then testing through conversations and work trials.
+1. **[Pathway for First Career Field]**
+   - **Stream & Subjects (Class 11–12):** Focus on ${'\${RELEVANT_SUBJECTS_1}'}.
+   - **Entrance Exams:** Register and prepare for ${'\${RELEVANT_EXAM_1}'} (e.g., JEE Main/Advanced, NEET, CLAT).
+   - **Recommended Boards:** CBSE or State Board with strong Science/Commerce curriculum for foundational knowledge.
 
-Part 11: How to get a job
-Be strategic—build connections through warm introductions and informational interviews, prepare thoroughly by tailoring materials to each position, and focus on demonstrating value to organizations.
+2. **[Pathway for Second Career Field]**
+   - **Stream & Subjects (Class 11–12):** Focus on ${'\${RELEVANT_SUBJECTS_2}'}.
+   - **Entrance Exams:** Aim for ${'\${RELEVANT_EXAM_2}'} (e.g., NIFT CAT, CUET, state-level design exams).
+   - **Recommended Boards:** CBSE/State Board, with elective options in Economics, Informatics Practices, or Fine Arts as applicable.
 
-Part 12: Community
-Connect with like-minded individuals focused on impact through online resources, events, and coaching. Building a supportive network increases motivation and opportunities for meaningful work.
+3. **[Pathway for Third Career Field]**
+   - **Stream & Subjects (Class 11–12):** Focus on ${'\${RELEVANT_SUBJECTS_3}'}.
+   - **Entrance Exams:** Prepare for ${'\${RELEVANT_EXAM_3}'} (e.g., CLAT for Law, NID DAT for Design).
+   - **Recommended Boards:** Any mainstream board; emphasize strong language, arts, or humanities electives.
 
-Summary: Just the bottom lines
-Career decisions are among life's most important choices. To maximize positive impact: focus on pressing problems, consider diverse impact paths, build career capital early, prioritize personal fit, and approach career planning experimentally. Small directional changes now can dramatically alter your career trajectory.
+===========================
+8. RECOMMENDED INSTITUTIONS
+===========================  
+These institutions in India offer top-tier programs aligned with your interests:
 
-CAREER RECOMMENDATIONS:
-Based on your profile, here are some career paths that might suit you well:
+1. **[Institution 1]** – Known for excellence in ${'\${PROGRAM_1}'}; located in ${'\${CITY_1}'}.
+2. **[Institution 2]** – Renowned for ${'\${PROGRAM_2}'}; located in ${'\${CITY_2}'}.
+3. **[Institution 3]** – Offers strong curriculum in ${'\${PROGRAM_3}'}; located in ${'\${CITY_3}'}.
 
-1. [First career recommendation with brief explanation]
-2. [Second career recommendation with brief explanation]
-3. [Third career recommendation with brief explanation]
+(Adjust as needed based on the chosen career fields.)
 
-EDUCATIONAL PATHWAYS:
-To pursue these careers, consider the following educational options:
+===========================
+9. SKILL DEVELOPMENT RECOMMENDATIONS
+===========================  
+To strengthen your profile and readiness for these fields, focus on developing:
 
-1. [Educational pathway with relevant courses and exams]
-2. [Educational pathway with relevant courses and exams]
-3. [Educational pathway with relevant courses and exams]
+1. **Core Technical Skills:**  
+   - ${'\${SKILL_1}'} (e.g., Python programming, fundamental lab methodology, financial modeling)
+   - ${'\${SKILL_2}'} (e.g., data analysis, design thinking, legal research)
+2. **Soft Skills & Extras:**  
+   - ${'\${SKILL_3}'} (e.g., communication, teamwork, leadership)
+   - ${'\${SKILL_4}'} (e.g., critical thinking, creativity, time management)
+3. **Certifications & Online Courses:**  
+   - Platforms: SWAYAM, NPTEL, Coursera, Udemy
+   - Specific Courses: ${'\${COURSE_1}'} (e.g., “Introduction to AI & ML”), ${'\${COURSE_2}'} (e.g., “Basics of Graphic Design”), ${'\${COURSE_3}'} (e.g., “Foundations of Business & Economics”)
 
-RECOMMENDED INSTITUTIONS:
-These institutions in India offer excellent programs aligned with your interests:
+===========================
+10. NEXT STEPS
+===========================  
+1. **In-Depth Research:**  
+   - Explore each suggested career field by reading articles, watching webinars, and talking to professionals.  
+   - Attend virtual college fairs or local career counseling events.  
+2. **Subject Selection (Class 11–12):**  
+   - Finalize your stream based on the “Educational Pathways” section.  
+   - Choose electives that strengthen your core interests (e.g., Maths & Physics for Engineering, English & History for Humanities).  
+3. **Entrance Exam Planning:**  
+   - Create a study timeline for relevant exams (JEE, NEET, CLAT, NIFT, CUET).  
+   - Gather recommended study materials and join a reputable coaching institute or online prep course if needed.  
+4. **Skill-Building Projects:**  
+   - Start a small personal or group project aligned with your interests (e.g., build a basic website, design a logo, conduct a simple science experiment).  
+   - Participate in relevant competitions (e.g., science fairs, hackathons, debate contests) to build experience.  
+5. **Networking & Mentorship:**  
+   - Connect with seniors, alumni, or professionals in your fields of interest via LinkedIn or school alumni networks.  
+   - Seek an informational interview or short mentorship session to understand day-to-day realities.  
 
-1. [Institution name and location]
-2. [Institution name and location]
-3. [Institution name and location]
+===========================
+11. ADDITIONAL RESOURCES
+===========================  
+- **Entrance Exam Resources:**  
+  - JEE Main: NTA (https://jeemain.nta.nic.in)  
+  - NEET: NTA (https://ntaneet.nic.in)  
+  - CLAT: Consortium of NLUs (https://consortiumofnlus.ac.in)  
+  - NIFT & NID: Official websites (https://nift.ac.in, https://nid.edu)  
+- **Online Learning Platforms:**  
+  - SWAYAM, NPTEL, Coursera, edX  
+  - YouTube Channels: Khan Academy India, Unacademy, TED-Ed (for subject clarity)  
+- **Government Initiatives & Scholarships:**  
+  - Skill India (https://skillindia.gov.in)  
+  - NSQF-aligned courses (https://nsqcindia.org)  
+  - Central/State Scholarship Portals (e.g., NSP, Odisha Scholarship)  
 
-SKILL DEVELOPMENT:
-To enhance your prospects, focus on developing these skills:
+Feel free to ask follow-up questions or request deeper guidance on any specific section. Your career journey is a continuous exploration—take one step at a time, stay curious, and leverage available resources to build a path that reflects your passions and strengths.
 
-1. [Skill recommendation]
-2. [Skill recommendation]
-3. [Skill recommendation]
+Sincerely,
 
-NEXT STEPS:
-1. Explore the recommended careers in more depth
-2. Research the suggested educational institutions
-3. Prepare for relevant entrance exams
-4. Develop the recommended skills
-
-Feel free to ask me any questions about these recommendations or explore other career options.
+CareerPathAI (Claude 3)
 `;
 };
 
