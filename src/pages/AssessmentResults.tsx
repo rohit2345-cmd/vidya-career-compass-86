@@ -194,7 +194,7 @@ const AssessmentResults = () => {
                   {Object.entries(result.scores).map(([key, value]) => (
                     <div key={key} className="flex justify-between items-center">
                       <span className="capitalize">{key}</span>
-                      <Badge variant="outline">{value}%</Badge>
+                      <Badge variant="outline">{String(value)}%</Badge>
                     </div>
                   ))}
                 </div>

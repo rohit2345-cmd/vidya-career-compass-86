@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,7 @@ import {
   Microscope,
   Palette,
   Users,
+  Clock,
 } from "lucide-react";
 
 import OpenEndedAssessmentCard from "../components/landing/OpenEndedAssessmentCard";
