@@ -12,7 +12,9 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Assessments from "./pages/Assessments";
 import Assessment from "./pages/Assessment";
+import OpenEndedAssessment from "./pages/OpenEndedAssessment";
 import Results from "./pages/Results";
+import AssessmentResults from "./pages/AssessmentResults";
 import ResultsDemo from "./pages/ResultsDemo";
 import About from "./pages/About";
 import AICounselor from "./pages/AICounselor";
@@ -43,7 +45,9 @@ const AppContent = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/assessments" element={<Assessments />} />
           <Route path="/assessment/:assessmentType" element={<Assessment />} />
+          <Route path="/assessment/open-ended" element={<OpenEndedAssessment />} />
           <Route path="/results/:assessmentType" element={<Results />} />
+          <Route path="/results/:assessmentType/:resultId" element={<AssessmentResults />} />
           <Route path="/results-demo" element={<ResultsDemo />} />
           <Route path="/about" element={<About />} />
           <Route path="/ai-counselor" element={<AICounselor />} />
