@@ -14,6 +14,7 @@ import {
   Clock,
   Star,
   Sparkles,
+  Quote,
 } from "lucide-react";
 
 import OpenEndedAssessmentCard from "../components/landing/OpenEndedAssessmentCard";
@@ -38,16 +39,31 @@ const Assessments = () => {
           </p>
         </div>
 
-        {/* Assessment Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          <div className="lg:col-span-1">
+        {/* Inspirational Quote Section */}
+        <div className="relative mb-16 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/50">
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+            <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-3 rounded-full shadow-lg">
+              <Quote className="h-6 w-6 text-white" />
+            </div>
+          </div>
+          <div className="text-center pt-4">
+            <blockquote className="text-2xl md:text-3xl font-serif text-gray-800 mb-4 leading-relaxed">
+              "The future belongs to those who believe in the beauty of their dreams."
+            </blockquote>
+            <cite className="text-lg text-gray-600 font-medium">— Eleanor Roosevelt</cite>
+          </div>
+        </div>
+
+        {/* Assessment Cards Grid - Fixed Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 mb-16">
+          <div className="md:col-span-1">
             <OpenEndedAssessmentCard />
           </div>
           
           <AssessmentCard
             icon={<Brain className="h-8 w-8" />}
             title="Comprehensive Assessment"
-            description="Complete career evaluation covering aptitude, interests, personality, and skills assessment."
+            description="Complete career evaluation covering aptitude, interests, personality, and skills assessment for thorough guidance."
             duration="60 mins"
             questions="75 Questions"
             difficulty="Comprehensive"
@@ -60,7 +76,7 @@ const Assessments = () => {
           <AssessmentCard
             icon={<Microscope className="h-8 w-8" />}
             title="Science Stream Assessment"
-            description="Specialized for students considering Physics, Chemistry, Biology, and Mathematics careers."
+            description="Specialized for students considering Physics, Chemistry, Biology, and Mathematics career paths."
             duration="45 mins"
             questions="50 Questions"
             difficulty="Intermediate"
@@ -72,7 +88,7 @@ const Assessments = () => {
           <AssessmentCard
             icon={<Calculator className="h-8 w-8" />}
             title="Commerce Stream Assessment"
-            description="Focused on business, finance, economics, and entrepreneurship career paths."
+            description="Focused on business, finance, economics, and entrepreneurship career exploration."
             duration="40 mins"
             questions="45 Questions"
             difficulty="Beginner"
@@ -84,7 +100,7 @@ const Assessments = () => {
           <AssessmentCard
             icon={<Palette className="h-8 w-8" />}
             title="Arts & Humanities Assessment"
-            description="For creative and liberal arts career exploration including media, literature, and social sciences."
+            description="Creative and liberal arts career exploration including media, literature, and social sciences."
             duration="35 mins"
             questions="40 Questions"
             difficulty="Beginner"
@@ -94,12 +110,12 @@ const Assessments = () => {
           />
           
           <Card className="border-2 border-dashed border-gray-300 bg-gradient-to-br from-gray-50 to-gray-100 hover:shadow-xl transition-all duration-300">
-            <CardContent className="flex flex-col items-center justify-center p-8 text-center h-full">
+            <CardContent className="flex flex-col items-center justify-center p-6 lg:p-8 text-center h-full min-h-[300px]">
               <div className="bg-gradient-to-r from-gray-400 to-gray-600 p-4 rounded-full mb-6">
                 <Users className="h-12 w-12 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-800">Group Assessment</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 leading-relaxed text-sm lg:text-base">
                 Coming soon! Collaborative assessments for classrooms and groups.
               </p>
               <Badge variant="outline" className="bg-white border-gray-300 text-gray-600">
@@ -160,8 +176,8 @@ const AssessmentCard: React.FC<AssessmentCardProps> = ({
   bgGradient = "from-gray-50 to-gray-100",
 }) => {
   return (
-    <Card className={`group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br ${bgGradient} border-0 shadow-lg ${featured ? 'ring-2 ring-emerald-400 ring-offset-2' : ''}`}>
-      <CardHeader className="pb-4">
+    <Card className={`group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br ${bgGradient} border-0 shadow-lg h-full ${featured ? 'ring-2 ring-emerald-400 ring-offset-2' : ''}`}>
+      <CardHeader className="pb-4 flex-shrink-0">
         <div className="flex items-center justify-between mb-4">
           <div className={`bg-gradient-to-r ${gradient} p-3 rounded-xl text-white shadow-lg`}>
             {icon}
@@ -173,29 +189,29 @@ const AssessmentCard: React.FC<AssessmentCardProps> = ({
             </Badge>
           )}
         </div>
-        <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors">
+        <CardTitle className="text-xl font-bold text-gray-800 group-hover:text-gray-900 transition-colors line-clamp-2">
           {title}
         </CardTitle>
-        <CardDescription className="text-gray-600 leading-relaxed">
+        <CardDescription className="text-gray-600 leading-relaxed text-sm line-clamp-3 overflow-hidden">
           {description}
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="grid grid-cols-3 gap-4 text-sm">
-          <div className="text-center p-3 bg-white/70 rounded-lg">
+      <CardContent className="space-y-6 flex-grow flex flex-col justify-between">
+        <div className="grid grid-cols-3 gap-2 lg:gap-4 text-sm">
+          <div className="text-center p-2 lg:p-3 bg-white/70 rounded-lg">
             <Clock className="h-4 w-4 mx-auto mb-1 text-gray-600" />
-            <span className="font-medium text-gray-800">{duration}</span>
+            <span className="font-medium text-gray-800 text-xs lg:text-sm block truncate">{duration}</span>
           </div>
-          <div className="text-center p-3 bg-white/70 rounded-lg">
+          <div className="text-center p-2 lg:p-3 bg-white/70 rounded-lg">
             <Brain className="h-4 w-4 mx-auto mb-1 text-gray-600" />
-            <span className="font-medium text-gray-800">{questions}</span>
+            <span className="font-medium text-gray-800 text-xs lg:text-sm block truncate">{questions}</span>
           </div>
-          <div className="text-center p-3 bg-white/70 rounded-lg">
+          <div className="text-center p-2 lg:p-3 bg-white/70 rounded-lg">
             <Palette className="h-4 w-4 mx-auto mb-1 text-gray-600" />
-            <span className="font-medium text-gray-800">{difficulty}</span>
+            <span className="font-medium text-gray-800 text-xs lg:text-sm block truncate">{difficulty}</span>
           </div>
         </div>
-        <Link to={href}>
+        <Link to={href} className="mt-auto">
           <Button className={`w-full bg-gradient-to-r ${gradient} hover:shadow-lg transition-all duration-300 text-white font-semibold py-3`}>
             Start Assessment
             <ArrowRight className="ml-2 h-4 w-4" />
