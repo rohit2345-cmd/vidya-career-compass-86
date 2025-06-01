@@ -2,6 +2,9 @@
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import { saveAssessmentResult as saveToLocalStorage } from "./localStorageService";
+import { saveAssessmentResultToFirebase } from "./firebaseService";
+import { getCurrentUser } from "./authService";
+import { Timestamp } from "firebase/firestore";
 
 interface AssessmentResult {
   studentName: string;
@@ -18,13 +21,30 @@ interface AssessmentResult {
   interests?: string[];
 }
 
-// This function saves results to local storage
+// This function saves results to Firebase or local storage
 export const saveAssessmentResult = async (result: AssessmentResult): Promise<boolean> => {
   try {
     console.log("Saving assessment result:", result);
     
-    // Save to local storage
-    saveToLocalStorage(result);
+    const user = getCurrentUser();
+    
+    if (user) {
+      // Save to Firebase for authenticated users
+      const firebaseResult = {
+        studentName: result.studentName,
+        assessmentType: result.assessmentType,
+        completedOn: Timestamp.fromDate(new Date(result.completedOn)),
+        questions: result.questions,
+        scores: result.scores,
+        strengths: result.strengths,
+        interests: result.interests,
+      };
+      
+      await saveAssessmentResultToFirebase(firebaseResult);
+    } else {
+      // Save to local storage for guests
+      saveToLocalStorage(result);
+    }
     
     return true;
   } catch (error) {
