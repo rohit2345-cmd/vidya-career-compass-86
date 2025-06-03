@@ -1,10 +1,7 @@
 
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
-import { saveAssessmentResult as saveToLocalStorage } from "./localStorageService";
-import { saveAssessmentResultToFirebase } from "./firebaseService";
-import { getCurrentUser } from "./authService";
-import { Timestamp } from "firebase/firestore";
+import { supabase } from "@/integrations/supabase/client";
 
 interface AssessmentResult {
   studentName: string;
@@ -21,29 +18,33 @@ interface AssessmentResult {
   interests?: string[];
 }
 
-// This function saves results to Firebase or local storage
+// This function saves results to Supabase
 export const saveAssessmentResult = async (result: AssessmentResult): Promise<boolean> => {
   try {
     console.log("Saving assessment result:", result);
     
-    const user = getCurrentUser();
+    const { data: { user } } = await supabase.auth.getUser();
     
-    if (user) {
-      // Save to Firebase for authenticated users
-      const firebaseResult = {
-        studentName: result.studentName,
-        assessmentType: result.assessmentType,
-        completedOn: Timestamp.fromDate(new Date(result.completedOn)),
-        questions: result.questions,
-        scores: result.scores,
-        strengths: result.strengths,
-        interests: result.interests,
-      };
-      
-      await saveAssessmentResultToFirebase(firebaseResult);
-    } else {
-      // Save to local storage for guests
-      saveToLocalStorage(result);
+    // Prepare the data for Supabase
+    const assessmentData = {
+      student_name: result.studentName,
+      assessment_type: result.assessmentType,
+      completed_on: new Date(result.completedOn).toISOString(),
+      questions: result.questions,
+      scores: result.scores || null,
+      strengths: result.strengths || null,
+      interests: result.interests || null,
+      user_id: user?.id || null,
+      is_guest: !user
+    };
+    
+    const { error } = await supabase
+      .from('assessment_results')
+      .insert(assessmentData);
+    
+    if (error) {
+      console.error("Error saving to Supabase:", error);
+      return false;
     }
     
     return true;

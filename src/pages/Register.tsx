@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
-import { registerWithEmailAndPassword } from "@/services/authService";
+import { supabase } from "@/integrations/supabase/client";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -38,20 +38,24 @@ const Register = () => {
     }
 
     try {
-      const result = await registerWithEmailAndPassword(email, password);
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/dashboard`,
+          data: {
+            first_name: firstName,
+            last_name: lastName,
+            education_level: educationLevel
+          }
+        }
+      });
       
-      if (result.success) {
-        // Store auth token and user info
-        localStorage.setItem("auth.token", "true");
-        localStorage.setItem("user.firstName", firstName);
-        localStorage.setItem("user.lastName", lastName);
-        localStorage.setItem("user.email", email);
-        localStorage.setItem("user.educationLevel", educationLevel);
-        
-        toast.success("Registration successful! Welcome!");
-        navigate("/dashboard");
-      } else {
-        toast.error(result.error || "Registration failed. Please try again.");
+      if (error) {
+        toast.error(error.message || "Registration failed. Please try again.");
+      } else if (data.user) {
+        toast.success("Registration successful! Please check your email for verification.");
+        navigate("/login");
       }
     } catch (error) {
       console.error("Registration error:", error);

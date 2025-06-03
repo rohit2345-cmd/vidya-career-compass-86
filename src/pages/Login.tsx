@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
-import { loginWithEmailAndPassword } from "@/services/authService";
+import { supabase } from "@/integrations/supabase/client";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -22,19 +22,21 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const result = await loginWithEmailAndPassword(email, password);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
       
-      if (result.success) {
-        // Store auth token
-        localStorage.setItem("auth.token", "true");
+      if (error) {
+        toast.error(error.message || "Login failed. Please check your credentials.");
+      } else if (data.user) {
+        // Store auth state
         if (rememberMe) {
           localStorage.setItem("auth.remember", "true");
         }
         
         toast.success("Login successful!");
         navigate("/dashboard");
-      } else {
-        toast.error(result.error || "Login failed. Please check your credentials.");
       }
     } catch (error) {
       console.error("Login error:", error);

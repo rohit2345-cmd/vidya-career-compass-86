@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { LogOut, Users, MessageSquare, BookOpen, RefreshCw, TrendingUp, BarChart3, PieChart, Calendar } from "lucide-react";
 import { toast } from "sonner";
 import AdminDataGenerator from "@/components/AdminDataGenerator";
-import { getAssessmentResults, getChatMessages } from "@/services/localStorageService";
+import { supabase } from "@/integrations/supabase/client";
 import {
   BarChart,
   Bar,
@@ -43,36 +43,37 @@ const AdminDashboard = () => {
     fetchData();
   }, [navigate]);
 
-  const fetchData = () => {
+  const fetchData = async () => {
     setIsLoading(true);
     try {
-      // Get assessment results from localStorage
-      const assessmentResults = getAssessmentResults();
-      const formattedAssessments = assessmentResults.map(result => ({
-        id: result.id,
-        student_name: result.studentName,
-        assessment_type: result.assessmentType,
-        completed_on: result.completedOn || result.timestamp,
-        is_guest: !localStorage.getItem("auth.token"),
-        scores: result.scores,
-        strengths: result.strengths,
-        interests: result.interests
-      }));
-      setAssessments(formattedAssessments);
+      // Fetch assessment results from Supabase
+      const { data: assessmentResults, error: assessmentError } = await supabase
+        .from('assessment_results')
+        .select('*')
+        .order('completed_on', { ascending: false });
 
-      // Get chat messages from localStorage
-      const messages = getChatMessages();
-      const formattedMessages = messages.map(message => ({
-        id: message.id,
-        content: message.content,
-        role: message.role,
-        created_at: message.timestamp,
-        is_guest: !localStorage.getItem("auth.token")
-      }));
-      setChatMessages(formattedMessages);
+      if (assessmentError) {
+        console.error("Error fetching assessments:", assessmentError);
+        toast.error("Failed to load assessment data");
+      } else {
+        setAssessments(assessmentResults || []);
+      }
+
+      // Fetch chat messages from Supabase
+      const { data: messages, error: messagesError } = await supabase
+        .from('chat_messages')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (messagesError) {
+        console.error("Error fetching chat messages:", messagesError);
+        toast.error("Failed to load chat data");
+      } else {
+        setChatMessages(messages || []);
+      }
 
       // Generate analytics
-      generateAnalytics(formattedAssessments, formattedMessages);
+      generateAnalytics(assessmentResults || [], messages || []);
 
       toast.success("Data loaded successfully");
     } catch (error) {
@@ -134,14 +135,16 @@ const AdminDashboard = () => {
           acc[assessment.assessment_type] = { total: 0, count: 0, scores: {} };
         }
         
-        Object.entries(assessment.scores).forEach(([skill, score]) => {
-          if (!acc[assessment.assessment_type].scores[skill]) {
-            acc[assessment.assessment_type].scores[skill] = { total: 0, count: 0 };
-          }
-          const numericScore = Number(score) || 0;
-          acc[assessment.assessment_type].scores[skill].total += numericScore;
-          acc[assessment.assessment_type].scores[skill].count += 1;
-        });
+        if (assessment.scores && typeof assessment.scores === 'object') {
+          Object.entries(assessment.scores).forEach(([skill, score]) => {
+            if (!acc[assessment.assessment_type].scores[skill]) {
+              acc[assessment.assessment_type].scores[skill] = { total: 0, count: 0 };
+            }
+            const numericScore = typeof score === 'number' ? score : Number(score) || 0;
+            acc[assessment.assessment_type].scores[skill].total += numericScore;
+            acc[assessment.assessment_type].scores[skill].count += 1;
+          });
+        }
         
         acc[assessment.assessment_type].count += 1;
         return acc;
