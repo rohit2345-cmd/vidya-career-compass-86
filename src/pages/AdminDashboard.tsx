@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -51,7 +52,7 @@ const AdminDashboard = () => {
   const [assessments, setAssessments] = useState<AssessmentResult[]>([]);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [assessmentTypeFilter, setAssessmentTypeFilter] = useState('');
+  const [assessmentTypeFilter, setAssessmentTypeFilter] = useState('all');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [selectedAssessment, setSelectedAssessment] = useState<AssessmentResult | null>(null);
 
@@ -184,7 +185,7 @@ const AdminDashboard = () => {
             <CardContent>
               <div className="text-2xl font-bold text-blue-700">{assessments.length}</div>
               <p className="text-xs text-blue-600 mt-1">
-                +{Math.floor(Number(assessments.length) * 0.1)} from last month
+                +{Math.floor(assessments.length * 0.1)} from last month
               </p>
             </CardContent>
           </Card>
@@ -212,7 +213,7 @@ const AdminDashboard = () => {
             <CardContent>
               <div className="text-2xl font-bold text-purple-700">{chatMessages.length}</div>
               <p className="text-xs text-purple-600 mt-1">
-                +{Math.floor(Number(chatMessages.length) * 0.15)} this week
+                +{Math.floor(chatMessages.length * 0.15)} this week
               </p>
             </CardContent>
           </Card>
@@ -224,7 +225,7 @@ const AdminDashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-orange-700">
-                {assessments.length > 0 ? Math.round((Number(chatMessages.length || 0) / Number(assessments.length || 1)) * 100) : 0}%
+                {assessments.length > 0 ? Math.round((chatMessages.length / assessments.length) * 100) : 0}%
               </div>
               <p className="text-xs text-orange-600 mt-1">
                 Messages per assessment
@@ -253,7 +254,7 @@ const AdminDashboard = () => {
                 <SelectValue placeholder="Filter by type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Types</SelectItem>
+                <SelectItem value="all">All Types</SelectItem>
                 <SelectItem value="science">Science</SelectItem>
                 <SelectItem value="commerce">Commerce</SelectItem>
                 <SelectItem value="arts">Arts</SelectItem>
@@ -289,7 +290,7 @@ const AdminDashboard = () => {
               {assessments
                 .filter(assessment =>
                   assessment.student_name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-                  (assessmentTypeFilter === '' || assessment.assessment_type === assessmentTypeFilter)
+                  (assessmentTypeFilter === 'all' || assessment.assessment_type === assessmentTypeFilter)
                 )
                 .sort((a, b) => {
                   const dateA = new Date(a.completed_on).getTime();
