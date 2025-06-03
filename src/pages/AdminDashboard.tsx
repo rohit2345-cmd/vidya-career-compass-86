@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -93,7 +92,7 @@ const AdminDashboard = () => {
 
     const assessmentTypeData = Object.entries(assessmentTypeCount).map(([key, value]) => ({
       name: key.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()),
-      value: value as number
+      value: Number(value) || 0
     }));
 
     // User type distribution
@@ -139,7 +138,8 @@ const AdminDashboard = () => {
           if (!acc[assessment.assessment_type].scores[skill]) {
             acc[assessment.assessment_type].scores[skill] = { total: 0, count: 0 };
           }
-          acc[assessment.assessment_type].scores[skill].total += score as number;
+          const numericScore = Number(score) || 0;
+          acc[assessment.assessment_type].scores[skill].total += numericScore;
           acc[assessment.assessment_type].scores[skill].count += 1;
         });
         
@@ -150,7 +150,7 @@ const AdminDashboard = () => {
     const avgScoresData = Object.entries(avgScores).map(([type, data]: [string, any]) => {
       const avgSkillScores = Object.entries(data.scores).map(([skill, scoreData]: [string, any]) => ({
         skill: skill.replace(/([A-Z])/g, ' $1').trim(),
-        avgScore: Math.round(scoreData.total / scoreData.count)
+        avgScore: scoreData.count > 0 ? Math.round(scoreData.total / scoreData.count) : 0
       }));
       
       return {
@@ -160,9 +160,10 @@ const AdminDashboard = () => {
     });
 
     // Chat engagement metrics
+    const totalConversations = Math.ceil(messages.length / 2);
     const chatEngagement = {
-      totalConversations: Math.ceil(messages.length / 2), // Approximate conversations
-      avgMessagesPerConversation: messages.length > 0 ? Math.round(messages.length / Math.ceil(messages.length / 2)) : 0,
+      totalConversations,
+      avgMessagesPerConversation: totalConversations > 0 ? Math.round(messages.length / totalConversations) : 0,
       userMessages: messages.filter(m => m.role === 'user').length,
       aiResponses: messages.filter(m => m.role === 'assistant').length
     };
@@ -223,7 +224,7 @@ const AdminDashboard = () => {
           <CardContent>
             <div className="text-2xl font-bold text-blue-700">{assessments.length}</div>
             <p className="text-xs text-blue-600 mt-1">
-              +{Math.round((assessments.length / 30) * 100)}% from last month
+              +{assessments.length > 0 ? Math.round((assessments.length / 30) * 100) : 0}% from last month
             </p>
           </CardContent>
         </Card>
@@ -388,7 +389,7 @@ const AdminDashboard = () => {
                       {assessments.length > 0 ? (
                         assessments.map((assessment) => {
                           const avgScore = assessment.scores ? 
-                            Math.round(Object.values(assessment.scores).reduce((a: any, b: any) => a + b, 0) / Object.values(assessment.scores).length) : 
+                            Math.round(Object.values(assessment.scores).reduce((a: any, b: any) => Number(a) + Number(b), 0) / Object.values(assessment.scores).length) : 
                             'N/A';
                           
                           return (

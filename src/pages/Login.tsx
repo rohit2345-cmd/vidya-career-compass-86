@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,14 +8,40 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
+import { loginWithEmailAndPassword } from "@/services/authService";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Login logic will be implemented later
-    console.log("Login submitted");
+    setIsLoading(true);
+
+    try {
+      const result = await loginWithEmailAndPassword(email, password);
+      
+      if (result.success) {
+        // Store auth token
+        localStorage.setItem("auth.token", "true");
+        if (rememberMe) {
+          localStorage.setItem("auth.remember", "true");
+        }
+        
+        toast.success("Login successful!");
+        navigate("/dashboard");
+      } else {
+        toast.error(result.error || "Login failed. Please check your credentials.");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleContinueAsGuest = () => {
@@ -35,7 +61,14 @@ const Login = () => {
             <div className="grid gap-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="john.doe@example.com" required />
+                <Input 
+                  id="email" 
+                  type="email" 
+                  placeholder="john.doe@example.com" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required 
+                />
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -44,10 +77,20 @@ const Login = () => {
                     Forgot password?
                   </Link>
                 </div>
-                <Input id="password" type="password" required />
+                <Input 
+                  id="password" 
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required 
+                />
               </div>
               <div className="flex items-center space-x-2">
-                <Checkbox id="remember" />
+                <Checkbox 
+                  id="remember" 
+                  checked={rememberMe}
+                  onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                />
                 <label
                   htmlFor="remember"
                   className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -55,7 +98,9 @@ const Login = () => {
                   Remember me
                 </label>
               </div>
-              <Button type="submit" className="w-full">Log In</Button>
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? "Logging in..." : "Log In"}
+              </Button>
             </div>
           </form>
           
