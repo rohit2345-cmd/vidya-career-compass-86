@@ -7,8 +7,8 @@
 import { systemPrompt } from "../prompts/systemPrompt";
 
 // API keys (would typically be stored in environment variables)
-const OPENROUTER_API_KEY = "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";
-const BACKUP_API_KEY = "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";
+const OPENROUTER_API_KEY = 'OPENROUTER_API_KEY';
+const BACKUP_API_KEY = 'BACKUP';
 
 interface Message {
   role: "system" | "user" | "assistant";
@@ -48,7 +48,7 @@ const makeOpenRouterRequest = async (
     body: JSON.stringify({
       model: model,
       messages: messages,
-      temperature: 0.7,
+      temperature: 0.2,
       max_tokens: 500,
       stream: stream,
     }),
