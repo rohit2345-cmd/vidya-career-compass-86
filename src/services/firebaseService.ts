@@ -1,22 +1,12 @@
 
-import { 
-  collection, 
-  addDoc, 
-  query, 
-  where, 
-  orderBy, 
-  getDocs,
-  Timestamp 
-} from "firebase/firestore";
-import { db } from "./firebaseConfig";
-import { getCurrentUser } from "./authService";
+import { supabase } from "@/integrations/supabase/client";
 
-export interface FirebaseAssessmentResult {
+export interface SupabaseAssessmentResult {
   id?: string;
-  userId: string;
-  studentName: string;
-  assessmentType: string;
-  completedOn: Timestamp;
+  user_id?: string;
+  student_name: string;
+  assessment_type: string;
+  completed_on: string;
   questions: {
     questionId: string;
     question: string;
@@ -28,53 +18,58 @@ export interface FirebaseAssessmentResult {
   interests?: string[];
 }
 
-export const saveAssessmentResultToFirebase = async (
-  result: Omit<FirebaseAssessmentResult, "id" | "userId">
+export const saveAssessmentResultToSupabase = async (
+  result: Omit<SupabaseAssessmentResult, "id" | "user_id">
 ): Promise<string> => {
-  const user = getCurrentUser();
-  if (!user) {
-    throw new Error("User must be authenticated to save to Firebase");
-  }
-
   try {
-    const docRef = await addDoc(collection(db, "assessmentResults"), {
-      ...result,
-      userId: user.uid,
-      createdAt: Timestamp.now(),
-    });
+    const { data: { user } } = await supabase.auth.getUser();
     
-    console.log("Assessment result saved to Firebase with ID:", docRef.id);
-    return docRef.id;
+    const assessmentData = {
+      ...result,
+      user_id: user?.id || null,
+      is_guest: !user,
+      completed_on: new Date(result.completed_on).toISOString()
+    };
+
+    const { data, error } = await supabase
+      .from('assessment_results')
+      .insert(assessmentData)
+      .select()
+      .single();
+    
+    if (error) {
+      console.error("Error saving assessment result to Supabase:", error);
+      throw error;
+    }
+    
+    console.log("Assessment result saved to Supabase with ID:", data.id);
+    return data.id;
   } catch (error) {
-    console.error("Error saving assessment result to Firebase:", error);
+    console.error("Error saving assessment result to Supabase:", error);
     throw error;
   }
 };
 
-export const getUserAssessmentResults = async (): Promise<FirebaseAssessmentResult[]> => {
-  const user = getCurrentUser();
-  if (!user) {
-    return [];
-  }
-
+export const getUserAssessmentResults = async (): Promise<SupabaseAssessmentResult[]> => {
   try {
-    const q = query(
-      collection(db, "assessmentResults"),
-      where("userId", "==", user.uid),
-      orderBy("completedOn", "desc")
-    );
+    const { data: { user } } = await supabase.auth.getUser();
     
-    const querySnapshot = await getDocs(q);
-    const results: FirebaseAssessmentResult[] = [];
+    if (!user) {
+      return [];
+    }
+
+    const { data, error } = await supabase
+      .from('assessment_results')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('completed_on', { ascending: false });
     
-    querySnapshot.forEach((doc) => {
-      results.push({
-        id: doc.id,
-        ...doc.data()
-      } as FirebaseAssessmentResult);
-    });
+    if (error) {
+      console.error("Error fetching user assessment results:", error);
+      return [];
+    }
     
-    return results;
+    return data || [];
   } catch (error) {
     console.error("Error fetching user assessment results:", error);
     return [];
