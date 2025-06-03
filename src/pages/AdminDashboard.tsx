@@ -19,13 +19,20 @@ interface AssessmentResult {
   completed_on: string;
   questions: any[];
   user_id: string | null;
+  scores?: any;
+  interests?: any;
+  strengths?: any;
+  is_guest: boolean;
 }
 
 interface ChatMessage {
   id: string;
   created_at: string;
-  name: string;
-  message: string;
+  content: string;
+  role: string;
+  user_id: string | null;
+  assessment_result_id: string | null;
+  is_guest: boolean;
 }
 
 const formatDate = (dateString: string): string => {
@@ -59,7 +66,21 @@ const AdminDashboard = () => {
         if (error) {
           console.error("Error fetching assessments:", error);
         } else {
-          setAssessments(data || []);
+          // Map the data to match our interface
+          const mappedData: AssessmentResult[] = (data || []).map(item => ({
+            id: item.id,
+            created_at: item.completed_on, // Use completed_on as created_at
+            student_name: item.student_name,
+            assessment_type: item.assessment_type,
+            completed_on: item.completed_on,
+            questions: Array.isArray(item.questions) ? item.questions : [],
+            user_id: item.user_id,
+            scores: item.scores,
+            interests: item.interests,
+            strengths: item.strengths,
+            is_guest: item.is_guest
+          }));
+          setAssessments(mappedData);
         }
       } catch (error) {
         console.error("Error fetching assessments:", error);
@@ -76,7 +97,17 @@ const AdminDashboard = () => {
         if (error) {
           console.error("Error fetching chat messages:", error);
         } else {
-          setChatMessages(data || []);
+          // Map the data to match our interface
+          const mappedData: ChatMessage[] = (data || []).map(item => ({
+            id: item.id,
+            created_at: item.created_at,
+            content: item.content,
+            role: item.role,
+            user_id: item.user_id,
+            assessment_result_id: item.assessment_result_id,
+            is_guest: item.is_guest
+          }));
+          setChatMessages(mappedData);
         }
       } catch (error) {
         console.error("Error fetching chat messages:", error);
@@ -153,7 +184,7 @@ const AdminDashboard = () => {
             <CardContent>
               <div className="text-2xl font-bold text-blue-700">{assessments.length}</div>
               <p className="text-xs text-blue-600 mt-1">
-                +{Math.floor(assessments.length * 0.1)} from last month
+                +{Math.floor(Number(assessments.length) * 0.1)} from last month
               </p>
             </CardContent>
           </Card>
@@ -181,7 +212,7 @@ const AdminDashboard = () => {
             <CardContent>
               <div className="text-2xl font-bold text-purple-700">{chatMessages.length}</div>
               <p className="text-xs text-purple-600 mt-1">
-                +{Math.floor(chatMessages.length * 0.15)} this week
+                +{Math.floor(Number(chatMessages.length) * 0.15)} this week
               </p>
             </CardContent>
           </Card>
