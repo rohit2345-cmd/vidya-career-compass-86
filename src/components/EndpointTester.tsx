@@ -1,348 +1,452 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { CheckCircle, XCircle, Loader2, MessageSquare, Brain, Database, User } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import { toast } from 'sonner';
-import { CheckCircle, XCircle, Clock, User, Database, MessageSquare } from 'lucide-react';
+import { getAIResponse } from '@/services/openRouterService';
 
 interface TestResult {
   name: string;
   status: 'pending' | 'success' | 'error';
   message: string;
-  duration?: number;
+  details?: string;
 }
 
 const EndpointTester = () => {
-  const [testResults, setTestResults] = useState<TestResult[]>([]);
+  const [results, setResults] = useState<TestResult[]>([]);
   const [isRunning, setIsRunning] = useState(false);
-  const [testEmail, setTestEmail] = useState('test@example.com');
-  const [testPassword, setTestPassword] = useState('testpassword123');
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [testMessage, setTestMessage] = useState("What career advice do you have for someone interested in technology?");
 
-  useEffect(() => {
-    // Check current auth state
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setCurrentUser(session?.user || null);
+  const updateResult = (name: string, status: 'success' | 'error', message: string, details?: string) => {
+    setResults(prev => {
+      const existing = prev.find(r => r.name === name);
+      if (existing) {
+        existing.status = status;
+        existing.message = message;
+        existing.details = details;
+        return [...prev];
+      }
+      return [...prev, { name, status, message, details }];
     });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      setCurrentUser(session?.user || null);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const addTestResult = (name: string, status: 'success' | 'error', message: string, duration?: number) => {
-    setTestResults(prev => [...prev, { name, status, message, duration }]);
   };
 
-  const runTests = async () => {
-    setIsRunning(true);
-    setTestResults([]);
-    
+  const initializeTest = (name: string) => {
+    setResults(prev => {
+      const existing = prev.find(r => r.name === name);
+      if (existing) {
+        existing.status = 'pending';
+        existing.message = 'Testing...';
+        existing.details = undefined;
+        return [...prev];
+      }
+      return [...prev, { name, status: 'pending', message: 'Testing...', details: undefined }];
+    });
+  };
+
+  const testAIModels = async () => {
+    const testName = 'AI Models (Primary + Backup)';
+    initializeTest(testName);
+
     try {
-      // Test 1: Sign Up
-      const signUpStart = Date.now();
-      try {
-        const { data, error } = await supabase.auth.signUp({
-          email: testEmail,
-          password: testPassword
-        });
-        
-        if (error) {
-          if (error.message.includes('already registered')) {
-            addTestResult('Sign Up', 'success', 'User already exists (expected)', Date.now() - signUpStart);
-          } else {
-            addTestResult('Sign Up', 'error', `Error: ${error.message}`, Date.now() - signUpStart);
-          }
-        } else {
-          addTestResult('Sign Up', 'success', 'Sign up successful', Date.now() - signUpStart);
-        }
-      } catch (err: any) {
-        addTestResult('Sign Up', 'error', `Exception: ${err.message}`, Date.now() - signUpStart);
-      }
-
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // Test 2: Sign In
-      const signInStart = Date.now();
-      try {
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email: testEmail,
-          password: testPassword
-        });
-        
-        if (error) {
-          addTestResult('Sign In', 'error', `Error: ${error.message}`, Date.now() - signInStart);
-        } else {
-          addTestResult('Sign In', 'success', 'Sign in successful', Date.now() - signInStart);
-        }
-      } catch (err: any) {
-        addTestResult('Sign In', 'error', `Exception: ${err.message}`, Date.now() - signInStart);
-      }
-
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      // Test 3: Assessment Results - Insert
-      const insertStart = Date.now();
-      try {
-        const testAssessment = {
-          student_name: 'Test Student',
-          assessment_type: 'test',
-          completed_on: new Date().toISOString(),
-          questions: [
-            {
-              questionId: 'test1',
-              question: 'Test Question',
-              selectedOption: 'Test Answer'
-            }
-          ],
-          scores: { overall: 85 },
-          interests: ['technology', 'science'],
-          strengths: ['analytical thinking'],
-          is_guest: false
-        };
-
-        const { data, error } = await supabase
-          .from('assessment_results')
-          .insert(testAssessment)
-          .select()
-          .single();
-
-        if (error) {
-          addTestResult('Insert Assessment', 'error', `Error: ${error.message}`, Date.now() - insertStart);
-        } else {
-          addTestResult('Insert Assessment', 'success', `Assessment inserted with ID: ${data.id}`, Date.now() - insertStart);
-        }
-      } catch (err: any) {
-        addTestResult('Insert Assessment', 'error', `Exception: ${err.message}`, Date.now() - insertStart);
-      }
-
-      await new Promise(resolve => setTimeout(resolve, 500));
-
-      // Test 4: Assessment Results - Read
-      const readStart = Date.now();
-      try {
-        const { data, error } = await supabase
-          .from('assessment_results')
-          .select('*')
-          .limit(5);
-
-        if (error) {
-          addTestResult('Read Assessments', 'error', `Error: ${error.message}`, Date.now() - readStart);
-        } else {
-          addTestResult('Read Assessments', 'success', `Retrieved ${data?.length || 0} assessments`, Date.now() - readStart);
-        }
-      } catch (err: any) {
-        addTestResult('Read Assessments', 'error', `Exception: ${err.message}`, Date.now() - readStart);
-      }
-
-      await new Promise(resolve => setTimeout(resolve, 500));
-
-      // Test 5: Chat Messages - Insert
-      const chatInsertStart = Date.now();
-      try {
-        const testMessage = {
-          content: 'Test chat message',
-          role: 'user',
-          is_guest: false
-        };
-
-        const { data, error } = await supabase
-          .from('chat_messages')
-          .insert(testMessage)
-          .select()
-          .single();
-
-        if (error) {
-          addTestResult('Insert Chat Message', 'error', `Error: ${error.message}`, Date.now() - chatInsertStart);
-        } else {
-          addTestResult('Insert Chat Message', 'success', `Chat message inserted with ID: ${data.id}`, Date.now() - chatInsertStart);
-        }
-      } catch (err: any) {
-        addTestResult('Insert Chat Message', 'error', `Exception: ${err.message}`, Date.now() - chatInsertStart);
-      }
-
-      await new Promise(resolve => setTimeout(resolve, 500));
-
-      // Test 6: Chat Messages - Read
-      const chatReadStart = Date.now();
-      try {
-        const { data, error } = await supabase
-          .from('chat_messages')
-          .select('*')
-          .limit(5);
-
-        if (error) {
-          addTestResult('Read Chat Messages', 'error', `Error: ${error.message}`, Date.now() - chatReadStart);
-        } else {
-          addTestResult('Read Chat Messages', 'success', `Retrieved ${data?.length || 0} chat messages`, Date.now() - chatReadStart);
-        }
-      } catch (err: any) {
-        addTestResult('Read Chat Messages', 'error', `Exception: ${err.message}`, Date.now() - chatReadStart);
-      }
-
-      toast.success('All endpoint tests completed!');
+      console.log('🧪 Testing AI models with message:', testMessage);
       
-    } catch (error) {
-      toast.error('Test suite failed');
-      console.error('Test suite error:', error);
-    } finally {
-      setIsRunning(false);
+      const messages = [
+        { role: "user" as const, content: testMessage }
+      ];
+
+      const response = await getAIResponse(messages);
+      
+      if (response && response.length > 0) {
+        updateResult(testName, 'success', 'AI models working correctly', 
+          `Response received: ${response.substring(0, 100)}${response.length > 100 ? '...' : ''}`);
+      } else {
+        updateResult(testName, 'error', 'Empty response from AI models', 'No response content received');
+      }
+    } catch (error: any) {
+      console.error('AI model test failed:', error);
+      updateResult(testName, 'error', 'AI models failed', error.message);
     }
   };
 
-  const signOut = async () => {
+  const testSignUp = async () => {
+    const testName = 'Sign Up';
+    initializeTest(testName);
+
+    try {
+      const testEmail = `test_${Date.now()}@example.com`;
+      const testPassword = 'TestPassword123!';
+
+      const { data, error } = await supabase.auth.signUp({
+        email: testEmail,
+        password: testPassword,
+      });
+
+      if (error) {
+        updateResult(testName, 'error', 'Sign up failed', error.message);
+      } else if (data.user) {
+        updateResult(testName, 'success', 'Sign up successful', `User created: ${data.user.email}`);
+        
+        // Clean up - sign out the test user
+        await supabase.auth.signOut();
+      } else {
+        updateResult(testName, 'error', 'Sign up failed', 'No user data returned');
+      }
+    } catch (error: any) {
+      updateResult(testName, 'error', 'Sign up failed', error.message);
+    }
+  };
+
+  const testSignIn = async () => {
+    const testName = 'Sign In';
+    initializeTest(testName);
+
+    try {
+      // First create a test account
+      const testEmail = `signin_test_${Date.now()}@example.com`;
+      const testPassword = 'TestPassword123!';
+
+      const { error: signUpError } = await supabase.auth.signUp({
+        email: testEmail,
+        password: testPassword,
+      });
+
+      if (signUpError) {
+        updateResult(testName, 'error', 'Failed to create test account', signUpError.message);
+        return;
+      }
+
+      // Wait a moment then try to sign in
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: testEmail,
+        password: testPassword,
+      });
+
+      if (error) {
+        updateResult(testName, 'error', 'Sign in failed', error.message);
+      } else if (data.user) {
+        updateResult(testName, 'success', 'Sign in successful', `Signed in as: ${data.user.email}`);
+        
+        // Clean up
+        await supabase.auth.signOut();
+      } else {
+        updateResult(testName, 'error', 'Sign in failed', 'No user data returned');
+      }
+    } catch (error: any) {
+      updateResult(testName, 'error', 'Sign in failed', error.message);
+    }
+  };
+
+  const testSignOut = async () => {
+    const testName = 'Sign Out';
+    initializeTest(testName);
+
     try {
       const { error } = await supabase.auth.signOut();
+
       if (error) {
-        toast.error(`Sign out error: ${error.message}`);
+        updateResult(testName, 'error', 'Sign out failed', error.message);
       } else {
-        toast.success('Signed out successfully');
-        setCurrentUser(null);
+        updateResult(testName, 'success', 'Sign out successful', 'User signed out successfully');
       }
-    } catch (err: any) {
-      toast.error(`Sign out exception: ${err.message}`);
+    } catch (error: any) {
+      updateResult(testName, 'error', 'Sign out failed', error.message);
+    }
+  };
+
+  const testAssessmentResults = async () => {
+    const testName = 'Assessment Results Database';
+    initializeTest(testName);
+
+    try {
+      // Test inserting assessment result
+      const testData = {
+        student_name: `Test Student ${Date.now()}`,
+        assessment_type: 'comprehensive',
+        completed_on: new Date().toISOString(),
+        questions: [
+          {
+            questionId: 'test1',
+            question: 'Test question?',
+            selectedOption: 'Test answer'
+          }
+        ],
+        scores: { 'Test Category': 85 },
+        interests: ['Technology'],
+        strengths: ['Problem Solving'],
+        is_guest: true
+      };
+
+      const { data, error } = await supabase
+        .from('assessment_results')
+        .insert(testData)
+        .select()
+        .single();
+
+      if (error) {
+        updateResult(testName, 'error', 'Failed to insert assessment result', error.message);
+        return;
+      }
+
+      // Test reading the data back
+      const { data: readData, error: readError } = await supabase
+        .from('assessment_results')
+        .select('*')
+        .eq('id', data.id)
+        .single();
+
+      if (readError) {
+        updateResult(testName, 'error', 'Failed to read assessment result', readError.message);
+        return;
+      }
+
+      // Clean up - delete the test data
+      await supabase
+        .from('assessment_results')
+        .delete()
+        .eq('id', data.id);
+
+      updateResult(testName, 'success', 'Assessment results database working', 
+        `Successfully inserted and retrieved: ${readData.student_name}`);
+
+    } catch (error: any) {
+      updateResult(testName, 'error', 'Assessment results database failed', error.message);
+    }
+  };
+
+  const testChatMessages = async () => {
+    const testName = 'Chat Messages Database';
+    initializeTest(testName);
+
+    try {
+      // Test inserting chat message
+      const testData = {
+        content: `Test message ${Date.now()}`,
+        role: 'user',
+        is_guest: true
+      };
+
+      const { data, error } = await supabase
+        .from('chat_messages')
+        .insert(testData)
+        .select()
+        .single();
+
+      if (error) {
+        updateResult(testName, 'error', 'Failed to insert chat message', error.message);
+        return;
+      }
+
+      // Test reading the data back
+      const { data: readData, error: readError } = await supabase
+        .from('chat_messages')
+        .select('*')
+        .eq('id', data.id)
+        .single();
+
+      if (readError) {
+        updateResult(testName, 'error', 'Failed to read chat message', readError.message);
+        return;
+      }
+
+      // Clean up - delete the test data
+      await supabase
+        .from('chat_messages')
+        .delete()
+        .eq('id', data.id);
+
+      updateResult(testName, 'success', 'Chat messages database working', 
+        `Successfully inserted and retrieved: ${readData.content.substring(0, 50)}...`);
+
+    } catch (error: any) {
+      updateResult(testName, 'error', 'Chat messages database failed', error.message);
+    }
+  };
+
+  const runAllTests = async () => {
+    setIsRunning(true);
+    setResults([]);
+
+    try {
+      await testSignUp();
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      await testSignIn();
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      await testSignOut();
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      await testAssessmentResults();
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      await testChatMessages();
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      await testAIModels();
+      
+    } catch (error) {
+      console.error('Test suite failed:', error);
+    } finally {
+      setIsRunning(false);
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'success':
-        return <CheckCircle className="h-4 w-4 text-green-600" />;
+        return <CheckCircle className="h-5 w-5 text-green-500" />;
       case 'error':
-        return <XCircle className="h-4 w-4 text-red-600" />;
+        return <XCircle className="h-5 w-5 text-red-500" />;
+      case 'pending':
+        return <Loader2 className="h-5 w-5 text-blue-500 animate-spin" />;
       default:
-        return <Clock className="h-4 w-4 text-yellow-600" />;
+        return null;
     }
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusBadge = (status: string) => {
     switch (status) {
       case 'success':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return <Badge variant="default" className="bg-green-100 text-green-800">Success</Badge>;
       case 'error':
-        return 'bg-red-100 text-red-800 border-red-200';
+        return <Badge variant="destructive">Error</Badge>;
+      case 'pending':
+        return <Badge variant="secondary">Testing...</Badge>;
       default:
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        return <Badge variant="outline">Not Tested</Badge>;
     }
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
+    <div className="space-y-6">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Database className="h-5 w-5" />
-            Supabase Endpoint Tester
+            <Brain className="h-6 w-6" />
+            AI Model Testing
           </CardTitle>
           <CardDescription>
-            Test authentication and database operations to ensure everything is working correctly
+            Test the AI counselor with both primary (Claude 2) and backup (Phi-4) models
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
-          {/* Current Auth Status */}
-          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-            <div className="flex items-center gap-2">
-              <User className="h-4 w-4" />
-              <span className="font-medium">Current User:</span>
-              <Badge variant={currentUser ? "default" : "secondary"}>
-                {currentUser ? currentUser.email : 'Not signed in'}
-              </Badge>
-            </div>
-            {currentUser && (
-              <Button variant="outline" size="sm" onClick={signOut}>
-                Sign Out
-              </Button>
-            )}
+        <CardContent className="space-y-4">
+          <div>
+            <label className="text-sm font-medium">Test Message:</label>
+            <Textarea
+              value={testMessage}
+              onChange={(e) => setTestMessage(e.target.value)}
+              placeholder="Enter a test message for the AI..."
+              className="mt-1"
+            />
           </div>
-
-          {/* Test Configuration */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="testEmail">Test Email</Label>
-              <Input
-                id="testEmail"
-                type="email"
-                value={testEmail}
-                onChange={(e) => setTestEmail(e.target.value)}
-                placeholder="test@example.com"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="testPassword">Test Password</Label>
-              <Input
-                id="testPassword"
-                type="password"
-                value={testPassword}
-                onChange={(e) => setTestPassword(e.target.value)}
-                placeholder="Password (min 6 chars)"
-              />
-            </div>
-          </div>
-
-          {/* Run Tests Button */}
-          <Button 
-            onClick={runTests} 
-            disabled={isRunning}
-            className="w-full"
-            size="lg"
-          >
-            {isRunning ? 'Running Tests...' : 'Run All Tests'}
+          <Button onClick={testAIModels} disabled={isRunning}>
+            <MessageSquare className="mr-2 h-4 w-4" />
+            Test AI Models
           </Button>
-
-          <Separator />
-
-          {/* Test Results */}
-          {testResults.length > 0 && (
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold">Test Results</h3>
-              <div className="space-y-2">
-                {testResults.map((result, index) => (
-                  <div
-                    key={index}
-                    className={`p-3 rounded-lg border ${getStatusColor(result.status)}`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        {getStatusIcon(result.status)}
-                        <span className="font-medium">{result.name}</span>
-                      </div>
-                      {result.duration && (
-                        <Badge variant="outline" className="text-xs">
-                          {result.duration}ms
-                        </Badge>
-                      )}
-                    </div>
-                    <p className="text-sm mt-1 ml-6">{result.message}</p>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Summary */}
-              <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                <div className="flex items-center justify-between text-sm">
-                  <span>Summary:</span>
-                  <div className="flex gap-4">
-                    <span className="text-green-600">
-                      ✓ {testResults.filter(r => r.status === 'success').length} passed
-                    </span>
-                    <span className="text-red-600">
-                      ✗ {testResults.filter(r => r.status === 'error').length} failed
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
         </CardContent>
       </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <User className="h-6 w-6" />
+            Authentication Endpoints
+          </CardTitle>
+          <CardDescription>
+            Test Supabase authentication functionality
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-wrap gap-2">
+            <Button onClick={testSignUp} disabled={isRunning} variant="outline">
+              Test Sign Up
+            </Button>
+            <Button onClick={testSignIn} disabled={isRunning} variant="outline">
+              Test Sign In
+            </Button>
+            <Button onClick={testSignOut} disabled={isRunning} variant="outline">
+              Test Sign Out
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Database className="h-6 w-6" />
+            Database Endpoints
+          </CardTitle>
+          <CardDescription>
+            Test Supabase database operations
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-wrap gap-2">
+            <Button onClick={testAssessmentResults} disabled={isRunning} variant="outline">
+              Test Assessment Results
+            </Button>
+            <Button onClick={testChatMessages} disabled={isRunning} variant="outline">
+              Test Chat Messages
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <div className="flex justify-center">
+        <Button 
+          onClick={runAllTests} 
+          disabled={isRunning}
+          size="lg"
+          className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+        >
+          {isRunning ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Running Tests...
+            </>
+          ) : (
+            'Run All Tests'
+          )}
+        </Button>
+      </div>
+
+      {results.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Test Results</CardTitle>
+            <CardDescription>
+              Results from endpoint testing
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {results.map((result, index) => (
+                <div key={index} className="flex items-start justify-between p-4 border rounded-lg">
+                  <div className="flex items-center gap-3">
+                    {getStatusIcon(result.status)}
+                    <div>
+                      <h4 className="font-medium">{result.name}</h4>
+                      <p className="text-sm text-muted-foreground">{result.message}</p>
+                      {result.details && (
+                        <p className="text-xs text-muted-foreground mt-1">{result.details}</p>
+                      )}
+                    </div>
+                  </div>
+                  {getStatusBadge(result.status)}
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };
