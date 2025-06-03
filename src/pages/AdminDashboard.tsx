@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -268,7 +267,7 @@ const AdminDashboard = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-orange-700">
-              {assessments.length > 0 ? Math.round((Number(chatMessages.length) / Number(assessments.length)) * 100) : 0}%
+              {assessments.length > 0 ? Math.round((Number(chatMessages.length || 0) / Number(assessments.length || 1)) * 100) : 0}%
             </div>
             <p className="text-xs text-orange-600 mt-1">
               Messages per assessment

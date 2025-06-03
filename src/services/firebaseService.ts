@@ -69,7 +69,20 @@ export const getUserAssessmentResults = async (): Promise<SupabaseAssessmentResu
       return [];
     }
     
-    return data || [];
+    // Type cast the data to match our interface
+    const typedResults: SupabaseAssessmentResult[] = (data || []).map(item => ({
+      id: item.id,
+      user_id: item.user_id,
+      student_name: item.student_name,
+      assessment_type: item.assessment_type,
+      completed_on: item.completed_on,
+      questions: Array.isArray(item.questions) ? item.questions as any[] : [],
+      scores: typeof item.scores === 'object' && item.scores !== null ? item.scores as Record<string, number> : undefined,
+      strengths: Array.isArray(item.strengths) ? item.strengths as string[] : undefined,
+      interests: Array.isArray(item.interests) ? item.interests as string[] : undefined
+    }));
+    
+    return typedResults;
   } catch (error) {
     console.error("Error fetching user assessment results:", error);
     return [];
