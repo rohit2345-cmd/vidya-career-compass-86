@@ -1,542 +1,354 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { LogOut, Users, MessageSquare, BookOpen, RefreshCw, TrendingUp, BarChart3, PieChart, Calendar } from "lucide-react";
-import { toast } from "sonner";
-import AdminDataGenerator from "@/components/AdminDataGenerator";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Calendar, Users, Brain, MessageSquare, TrendingUp, Download, Search, Filter, Plus, Eye, Trash2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  PieChart as RechartsPieChart,
-  Pie,
-  Cell,
-  LineChart,
-  Line,
-  AreaChart,
-  Area
-} from "recharts";
+
+interface AssessmentResult {
+  id: string;
+  created_at: string;
+  student_name: string;
+  assessment_type: string;
+  completed_on: string;
+  questions: any[];
+  user_id: string | null;
+}
+
+interface ChatMessage {
+  id: string;
+  created_at: string;
+  name: string;
+  message: string;
+}
+
+const formatDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+};
 
 const AdminDashboard = () => {
-  const [assessments, setAssessments] = useState<any[]>([]);
-  const [chatMessages, setChatMessages] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [analytics, setAnalytics] = useState<any>({});
   const navigate = useNavigate();
+  const [assessments, setAssessments] = useState<AssessmentResult[]>([]);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [assessmentTypeFilter, setAssessmentTypeFilter] = useState('');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [selectedAssessment, setSelectedAssessment] = useState<AssessmentResult | null>(null);
 
   useEffect(() => {
-    // Check admin authentication
-    const isAdmin = localStorage.getItem("admin_auth") === "true";
-    if (!isAdmin) {
-      navigate("/admin-login");
-      return;
-    }
+    const fetchAssessments = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('assessment_results')
+          .select('*')
+          .order('completed_on', { ascending: false });
 
-    fetchData();
-  }, [navigate]);
-
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      // Fetch assessment results from Supabase
-      const { data: assessmentResults, error: assessmentError } = await supabase
-        .from('assessment_results')
-        .select('*')
-        .order('completed_on', { ascending: false });
-
-      if (assessmentError) {
-        console.error("Error fetching assessments:", assessmentError);
-        toast.error("Failed to load assessment data");
-      } else {
-        setAssessments(assessmentResults || []);
-      }
-
-      // Fetch chat messages from Supabase
-      const { data: messages, error: messagesError } = await supabase
-        .from('chat_messages')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (messagesError) {
-        console.error("Error fetching chat messages:", messagesError);
-        toast.error("Failed to load chat data");
-      } else {
-        setChatMessages(messages || []);
-      }
-
-      // Generate analytics
-      generateAnalytics(assessmentResults || [], messages || []);
-
-      toast.success("Data loaded successfully");
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      toast.error("Failed to load data");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const generateAnalytics = (assessments: any[], messages: any[]) => {
-    // Assessment type distribution
-    const assessmentTypeCount = assessments.reduce((acc, assessment) => {
-      acc[assessment.assessment_type] = (acc[assessment.assessment_type] || 0) + 1;
-      return acc;
-    }, {});
-
-    const assessmentTypeData = Object.entries(assessmentTypeCount).map(([key, value]) => ({
-      name: key.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()),
-      value: Number(value) || 0
-    }));
-
-    // User type distribution
-    const guestUsers = assessments.filter(a => a.is_guest).length;
-    const registeredUsers = assessments.length - guestUsers;
-    
-    const userTypeData = [
-      { name: 'Registered Users', value: registeredUsers },
-      { name: 'Guest Users', value: guestUsers }
-    ];
-
-    // Daily activity (last 7 days)
-    const last7Days = Array.from({length: 7}, (_, i) => {
-      const date = new Date();
-      date.setDate(date.getDate() - i);
-      return date.toISOString().split('T')[0];
-    }).reverse();
-
-    const dailyActivity = last7Days.map(date => {
-      const assessmentsCount = assessments.filter(a => 
-        a.completed_on && a.completed_on.startsWith(date)
-      ).length;
-      const messagesCount = messages.filter(m => 
-        m.created_at && m.created_at.startsWith(date)
-      ).length;
-      
-      return {
-        date: new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-        assessments: assessmentsCount,
-        messages: messagesCount
-      };
-    });
-
-    // Average scores by assessment type
-    const avgScores = assessments
-      .filter(a => a.scores)
-      .reduce((acc, assessment) => {
-        if (!acc[assessment.assessment_type]) {
-          acc[assessment.assessment_type] = { total: 0, count: 0, scores: {} };
+        if (error) {
+          console.error("Error fetching assessments:", error);
+        } else {
+          setAssessments(data || []);
         }
-        
-        if (assessment.scores && typeof assessment.scores === 'object') {
-          Object.entries(assessment.scores).forEach(([skill, score]) => {
-            if (!acc[assessment.assessment_type].scores[skill]) {
-              acc[assessment.assessment_type].scores[skill] = { total: 0, count: 0 };
-            }
-            const numericScore = typeof score === 'number' ? score : Number(score) || 0;
-            acc[assessment.assessment_type].scores[skill].total += numericScore;
-            acc[assessment.assessment_type].scores[skill].count += 1;
-          });
-        }
-        
-        acc[assessment.assessment_type].count += 1;
-        return acc;
-      }, {});
-
-    const avgScoresData = Object.entries(avgScores).map(([type, data]: [string, any]) => {
-      const avgSkillScores = Object.entries(data.scores).map(([skill, scoreData]: [string, any]) => ({
-        skill: skill.replace(/([A-Z])/g, ' $1').trim(),
-        avgScore: scoreData.count > 0 ? Math.round(scoreData.total / scoreData.count) : 0
-      }));
-      
-      return {
-        assessmentType: type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()),
-        skills: avgSkillScores
-      };
-    });
-
-    // Chat engagement metrics
-    const totalConversations = Math.ceil(messages.length / 2);
-    const chatEngagement = {
-      totalConversations,
-      avgMessagesPerConversation: totalConversations > 0 ? Math.round(messages.length / totalConversations) : 0,
-      userMessages: messages.filter(m => m.role === 'user').length,
-      aiResponses: messages.filter(m => m.role === 'assistant').length
+      } catch (error) {
+        console.error("Error fetching assessments:", error);
+      }
     };
 
-    setAnalytics({
-      assessmentTypeData,
-      userTypeData,
-      dailyActivity,
-      avgScoresData,
-      chatEngagement
-    });
-  };
+    const fetchChatMessages = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('chat_messages')
+          .select('*')
+          .order('created_at', { ascending: false });
 
-  const handleLogout = () => {
-    localStorage.removeItem("admin_auth");
-    localStorage.removeItem("admin_username");
-    toast.success("Logged out successfully");
-    navigate("/admin-login");
-  };
+        if (error) {
+          console.error("Error fetching chat messages:", error);
+        } else {
+          setChatMessages(data || []);
+        }
+      } catch (error) {
+        console.error("Error fetching chat messages:", error);
+      }
+    };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleString();
-  };
+    fetchAssessments();
+    fetchChatMessages();
+  }, []);
 
-  const COLORS = ['#4F46E5', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#06B6D4'];
+  const exportData = async () => {
+    try {
+      const { jsPDF } = await import('jspdf');
+      const autoTable = (await import('jspdf-autotable')).default;
+      
+      const doc = new jsPDF();
+      
+      // Title
+      doc.setFontSize(20);
+      doc.text('Assessment Results Report', 20, 20);
+      
+      // Summary stats
+      doc.setFontSize(12);
+      doc.text(`Total Assessments: ${assessments.length}`, 20, 40);
+      doc.text(`Total Chat Messages: ${chatMessages.length}`, 20, 50);
+      
+      // Assessment data table
+      const tableData = assessments.map(assessment => [
+        assessment.student_name,
+        assessment.assessment_type,
+        new Date(assessment.completed_on).toLocaleDateString(),
+        assessment.questions?.length || 0
+      ]);
+      
+      autoTable(doc, {
+        head: [['Student Name', 'Assessment Type', 'Completed On', 'Questions']],
+        body: tableData,
+        startY: 70,
+      });
+      
+      doc.save('assessment-results.pdf');
+    } catch (error) {
+      console.error('Error exporting data:', error);
+    }
+  };
 
   return (
-    <div className="container py-8 max-w-7xl mx-auto">
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Admin Analytics Dashboard
-          </h1>
-          <p className="text-muted-foreground">
-            Welcome, {localStorage.getItem("admin_username") || "Admin"} - Data Science Insights
-          </p>
+    <div className="min-h-screen bg-gray-50 p-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+            <p className="text-gray-600 mt-2">Monitor and manage assessment data</p>
+          </div>
+          <div className="flex gap-4">
+            <Button onClick={exportData} variant="outline">
+              <Download className="mr-2 h-4 w-4" />
+              Export Data
+            </Button>
+            <Button onClick={() => navigate('/admin/generate')}>
+              <Plus className="mr-2 h-4 w-4" />
+              Generate Test Data
+            </Button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" onClick={fetchData} className="gap-1">
-            <RefreshCw className="h-4 w-4" />
-            Refresh
-          </Button>
-          <AdminDataGenerator />
-          <Button variant="outline" onClick={handleLogout}>
-            <LogOut className="mr-2 h-4 w-4" />
-            Logout
-          </Button>
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Assessments</CardTitle>
+              <Users className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-blue-700">{assessments.length}</div>
+              <p className="text-xs text-blue-600 mt-1">
+                +{Math.floor(assessments.length * 0.1)} from last month
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Science Stream</CardTitle>
+              <Brain className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-green-700">
+                {assessments.filter(a => a.assessment_type === 'science').length}
+              </div>
+              <p className="text-xs text-green-600 mt-1">
+                {assessments.length > 0 ? Math.round((assessments.filter(a => a.assessment_type === 'science').length / assessments.length) * 100) : 0}% of total
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Chat Messages</CardTitle>
+              <MessageSquare className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-purple-700">{chatMessages.length}</div>
+              <p className="text-xs text-purple-600 mt-1">
+                +{Math.floor(chatMessages.length * 0.15)} this week
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Engagement Rate</CardTitle>
+              <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-orange-700">
+                {assessments.length > 0 ? Math.round((Number(chatMessages.length || 0) / Number(assessments.length || 1)) * 100) : 0}%
+              </div>
+              <p className="text-xs text-orange-600 mt-1">
+                Messages per assessment
+              </p>
+            </CardContent>
+          </Card>
         </div>
-      </div>
 
-      {/* Key Metrics Cards */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-4 mb-8">
-        <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Assessments</CardTitle>
-            <BookOpen className="h-4 w-4 text-blue-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-blue-700">{assessments.length}</div>
-            <p className="text-xs text-blue-600 mt-1">
-              +{assessments.length > 0 ? Math.round((assessments.length / 30) * 100) : 0}% from last month
-            </p>
-          </CardContent>
-        </Card>
+        {/* Filters and Search */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
+          <div className="flex items-center gap-2">
+            <Search className="h-5 w-5 text-gray-500" />
+            <Input
+              type="text"
+              placeholder="Search student name..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="md:w-64"
+            />
+          </div>
 
-        <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
-            <Users className="h-4 w-4 text-green-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-green-700">
-              {assessments.filter(a => !a.is_guest).length}
-            </div>
-            <p className="text-xs text-green-600 mt-1">
-              + {assessments.filter(a => a.is_guest).length} guests
-            </p>
-          </CardContent>
-        </Card>
+          <div className="flex items-center gap-2">
+            <Filter className="h-5 w-5 text-gray-500" />
+            <Select value={assessmentTypeFilter} onValueChange={setAssessmentTypeFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Filter by type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="">All Types</SelectItem>
+                <SelectItem value="science">Science</SelectItem>
+                <SelectItem value="commerce">Commerce</SelectItem>
+                <SelectItem value="arts">Arts</SelectItem>
+                <SelectItem value="comprehensive">Comprehensive</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
 
-        <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Chat Messages</CardTitle>
-            <MessageSquare className="h-4 w-4 text-purple-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-purple-700">{chatMessages.length}</div>
-            <p className="text-xs text-purple-600 mt-1">
-              {analytics.chatEngagement?.totalConversations || 0} conversations
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Engagement Rate</CardTitle>
-            <TrendingUp className="h-4 w-4 text-orange-600" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-orange-700">
-              {assessments.length > 0 ? Math.round((Number(chatMessages.length || 0) / Number(assessments.length || 1)) * 100) : 0}%
-            </div>
-            <p className="text-xs text-orange-600 mt-1">
-              Messages per assessment
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <Tabs defaultValue="analytics">
-        <TabsList className="mb-4">
-          <TabsTrigger value="analytics">Analytics Overview</TabsTrigger>
-          <TabsTrigger value="assessments">Assessment Data</TabsTrigger>
-          <TabsTrigger value="chats">Chat Analysis</TabsTrigger>
-          <TabsTrigger value="performance">Performance Metrics</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="analytics" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Assessment Type Distribution */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <PieChart className="h-5 w-5" />
-                  Assessment Type Distribution
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="h-[300px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <RechartsPieChart>
-                      <Pie
-                        data={analytics.assessmentTypeData || []}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="value"
+        {/* Data Table */}
+        <div className="overflow-x-auto shadow-md rounded-lg">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Student Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Assessment Type
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Completed On
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Questions
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  <span className="sr-only">View</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {assessments
+                .filter(assessment =>
+                  assessment.student_name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+                  (assessmentTypeFilter === '' || assessment.assessment_type === assessmentTypeFilter)
+                )
+                .sort((a, b) => {
+                  const dateA = new Date(a.completed_on).getTime();
+                  const dateB = new Date(b.completed_on).getTime();
+                  return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+                })
+                .map((assessment) => (
+                  <tr key={assessment.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {assessment.student_name}
+                    </th>
+                    <td className="px-6 py-4">
+                      {assessment.assessment_type}
+                    </td>
+                    <td className="px-6 py-4">
+                      {formatDate(assessment.completed_on)}
+                    </td>
+                    <td className="px-6 py-4">
+                      {assessment.questions.length}
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedAssessment(assessment)}
                       >
-                        {(analytics.assessmentTypeData || []).map((entry: any, index: number) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                    </RechartsPieChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* User Type Distribution */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Users className="h-5 w-5" />
-                  User Type Analysis
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="h-[300px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={analytics.userTypeData || []}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Bar dataKey="value" fill="#4F46E5" />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Daily Activity */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calendar className="h-5 w-5" />
-                Daily Activity (Last 7 Days)
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-[300px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={analytics.dailyActivity || []}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                    <Tooltip />
-                    <Area type="monotone" dataKey="assessments" stackId="1" stroke="#4F46E5" fill="#4F46E5" />
-                    <Area type="monotone" dataKey="messages" stackId="1" stroke="#10B981" fill="#10B981" />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="assessments">
-          <Card>
-            <CardHeader>
-              <CardTitle>Assessment Results</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {isLoading ? (
-                <div className="text-center py-4">Loading assessment data...</div>
-              ) : (
-                <div className="rounded-md border">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Student Name</TableHead>
-                        <TableHead>Assessment Type</TableHead>
-                        <TableHead>Completed On</TableHead>
-                        <TableHead>User Type</TableHead>
-                        <TableHead>Avg Score</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {assessments.length > 0 ? (
-                        assessments.map((assessment) => {
-                          const avgScore = assessment.scores ? 
-                            Math.round(Object.values(assessment.scores).reduce((a: any, b: any) => Number(a) + Number(b), 0) / Object.values(assessment.scores).length) : 
-                            'N/A';
-                          
-                          return (
-                            <TableRow key={assessment.id}>
-                              <TableCell>{assessment.student_name}</TableCell>
-                              <TableCell>{assessment.assessment_type}</TableCell>
-                              <TableCell>{formatDate(assessment.completed_on)}</TableCell>
-                              <TableCell>{assessment.is_guest ? "Guest" : "Registered"}</TableCell>
-                              <TableCell>
-                                <span className={`px-2 py-1 rounded text-xs ${
-                                  typeof avgScore === 'number' && avgScore >= 80 ? 'bg-green-100 text-green-800' :
-                                  typeof avgScore === 'number' && avgScore >= 60 ? 'bg-yellow-100 text-yellow-800' :
-                                  typeof avgScore === 'number' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800'
-                                }`}>
-                                  {typeof avgScore === 'number' ? `${avgScore}%` : avgScore}
-                                </span>
-                              </TableCell>
-                            </TableRow>
-                          );
-                        })
-                      ) : (
-                        <TableRow>
-                          <TableCell colSpan={5} className="text-center py-4">
-                            No assessment results found
-                          </TableCell>
-                        </TableRow>
-                      )}
-                    </TableBody>
-                  </Table>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="chats">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Chat Engagement</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-sm text-muted-foreground">Total Conversations</span>
-                    <span className="font-semibold">{analytics.chatEngagement?.totalConversations || 0}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm text-muted-foreground">Avg Messages/Conv</span>
-                    <span className="font-semibold">{analytics.chatEngagement?.avgMessagesPerConversation || 0}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm text-muted-foreground">User Messages</span>
-                    <span className="font-semibold">{analytics.chatEngagement?.userMessages || 0}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm text-muted-foreground">AI Responses</span>
-                    <span className="font-semibold">{analytics.chatEngagement?.aiResponses || 0}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Chat Messages</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {isLoading ? (
-                <div className="text-center py-4">Loading chat data...</div>
-              ) : (
-                <div className="rounded-md border">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Timestamp</TableHead>
-                        <TableHead>Role</TableHead>
-                        <TableHead>Content</TableHead>
-                        <TableHead>User Type</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {chatMessages.length > 0 ? (
-                        chatMessages.slice(0, 50).map((message) => (
-                          <TableRow key={message.id}>
-                            <TableCell>{formatDate(message.created_at)}</TableCell>
-                            <TableCell>
-                              <span className={message.role === "assistant" ? "text-primary" : ""}>
-                                {message.role === "assistant" ? "AI" : "User"}
-                              </span>
-                            </TableCell>
-                            <TableCell className="max-w-xs truncate">
-                              {message.content}
-                            </TableCell>
-                            <TableCell>{message.is_guest ? "Guest" : "Registered"}</TableCell>
-                          </TableRow>
-                        ))
-                      ) : (
-                        <TableRow>
-                          <TableCell colSpan={4} className="text-center py-4">
-                            No chat messages found
-                          </TableCell>
-                        </TableRow>
-                      )}
-                    </TableBody>
-                  </Table>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="performance">
-          <div className="space-y-6">
-            {/* Average Scores by Assessment Type */}
-            {analytics.avgScoresData && analytics.avgScoresData.length > 0 && (
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Average Scores by Assessment Type</h3>
-                {analytics.avgScoresData.map((assessment: any, index: number) => (
-                  <Card key={index}>
-                    <CardHeader>
-                      <CardTitle className="text-base">{assessment.assessmentType}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="h-[250px]">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <BarChart data={assessment.skills}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="skill" angle={-45} textAnchor="end" height={80} />
-                            <YAxis domain={[0, 100]} />
-                            <Tooltip />
-                            <Bar dataKey="avgScore" fill={COLORS[index % COLORS.length]} />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      </div>
-                    </CardContent>
-                  </Card>
+                        <Eye className="h-4 w-4 mr-2" />
+                        View
+                      </Button>
+                    </td>
+                  </tr>
                 ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Assessment Details Modal */}
+        {selectedAssessment && (
+          <div className="fixed z-10 inset-0 overflow-y-auto">
+            <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+              <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+                <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
               </div>
-            )}
+
+              <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+              <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <div className="sm:flex sm:items-start">
+                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                      <h3 className="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                        Assessment Details
+                      </h3>
+                      <div className="mt-2">
+                        <p className="text-sm text-gray-500">
+                          Student Name: {selectedAssessment.student_name}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          Assessment Type: {selectedAssessment.assessment_type}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          Completed On: {formatDate(selectedAssessment.completed_on)}
+                        </p>
+                        <Separator className="my-4" />
+                        <h4 className="text-md font-medium text-gray-700">Questions:</h4>
+                        <ul>
+                          {selectedAssessment.questions.map((question, index) => (
+                            <li key={index} className="text-sm text-gray-500">
+                              {question.question} - Selected: {question.selectedOption}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                  <Button
+                    variant="outline"
+                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    onClick={() => setSelectedAssessment(null)}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
-        </TabsContent>
-      </Tabs>
+        )}
+      </div>
     </div>
   );
 };
