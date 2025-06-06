@@ -49,12 +49,18 @@ const OpenEndedResults = () => {
         return;
       }
 
-      // Type cast the data to match our interface
+      // Properly type cast the data to match our interface
       const typedResult: OpenEndedResult = {
         id: data.id,
         student_name: data.student_name,
         assessment_type: data.assessment_type,
-        questions: Array.isArray(data.questions) ? data.questions : [],
+        questions: Array.isArray(data.questions) 
+          ? (data.questions as Array<{
+              questionId: string;
+              question: string;
+              answer: string;
+            }>)
+          : [],
         completed_on: data.completed_on
       };
 
