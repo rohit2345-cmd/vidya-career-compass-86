@@ -97,18 +97,21 @@ const AICounselor = () => {
             messageCount={messageCount} 
             maxGuestMessages={maxGuestMessages}
             isGuest={isGuest}
+            isDemo={false}
           />
           
           <CardContent className="p-0">
             <div className="h-[500px] overflow-y-auto border-t border-b bg-gray-50/50">
               <div className="p-6 space-y-4">
                 {messages.length === 0 ? (
-                  <WelcomeMessage hasAssessmentData={!!assessmentResults} />
+                  <WelcomeMessage />
                 ) : (
                   messages.map((message) => (
                     <ChatMessage 
                       key={message.id} 
-                      message={message} 
+                      role={message.role}
+                      content={message.content}
+                      isStreaming={message.isStreaming}
                     />
                   ))
                 )}
@@ -131,7 +134,7 @@ const AICounselor = () => {
             <ChatInput 
               onSendMessage={sendMessage}
               isLoading={isLoading}
-              disabled={isGuest && messageCount >= maxGuestMessages}
+              isDisabled={isGuest && messageCount >= maxGuestMessages}
             />
           </CardContent>
         </Card>

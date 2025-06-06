@@ -49,9 +49,18 @@ const OpenEndedResults = () => {
         return;
       }
 
-      setResult(data);
+      // Type cast the data to match our interface
+      const typedResult: OpenEndedResult = {
+        id: data.id,
+        student_name: data.student_name,
+        assessment_type: data.assessment_type,
+        questions: Array.isArray(data.questions) ? data.questions : [],
+        completed_on: data.completed_on
+      };
+
+      setResult(typedResult);
       // Automatically generate analysis
-      generateAnalysis(data);
+      generateAnalysis(typedResult);
     } catch (error) {
       console.error("Error fetching result:", error);
       toast.error("An error occurred while loading results");
