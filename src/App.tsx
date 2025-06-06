@@ -4,9 +4,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
+import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
+import DemoDashboard from "./pages/DemoDashboard";
 import Assessment from "./pages/Assessment";
 import Results from "./pages/Results";
 import ResultsDemo from "./pages/ResultsDemo";
@@ -30,32 +32,35 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider attribute="class" defaultTheme="light">
-        <TooltipProvider>
-          <Toaster />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/landing" element={<Landing />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/assessment/:type" element={<Assessment />} />
-              <Route path="/assessment/open-ended" element={<OpenEndedAssessment />} />
-              <Route path="/results/:type" element={<Results />} />
-              <Route path="/results/open-ended/:resultId" element={<OpenEndedResults />} />
-              <Route path="/results-demo" element={<ResultsDemo />} />
-              <Route path="/assessment-results" element={<AssessmentResults />} />
-              <Route path="/ai-counselor" element={<AICounselor />} />
-              <Route path="/assessments" element={<Assessments />} />
-              <Route path="/resources" element={<Resources />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin/dashboard" element={<AdminDashboard />} />
-              <Route path="/test-endpoints" element={<TestEndpoints />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
+        <AuthProvider>
+          <TooltipProvider>
+            <Toaster />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/landing" element={<Landing />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/user_dashboard" element={<DemoDashboard />} />
+                <Route path="/assessment/:type" element={<Assessment />} />
+                <Route path="/assessment/open-ended" element={<OpenEndedAssessment />} />
+                <Route path="/results/:type" element={<Results />} />
+                <Route path="/results/open-ended/:resultId" element={<OpenEndedResults />} />
+                <Route path="/results-demo" element={<ResultsDemo />} />
+                <Route path="/assessment-results" element={<AssessmentResults />} />
+                <Route path="/ai-counselor" element={<AICounselor />} />
+                <Route path="/assessments" element={<Assessments />} />
+                <Route path="/resources" element={<Resources />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                <Route path="/test-endpoints" element={<TestEndpoints />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </TooltipProvider>
+        </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

@@ -1,21 +1,34 @@
 
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, LogIn } from "lucide-react";
+import { Menu, X, LogIn, User, LogOut } from "lucide-react";
 import {
   Drawer,
   DrawerClose,
   DrawerContent,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 const MobileNav = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, signOut, loading } = useAuth();
   
   const isActive = (path: string) => {
     return location.pathname === path;
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      toast.success("Logged out successfully");
+      navigate("/");
+    } catch (error) {
+      toast.error("Error signing out");
+    }
   };
 
   return (
@@ -66,19 +79,48 @@ const MobileNav = () => {
           </nav>
           
           <div className="mt-auto flex flex-col gap-4">
-            <DrawerClose asChild>
-              <Link to="/login" className="w-full">
-                <Button variant="outline" className="w-full justify-start gap-2">
-                  <LogIn className="h-4 w-4" />
-                  Log In
-                </Button>
-              </Link>
-            </DrawerClose>
-            <DrawerClose asChild>
-              <Link to="/register" className="w-full">
-                <Button className="w-full">Sign Up</Button>
-              </Link>
-            </DrawerClose>
+            {!loading && (
+              <>
+                {user ? (
+                  <>
+                    <DrawerClose asChild>
+                      <Link to="/dashboard" className="w-full">
+                        <Button variant="outline" className="w-full justify-start gap-2">
+                          <User className="h-4 w-4" />
+                          Dashboard
+                        </Button>
+                      </Link>
+                    </DrawerClose>
+                    <DrawerClose asChild>
+                      <Button 
+                        variant="ghost" 
+                        onClick={handleSignOut}
+                        className="w-full justify-start gap-2"
+                      >
+                        <LogOut className="h-4 w-4" />
+                        Sign Out
+                      </Button>
+                    </DrawerClose>
+                  </>
+                ) : (
+                  <>
+                    <DrawerClose asChild>
+                      <Link to="/login" className="w-full">
+                        <Button variant="outline" className="w-full justify-start gap-2">
+                          <LogIn className="h-4 w-4" />
+                          Log In
+                        </Button>
+                      </Link>
+                    </DrawerClose>
+                    <DrawerClose asChild>
+                      <Link to="/register" className="w-full">
+                        <Button className="w-full">Sign Up</Button>
+                      </Link>
+                    </DrawerClose>
+                  </>
+                )}
+              </>
+            )}
           </div>
         </div>
       </DrawerContent>

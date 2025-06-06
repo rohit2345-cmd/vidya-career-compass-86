@@ -1,15 +1,29 @@
 
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, LogIn, Lock } from "lucide-react";
+import { BookOpen, LogIn, Lock, User, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 import MobileNav from "./MobileNav";
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, signOut, loading } = useAuth();
   
   const isActive = (path: string) => {
     return location.pathname === path;
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      toast.success("Logged out successfully");
+      navigate("/");
+    } catch (error) {
+      toast.error("Error signing out");
+    }
   };
   
   return (
@@ -41,15 +55,41 @@ const Navbar = () => {
         </nav>
         
         <div className="flex items-center gap-4">
-          <Link to="/login" className="hidden md:block">
-            <Button variant="outline" size="sm" className="items-center gap-1">
-              <LogIn className="mr-1 h-4 w-4" />
-              Log In
-            </Button>
-          </Link>
-          <Link to="/register" className="hidden md:block">
-            <Button size="sm">Sign Up</Button>
-          </Link>
+          {!loading && (
+            <>
+              {user ? (
+                <>
+                  <Link to="/dashboard" className="hidden md:block">
+                    <Button variant="outline" size="sm" className="items-center gap-1">
+                      <User className="mr-1 h-4 w-4" />
+                      Dashboard
+                    </Button>
+                  </Link>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={handleSignOut}
+                    className="hidden md:flex items-center gap-1"
+                  >
+                    <LogOut className="mr-1 h-4 w-4" />
+                    Sign Out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" className="hidden md:block">
+                    <Button variant="outline" size="sm" className="items-center gap-1">
+                      <LogIn className="mr-1 h-4 w-4" />
+                      Log In
+                    </Button>
+                  </Link>
+                  <Link to="/register" className="hidden md:block">
+                    <Button size="sm">Sign Up</Button>
+                  </Link>
+                </>
+              )}
+            </>
+          )}
           <Link to="/admin-login" className="hidden md:block">
             <Button variant="ghost" size="icon" className="ml-2">
               <Lock className="h-4 w-4" />
