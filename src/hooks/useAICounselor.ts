@@ -26,6 +26,8 @@ export const useAICounselor = (assessmentResults?: any) => {
       if (latestResult) {
         console.log("Using latest assessment result:", latestResult);
       }
+    } else {
+      console.log("Using provided assessment result:", assessmentResults);
     }
   }, [assessmentResults]);
 
@@ -66,6 +68,17 @@ export const useAICounselor = (assessmentResults?: any) => {
         content
       });
 
+      // Add specific context if we have open-ended assessment results
+      let enhancedResults = resultsToUse;
+      if (resultsToUse && resultsToUse.assessment_type === 'open-ended') {
+        console.log("Enhancing context for open-ended assessment");
+        enhancedResults = {
+          ...resultsToUse,
+          contextType: 'open-ended-assessment',
+          detailedResponses: resultsToUse.questions || []
+        };
+      }
+
       // Create a placeholder for the AI response with streaming flag
       const assistantMessageId = `assistant-${Date.now()}`;
       const assistantMessage: Message = { 
@@ -79,12 +92,12 @@ export const useAICounselor = (assessmentResults?: any) => {
       streamingMessageRef.current = "";
 
       // Initialize streaming response
-      console.log("🚀 Starting AI response streaming...");
+      console.log("🚀 Starting AI response streaming with assessment context...");
       
       try {
         await streamAIResponse(
           apiMessages,
-          resultsToUse,
+          enhancedResults,
           // On each chunk received - update the streaming message immediately
           (chunk) => {
             console.log(`📝 Received chunk: "${chunk}"`);
@@ -127,7 +140,7 @@ export const useAICounselor = (assessmentResults?: any) => {
         
         try {
           // If streaming fails, fall back to non-streaming method
-          const aiResponse = await getAIResponse(apiMessages, resultsToUse);
+          const aiResponse = await getAIResponse(apiMessages, enhancedResults);
           
           setMessages(prev => {
             return prev.map(msg => 

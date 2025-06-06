@@ -1,162 +1,165 @@
 
-import React, { useRef, useEffect } from "react";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { useAICounselor } from "@/hooks/useAICounselor";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getLatestAssessmentResult } from "../services/localStorageService";
-import ChatMessage from "@/components/ai-counselor/ChatMessage";
-import ChatInput from "@/components/ai-counselor/ChatInput";
-import WelcomeMessage from "@/components/ai-counselor/WelcomeMessage";
-import ChatHeader from "@/components/ai-counselor/ChatHeader";
-import { Sparkles, Brain, Target } from "lucide-react";
-
-// Sample assessment data for demo mode
-const sampleAssessmentData = {
-  studentName: "Demo Student",
-  assessmentType: "comprehensive",
-  completedOn: new Date().toISOString(),
-  scores: {
-    "Logical Reasoning": 85,
-    "Verbal Ability": 78,
-    "Numerical Ability": 90,
-    "Abstract Reasoning": 82
-  },
-  strengths: ["Problem Solving", "Critical Thinking", "Data Analysis"],
-  interests: ["Technology", "Mathematics", "Science"],
-  questions: [
-    {
-      questionId: "q1",
-      question: "Which career field interests you the most?",
-      selectedOption: "Technology"
-    },
-    {
-      questionId: "q2", 
-      question: "What is your favorite subject?", 
-      selectedOption: "Mathematics"
-    }
-  ]
-};
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import ChatHeader from "../components/ai-counselor/ChatHeader";
+import ChatMessage from "../components/ai-counselor/ChatMessage";
+import ChatInput from "../components/ai-counselor/ChatInput";
+import WelcomeMessage from "../components/ai-counselor/WelcomeMessage";
+import useAICounselor from "../hooks/useAICounselor";
+import { Button } from "@/components/ui/button";
+import { MessageSquare, User, FileText } from "lucide-react";
 
 const AICounselor = () => {
   const location = useLocation();
-  const isDemo = location.pathname.includes("ai-counselor") && !getLatestAssessmentResult();
+  const [showAssessmentData, setShowAssessmentData] = useState(false);
   
-  // Use sample data if in demo mode, otherwise use latest assessment
-  const assessmentData = isDemo ? sampleAssessmentData : undefined;
+  // Get assessment results from navigation state or local storage
+  const assessmentResults = location.state?.assessmentResults || null;
+  const analysisContext = location.state?.analysisContext || null;
   
-  const { messages, isLoading, sendMessage, messageCount, maxGuestMessages, isGuest } = useAICounselor(assessmentData);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  const {
+    messages,
+    isLoading,
+    sendMessage,
+    messageCount,
+    maxGuestMessages,
+    isGuest,
+  } = useAICounselor(assessmentResults);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="container py-6 max-w-5xl mx-auto">
-        {/* Friendly Header Section */}
-        <div className="text-center mb-6">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full">
-              <Brain className="h-8 w-8 text-white" />
-            </div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              AI Career Counselor
-            </h1>
-          </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Your personal AI assistant for career guidance, educational planning, and skill development
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+            AI Career Counselor
+          </h1>
+          <p className="text-gray-600 text-lg">
+            Get personalized career guidance from our AI-powered counselor
           </p>
-        </div>
-
-        {/* Feature Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div className="flex items-center gap-3 p-4 bg-white/60 dark:bg-gray-800/60 rounded-lg border border-blue-200 dark:border-gray-700">
-            <Target className="h-6 w-6 text-blue-500" />
-            <div>
-              <h3 className="font-semibold text-sm">Personalized Guidance</h3>
-              <p className="text-xs text-muted-foreground">Based on your assessment results</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 p-4 bg-white/60 dark:bg-gray-800/60 rounded-lg border border-purple-200 dark:border-gray-700">
-            <Sparkles className="h-6 w-6 text-purple-500" />
-            <div>
-              <h3 className="font-semibold text-sm">Real-time Responses</h3>
-              <p className="text-xs text-muted-foreground">Instant AI-powered advice</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 p-4 bg-white/60 dark:bg-gray-800/60 rounded-lg border border-green-200 dark:border-gray-700">
-            <Brain className="h-6 w-6 text-green-500" />
-            <div>
-              <h3 className="font-semibold text-sm">Smart Insights</h3>
-              <p className="text-xs text-muted-foreground">Industry trends & opportunities</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Chat Interface */}
-        <Card className="h-[70vh] flex flex-col shadow-xl border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
-          <CardHeader className="border-b bg-white/50 dark:bg-gray-800/50 rounded-t-lg">
-            <ChatHeader 
-              isGuest={isGuest}
-              isDemo={isDemo}
-              messageCount={messageCount}
-              maxGuestMessages={maxGuestMessages}
-            />
-          </CardHeader>
           
-          <CardContent className="flex-grow overflow-y-auto p-6 bg-gradient-to-b from-gray-50/30 to-white/30 dark:from-gray-900/30 dark:to-gray-800/30">
-            <div className="space-y-6">
-              {messages.length === 0 && <WelcomeMessage />}
+          {/* Assessment Data Indicator */}
+          {assessmentResults && (
+            <div className="mt-4 flex items-center justify-center gap-4">
+              <Badge variant="secondary" className="flex items-center gap-2 px-3 py-1">
+                <FileText className="h-4 w-4" />
+                Assessment data loaded: {assessmentResults.student_name}
+              </Badge>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowAssessmentData(!showAssessmentData)}
+              >
+                {showAssessmentData ? "Hide" : "Show"} Assessment Data
+              </Button>
+            </div>
+          )}
+        </div>
+
+        {/* Assessment Data Panel */}
+        {assessmentResults && showAssessmentData && (
+          <Card className="mb-6 bg-blue-50 border-blue-200">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-blue-800">
+                <FileText className="h-5 w-5" />
+                Loaded Assessment Data
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3 text-sm">
+                <div>
+                  <strong>Student:</strong> {assessmentResults.student_name}
+                </div>
+                <div>
+                  <strong>Assessment Type:</strong> {assessmentResults.assessment_type}
+                </div>
+                <div>
+                  <strong>Completed:</strong> {new Date(assessmentResults.completed_on).toLocaleDateString()}
+                </div>
+                <div>
+                  <strong>Questions Answered:</strong> {assessmentResults.questions?.length || 0}
+                </div>
+                {analysisContext && (
+                  <div>
+                    <strong>Previous Analysis:</strong> Available
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Chat Interface */}
+        <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+          <ChatHeader 
+            messageCount={messageCount} 
+            maxGuestMessages={maxGuestMessages}
+            isGuest={isGuest}
+          />
+          
+          <CardContent className="p-0">
+            <div className="h-[500px] overflow-y-auto border-t border-b bg-gray-50/50">
+              <div className="p-6 space-y-4">
+                {messages.length === 0 ? (
+                  <WelcomeMessage hasAssessmentData={!!assessmentResults} />
+                ) : (
+                  messages.map((message) => (
+                    <ChatMessage 
+                      key={message.id} 
+                      message={message} 
+                    />
+                  ))
+                )}
+                
+                {isLoading && (
+                  <div className="flex justify-start">
+                    <div className="flex items-center space-x-2 bg-white p-4 rounded-2xl shadow-sm border max-w-xs">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      </div>
+                      <span className="text-sm text-gray-500">AI is thinking...</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
             
-              {messages.map((message) => (
-                <ChatMessage 
-                  key={message.id}
-                  role={message.role}
-                  content={message.content}
-                  isStreaming={message.isStreaming}
-                />
-              ))}
-              
-              <div ref={messagesEndRef} />
-            </div>
-          </CardContent>
-          
-          <Separator />
-          
-          <CardFooter className="p-6 bg-white/50 dark:bg-gray-800/50 rounded-b-lg">
             <ChatInput 
               onSendMessage={sendMessage}
               isLoading={isLoading}
-              isDisabled={isGuest && messageCount >= maxGuestMessages}
+              disabled={isGuest && messageCount >= maxGuestMessages}
             />
-          </CardFooter>
+          </CardContent>
         </Card>
 
-        {/* Quick Suggestions */}
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
-          <button 
-            onClick={() => sendMessage("What career paths would you recommend based on my assessment?")}
-            className="p-3 text-left bg-white/60 dark:bg-gray-800/60 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors"
-            disabled={isLoading || (isGuest && messageCount >= maxGuestMessages)}
-          >
-            <p className="font-medium text-sm">💼 Career Recommendations</p>
-            <p className="text-xs text-muted-foreground">Get personalized career suggestions</p>
-          </button>
-          <button 
-            onClick={() => sendMessage("What skills should I develop to improve my career prospects?")}
-            className="p-3 text-left bg-white/60 dark:bg-gray-800/60 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-white/80 dark:hover:bg-gray-800/80 transition-colors"
-            disabled={isLoading || (isGuest && messageCount >= maxGuestMessages)}
-          >
-            <p className="font-medium text-sm">🚀 Skill Development</p>
-            <p className="text-xs text-muted-foreground">Learn what skills to focus on</p>
-          </button>
-        </div>
+        {/* Guest Warning */}
+        {isGuest && messageCount >= maxGuestMessages && (
+          <Card className="mt-4 border-amber-200 bg-amber-50">
+            <CardContent className="flex items-center gap-3 p-4">
+              <User className="h-5 w-5 text-amber-600" />
+              <div className="flex-1">
+                <p className="text-amber-800 font-medium">Message limit reached</p>
+                <p className="text-amber-700 text-sm">Sign up to continue chatting with the AI counselor</p>
+              </div>
+              <Button className="bg-amber-600 hover:bg-amber-700">
+                Sign Up
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Additional Context for Assessment Results */}
+        {assessmentResults && (
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-600">
+              💡 The AI counselor has access to your assessment responses and can provide personalized guidance based on your answers.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
