@@ -149,12 +149,13 @@ const Dashboard = () => {
     if (!assessments || assessments.length === 0) return [];
     
     const latestAssessment = assessments[0];
-    if (latestAssessment.scores) {
-      return Object.entries(latestAssessment.scores as Record<string, number>)
+    if (latestAssessment.scores && typeof latestAssessment.scores === 'object' && latestAssessment.scores !== null) {
+      const scoresObj = latestAssessment.scores as Record<string, any>;
+      return Object.entries(scoresObj)
         .filter(([key]) => key !== 'overall')
         .map(([subject, score]) => ({
           subject: subject.charAt(0).toUpperCase() + subject.slice(1),
-          score: score
+          score: typeof score === 'number' ? score : 0
         }));
     }
     return [];
@@ -163,9 +164,12 @@ const Dashboard = () => {
   const generateInterestData = () => {
     if (!assessments || assessments.length === 0) return [];
     
-    const interests = assessments.flatMap(assessment => 
-      Array.isArray(assessment.interests) ? assessment.interests : []
-    );
+    const interests = assessments.flatMap(assessment => {
+      if (Array.isArray(assessment.interests)) {
+        return assessment.interests as string[];
+      }
+      return [];
+    });
     
     const interestCounts = interests.reduce((acc: Record<string, number>, interest) => {
       acc[interest] = (acc[interest] || 0) + 1;
@@ -183,9 +187,9 @@ const Dashboard = () => {
     if (!assessments || assessments.length === 0) return 0;
     
     const latestAssessment = assessments[0];
-    if (latestAssessment.scores && typeof latestAssessment.scores === 'object') {
-      const scores = latestAssessment.scores as Record<string, number>;
-      return scores.overall || 0;
+    if (latestAssessment.scores && typeof latestAssessment.scores === 'object' && latestAssessment.scores !== null) {
+      const scoresObj = latestAssessment.scores as Record<string, any>;
+      return typeof scoresObj.overall === 'number' ? scoresObj.overall : 0;
     }
     return 0;
   };
@@ -470,7 +474,7 @@ const Dashboard = () => {
                             Completed on{" "}
                             {format(new Date(assessment.completed_on), 'PPP')}
                           </p>
-                          {assessment.scores && typeof assessment.scores === 'object' && (
+                          {assessment.scores && typeof assessment.scores === 'object' && assessment.scores !== null && (
                             <p className="text-sm text-primary font-medium">
                               Score: {(assessment.scores as any).overall || 'N/A'}%
                             </p>
