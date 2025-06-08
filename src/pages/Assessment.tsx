@@ -3,6 +3,7 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import Navbar from "@/components/Navbar";
 
 // Import refactored components
 import AssessmentHeader from "../components/assessment/AssessmentHeader";
@@ -34,54 +35,60 @@ const Assessment = () => {
 
   if (!questions.length) {
     return (
-      <div className="container py-8 max-w-3xl mx-auto min-h-screen flex flex-col items-center justify-center">
-        <Card>
-          <div className="p-6">
-            <h2 className="text-xl font-semibold mb-2">Assessment Not Available</h2>
-            <p className="text-muted-foreground mb-4">
-              The requested assessment is not available at this time.
-            </p>
-            <Button onClick={() => navigate("/assessments")}>Return to Assessments</Button>
-          </div>
-        </Card>
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <div className="container py-8 max-w-3xl mx-auto min-h-screen flex flex-col items-center justify-center">
+          <Card>
+            <div className="p-6">
+              <h2 className="text-xl font-semibold mb-2">Assessment Not Available</h2>
+              <p className="text-muted-foreground mb-4">
+                The requested assessment is not available at this time.
+              </p>
+              <Button onClick={() => navigate("/assessments")}>Return to Assessments</Button>
+            </div>
+          </Card>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="container py-8 max-w-3xl mx-auto min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-emerald-50">
-      <AssessmentHeader
-        title={assessmentTitle}
-        currentQuestionIndex={currentQuestionIndex}
-        questionsLength={questions.length}
-        timeRemaining={timeRemaining}
-        progress={progress}
-      />
-
-      {currentQuestion && (
-        <QuestionCard
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <div className="container py-8 max-w-3xl mx-auto min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-white to-emerald-50">
+        <AssessmentHeader
+          title={assessmentTitle}
           currentQuestionIndex={currentQuestionIndex}
-          currentQuestion={currentQuestion}
-          selectedOption={selectedOption}
-          handleOptionSelect={handleOptionSelect}
-          handlePrevious={handlePrevious}
-          handleNext={handleNext}
           questionsLength={questions.length}
-          showExitDialog={() => setShowExitDialog(true)}
+          timeRemaining={timeRemaining}
+          progress={progress}
         />
-      )}
 
-      {/* Dialogs */}
-      <ExitDialog 
-        open={showExitDialog}
-        onOpenChange={setShowExitDialog}
-        onConfirm={handleSaveAndExit}
-      />
-      
-      <TimeWarningDialog
-        open={showTimeWarning}
-        onOpenChange={setShowTimeWarning}
-      />
+        {currentQuestion && (
+          <QuestionCard
+            currentQuestionIndex={currentQuestionIndex}
+            currentQuestion={currentQuestion}
+            selectedOption={selectedOption}
+            handleOptionSelect={handleOptionSelect}
+            handlePrevious={handlePrevious}
+            handleNext={handleNext}
+            questionsLength={questions.length}
+            showExitDialog={() => setShowExitDialog(true)}
+          />
+        )}
+
+        {/* Dialogs */}
+        <ExitDialog 
+          open={showExitDialog}
+          onOpenChange={setShowExitDialog}
+          onConfirm={handleSaveAndExit}
+        />
+        
+        <TimeWarningDialog
+          open={showTimeWarning}
+          onOpenChange={setShowTimeWarning}
+        />
+      </div>
     </div>
   );
 };
