@@ -187,7 +187,7 @@ const AdminDashboard = () => {
                 <Download className="mr-2 h-4 w-4" />
                 Export Data
               </Button>
-              <Button onClick={() => navigate('/admin/generate')}>
+              <Button onClick={() => navigate('/admin/generate-data')}>
                 <Plus className="mr-2 h-4 w-4" />
                 Generate Test Data
               </Button>
