@@ -23,6 +23,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminGenerateData from "./pages/AdminGenerateData";
 import TestEndpoints from "./pages/TestEndpoints";
 import NotFound from "./pages/NotFound";
 
@@ -55,6 +56,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                <Route path="/admin/generate-data" element={<AdminGenerateData />} />
                 <Route path="/test-endpoints" element={<TestEndpoints />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
