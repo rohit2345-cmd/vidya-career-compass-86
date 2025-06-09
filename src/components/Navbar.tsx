@@ -90,7 +90,7 @@ const Navbar = () => {
               )}
             </>
           )}
-          <Link to="/admin-login" className="hidden md:block">
+          <Link to="/admin/login" className="hidden md:block">
             <Button variant="ghost" size="icon" className="ml-2">
               <Lock className="h-4 w-4" />
             </Button>

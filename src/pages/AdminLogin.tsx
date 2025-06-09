@@ -29,7 +29,7 @@ const AdminLogin = () => {
         localStorage.setItem("admin_auth", "true");
         localStorage.setItem("admin_username", username);
         toast.success("Admin login successful");
-        navigate("/admin-dashboard");
+        navigate("/admin/dashboard");
       } else {
         toast.error("Invalid credentials");
       }
